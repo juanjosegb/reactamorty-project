@@ -3,14 +3,13 @@ import {
     Route,
     Switch
 } from "react-router-dom";
-
-import CharactersScreen from "../screens/CharactersScreen";
+import HomeScreen from "../screens/HomeScreen";
 
 const Routes = () => {
 
     return (
         <Switch>
-            <Route exact path="/" component={CharactersScreen} />
+            <Route exact path="/" component={HomeScreen} />
         </Switch>
     )
 };
