@@ -1,0 +1,1 @@
+export const MenuItems = [{ text: 'Home', route: "/" }, { text: 'Characters', route: "/" }, { text: 'Episodes', route: "/" }]; 
