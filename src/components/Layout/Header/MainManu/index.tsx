@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import { Hidden, List, ListItem, ListItemIcon, makeStyles } from '@material-ui/core'
-import AcUnitIcon from '@material-ui/icons/AcUnit';
+import { Hidden, List, ListItemIcon, makeStyles } from '@material-ui/core';
 
-import { MenuItems } from '../../../../constants/MenuItems'
-import { CustomNavLink } from '../../../Custom/NavLink'
+import { MenuItems } from '../../../../constants/MenuItems';
+import { CustomTopMenuImage } from '../../../Custom/Image';
+import { ListItemMenu } from '../../../Custom/ListItem';
+import { CustomNavLink } from '../../../Custom/NavLink';
 
 const useStyles = makeStyles((theme: any) => ({
     inline: {
@@ -18,14 +19,18 @@ export const MainMenu = () => {
 
     return (
         <Hidden only='xs'>
+            <CustomTopMenuImage src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png" />
             <List className={classes.inline} >
                 {MenuItems.map((menu: any, index: Number) => (
-                    <ListItem button alignItems="center">
-                        <ListItemIcon>
-                            <AcUnitIcon />
-                        </ListItemIcon>
-                        <CustomNavLink to={menu.route}>{menu.text}</CustomNavLink>
-                    </ListItem>
+                    <CustomNavLink to={menu.route} activeClassName="active">
+                        <ListItemMenu button alignItems="center">
+                            <ListItemIcon>
+                                {menu.icon}
+                            </ListItemIcon>
+                            {menu.text}
+                        </ListItemMenu>
+
+                    </CustomNavLink>
                 ))}
             </List>
         </Hidden>

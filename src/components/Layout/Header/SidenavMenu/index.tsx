@@ -1,8 +1,12 @@
 import React from "react";
 
-import { Button, Drawer, Hidden, List, ListItem, ListItemText } from "@material-ui/core";
+import { Drawer, Grid, Hidden, List, ListItemIcon, ListItemText } from "@material-ui/core";
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { MenuItems } from "../../../../constants/MenuItems";
+import { CustomSidenavMenuImage } from "../../../Custom/Image";
+import { ListItemCenter } from "../../../Custom/ListItem";
+import { CustomNavLinkSidenav } from "../../../Custom/NavLink";
 
 export const SidenavMenu = (props: any) => {
 
@@ -12,21 +16,27 @@ export const SidenavMenu = (props: any) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
-
         setSidenavMenu({ ...sideMenu, [side]: open });
     };
 
-    const sideList = (side: any) => (
+    const SideMenu = (side: any) => (
+
         <div
             role="presentation"
             onClick={toggleDrawer(side, false)}
             onKeyDown={toggleDrawer(side, false)}
         >
+            <CustomSidenavMenuImage src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png" />
             <List>
                 {MenuItems.map((menu, index) => (
-                    <ListItem button key={index}>
-                        <ListItemText primary={menu.text} />
-                    </ListItem>
+                    <CustomNavLinkSidenav to={menu.route} activeClassName="active">
+                        <ListItemCenter button key={index}>
+                            <ListItemIcon style={{ minWidth: 0 }}>
+                                {menu.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={menu.text} />
+                        </ListItemCenter>
+                    </CustomNavLinkSidenav>
                 ))}
             </List>
         </div>
@@ -34,11 +44,13 @@ export const SidenavMenu = (props: any) => {
 
     return (
         <Hidden only={['md', 'xl', 'sm']}>
-            <Button onClick={toggleDrawer('left', true)}>Burger</Button>
+            <Grid alignContent="flex-end">
+                <MenuIcon onClick={toggleDrawer('left', true)} />
 
-            <Drawer open={sideMenu.left} onClose={toggleDrawer('left', false)}>
-                {sideList('left')}
-            </Drawer>
+                <Drawer style={{ textAlign: 'center', backgroundColor: "transparent" }} open={sideMenu.left} onClose={toggleDrawer('left', false)}>
+                    {SideMenu('left')}
+                </Drawer>
+            </Grid>
         </Hidden>
     )
 }

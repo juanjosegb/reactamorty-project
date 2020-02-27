@@ -19,7 +19,6 @@ const Header = () => {
                     <SidenavMenu sideMenu={sideMenu} setSidenavMenu={setSidenavMenu} />
                 </CustomToolbar>
             </AppBar>
-
         </Grid>
     );
 };
