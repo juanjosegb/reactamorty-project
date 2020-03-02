@@ -5,12 +5,14 @@ import {
 } from "react-router-dom";
 
 import HomeScreen from "../screens/HomeScreen";
+import NotFoundScreen from "../screens/NotFoundScreen";
 
 const Routes = () => {
 
     return (
         <Switch>
             <Route exact path="/" component={HomeScreen} />
+            <Route component={NotFoundScreen} />
         </Switch>
     )
 };

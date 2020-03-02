@@ -43,7 +43,7 @@ export const SidenavMenu = (props: any) => {
     );
 
     return (
-        <Hidden only={['md', 'xl', 'sm']}>
+        <Hidden only={['md', 'xl', 'sm', 'lg']}>
             <Grid alignContent="flex-end">
                 <MenuIcon onClick={toggleDrawer('left', true)} />
 
@@ -53,4 +53,4 @@ export const SidenavMenu = (props: any) => {
             </Grid>
         </Hidden>
     )
-}
+};
