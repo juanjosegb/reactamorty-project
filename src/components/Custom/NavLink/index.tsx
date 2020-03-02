@@ -10,9 +10,6 @@ export const CustomNavLink = styled(NavLink)`
     text-decoration: none;
     color: white;
   }
-  &:active:{
-    color: red;
-  }
 `;
 
 
@@ -23,8 +20,5 @@ export const CustomNavLinkSidenav = styled(NavLink)`
   &:hover{
     text-decoration: none;
     color: white;
-  }
-  a.active > &:{
-    color: red;
   }
 `;

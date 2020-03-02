@@ -3,6 +3,7 @@ import React from "react";
 import { Drawer, Grid, Hidden, List, ListItemIcon, ListItemText } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 
+import { ActiveLinkStyle } from "../../../../constants/ActiveLinkStyle";
 import { MenuItems } from "../../../../constants/MenuItems";
 import { CustomSidenavMenuImage } from "../../../Custom/Image";
 import { ListItemCenter } from "../../../Custom/ListItem";
@@ -29,7 +30,7 @@ export const SidenavMenu = (props: any) => {
             <CustomSidenavMenuImage src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png" />
             <List>
                 {MenuItems.map((menu, index) => (
-                    <CustomNavLinkSidenav to={menu.route} activeClassName="active">
+                    <CustomNavLinkSidenav to={menu.route} activeStyle={ActiveLinkStyle} exact={true}>
                         <ListItemCenter button key={index}>
                             <ListItemIcon style={{ minWidth: 0 }}>
                                 {menu.icon}

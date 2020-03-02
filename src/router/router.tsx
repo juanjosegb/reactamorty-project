@@ -12,6 +12,7 @@ const Routes = () => {
     return (
         <Switch>
             <Route exact path="/" component={HomeScreen} />
+            <Route exact path="/episodes" component={HomeScreen} />
             <Route component={NotFoundScreen} />
         </Switch>
     )
