@@ -18,7 +18,7 @@ export const MainMenu = () => {
     const classes = useStyles();
 
     return (
-        <Hidden only='xs'>
+        <Hidden only={['xs','sm']}>
             <CustomTopMenuImage src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png" />
             <List className={classes.inline} >
                 {MenuItems.map((menu: any, index: Number) => (

@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 
 import { CustomToolbar } from '../../../components/Custom/Toolbar';
-import { MainMenu } from '../../../components/Layout/Header/MainManu';
+import { MainMenu } from '../../../components/Layout/Header/MainMenu';
 import { SidenavMenu } from '../../../components/Layout/Header/SidenavMenu';
 
 const Header = () => {
@@ -22,6 +22,5 @@ const Header = () => {
         </Grid>
     );
 };
-
 
 export default Header
