@@ -1,19 +1,21 @@
 import React from "react";
 import {
-    Link,
     Route,
     Switch
 } from "react-router-dom";
 
-import App from "../app/App";
+import HomeScreen from "../screens/HomeScreen";
+import NotFoundScreen from "../screens/NotFoundScreen";
 
 const Routes = () => {
 
     return (
         <Switch>
-            <Route exact path="/" component={App} />
+            <Route exact path="/" component={HomeScreen} />
+            <Route exact path="/episodes" component={HomeScreen} />
+            <Route component={NotFoundScreen} />
         </Switch>
     )
-}
+};
 
 export default Routes
