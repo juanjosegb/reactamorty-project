@@ -1,5 +1,3 @@
-import React from "react";
-
 export const LegalAdviceItems = [
     {
         text: 'Legal advice',
