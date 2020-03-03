@@ -11,3 +11,7 @@ export const CustomContainer = styled(Container)`
 export const CustomContainerRaw = styled.div`
     padding-top: 2vh;
 `;
+
+export const CustomContainerDatatable = styled.div`
+    padding-top: 10vh;
+`;
