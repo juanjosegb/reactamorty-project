@@ -13,7 +13,9 @@ import StackedMenu from "../../../components/Layout/Footer/StackedMenu";
 
 const Footer = () => {
     const Trailer = styled.div`
-        background-color: #38B1C8;`;
+        background-color: #38B1C8;
+    `;
+
     return (
         <Trailer>
             <Grid container spacing={0}>

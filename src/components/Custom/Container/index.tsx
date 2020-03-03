@@ -13,5 +13,17 @@ export const CustomContainerRaw = styled.div`
 `;
 
 export const CustomContainerDatatable = styled.div`
-    padding-top: 10vh;
+    margin-top: 10vh;
+    table {
+        border: solid 2px #38B1C8;
+    }
+    thead {
+        background: linear-gradient(45deg,#7dd333,#87BFCF);
+        
+    }
+    thead > tr > th {
+        color: white;
+        font-weight: bold;
+    }
+    
 `;
