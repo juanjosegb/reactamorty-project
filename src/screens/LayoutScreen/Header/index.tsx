@@ -12,7 +12,7 @@ const Header = () => {
     const [sideMenu, setSidenavMenu] = React.useState({ left: false });
 
     return (
-        <Grid item xs={12} spacing={0}>
+        <Grid container item xs={12} spacing={0}>
             <AppBar position="fixed">
                 <CustomToolbar>
                     <MainMenu />

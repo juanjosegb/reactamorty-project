@@ -30,8 +30,8 @@ export const SidenavMenu = (props: any) => {
             <CustomSidenavMenuImage src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png" />
             <List>
                 {MenuItems.map((menu, index) => (
-                    <CustomNavLinkSidenav to={menu.route} activeStyle={ActiveLinkStyle} exact={true}>
-                        <ListItemCenter button key={index}>
+                    <CustomNavLinkSidenav key={index} to={menu.route} activeStyle={ActiveLinkStyle} exact={true}>
+                        <ListItemCenter button>
                             <ListItemIcon style={{ minWidth: 0 }}>
                                 {menu.icon}
                             </ListItemIcon>
@@ -45,7 +45,7 @@ export const SidenavMenu = (props: any) => {
 
     return (
         <Hidden only={['md', 'xl', 'lg']}>
-            <Grid alignContent="flex-end">
+            <Grid container alignContent="flex-end">
                 <MenuIcon onClick={toggleDrawer('left', true)} />
 
                 <Drawer style={{ textAlign: 'center', backgroundColor: "transparent" }} open={sideMenu.left} onClose={toggleDrawer('left', false)}>
