@@ -12,22 +12,22 @@ import { CardTitle } from '../../Custom/Card/CardTitle';
 import { CardDivider } from '../../Custom/Divider';
 import { CustomGridCenterItems } from '../../Custom/Grid';
 
-export type Props = { title?: string, description?: string, url?: string, urlToImage?: string }
+export type CardProps = { title?: string, description?: string, url?: string, urlToImage?: string }
 
-const CardItem = (props: Props) => {
+const CardItem = (props: CardProps) => {
     return (
-        <Grid item xs={12} sm={4} md={3}>
+        <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
             <Card>
                 <CustomGridCenterItems container spacing={2} >
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={12} md={12} lg={6}>
                         <CustomCardMedia
                             image="https://duncanlock.net/images/posts/better-figures-images-plugin-for-pelican/dummy-200x200.png"
                             title="Contemplative Reptile"
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={12} md={12} lg={6}>
                         <CardTitle>
                             {props.title}
                         </CardTitle>
