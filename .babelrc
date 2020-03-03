@@ -17,13 +17,10 @@
                     ".js",
                     ".json"
                 ],
-                "root": ".",
+                "root": "./",
                 "alias": {
                     "@Assets": "./src/assets",
-                    "@Components": "./src/components",
-                    "@Router": "./src/router",
-                    "@Screens": "./src/screens",
-                    "@Store": "./src/store"
+                    "@Components": "./src/components"
                 }
             }
         ]
