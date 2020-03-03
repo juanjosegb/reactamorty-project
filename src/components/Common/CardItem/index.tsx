@@ -12,7 +12,7 @@ import { CardTitle } from '../../Custom/Card/CardTitle';
 import { CardDivider } from '../../Custom/Divider';
 import { CustomGridCenterItems } from '../../Custom/Grid';
 
-export type CardProps = { title?: string, description?: string, url?: string, urlToImage?: string }
+export type CardProps = { title?: string, description?: any, url?: string, urlToImage?: string }
 
 const CardItem = (props: CardProps) => {
     return (
@@ -22,7 +22,7 @@ const CardItem = (props: CardProps) => {
 
                     <Grid item xs={12} sm={12} md={12} lg={6}>
                         <CustomCardMedia
-                            image="https://duncanlock.net/images/posts/better-figures-images-plugin-for-pelican/dummy-200x200.png"
+                            image={props.urlToImage ? props.urlToImage : "https://duncanlock.net/images/posts/better-figures-images-plugin-for-pelican/dummy-200x200.png"}
                             title="Contemplative Reptile"
                         />
                     </Grid>
