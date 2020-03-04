@@ -1,118 +1,32 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Datatable from "../../components/Common/Datatable";
 import {EpisodesTableColumns} from "../../constants/EpisodesTableColumns";
 import {CustomContainerDatatable} from "../../components/Custom/Container";
+import {GetAllEpisodes} from "../../apiClients/RickAndMorty";
+import {responseToEpisodes} from '../../utils/mappers/responseToEpisodes';
+import {IEpisode} from "../../types/episode";
 
 const EpisodesScreen = () => {
 
+    const [episodes, setEpisodes] = useState([] as IEpisode[]);
+
+    useEffect(() => {
+        //Forced call to get data from API
+        //TODO: Use sagas
+        const fetchEpisodes = async () => {
+            setEpisodes(responseToEpisodes((await GetAllEpisodes())))
+        };
+        fetchEpisodes();
+    }, []);
+
+
     return (
+
         <CustomContainerDatatable>
-            <Datatable columns={EpisodesTableColumns} data={[{
-                name: "Test",
-                air_date: "1 de Diciembre",
-                episode: "E1S4",
-                created: "1 de Noviembre"
-            }, {
-                name: "Episodio 1",
-                air_date: "1 de Diciembre",
-                episode: "E1S4",
-                created: "1 de Noviembre"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }, {
-                name: "Episodio 2",
-                air_date: "1 de Mayo",
-                episode: "E3S2",
-                created: "1 de Enero"
-            }]}/>
+
+            {episodes &&
+            <Datatable columns={EpisodesTableColumns} rows={episodes}/>
+            }
         </CustomContainerDatatable>
     );
 };

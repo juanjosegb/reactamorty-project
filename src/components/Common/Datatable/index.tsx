@@ -7,12 +7,13 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {TablePagination} from "@material-ui/core";
+import {IEpisode} from "../../../types/episode";
 
-export type Props = { columns: string[], data: any };
+export type Props = { columns: string[], rows: IEpisode[] };
 
 const Datatable = (props: Props) => {
 
-    const {data} = props;
+    const {rows} = props;
     const {columns} = props;
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -38,9 +39,9 @@ const Datatable = (props: Props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {Object.keys(data).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((key) => (
+                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((episode: IEpisode, key: number) => (
                             <TableRow key={key}>
-                                {Object.values(data[key]).map((value: any, key: number) => (
+                                {Object.values(episode).map((value: any, key: number) => (
                                     <TableCell key={key} align="center" component="th" scope="row">
                                         {value}
                                     </TableCell>
@@ -53,7 +54,7 @@ const Datatable = (props: Props) => {
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={data.length}
+                count={rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}
