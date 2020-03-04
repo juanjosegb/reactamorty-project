@@ -8,6 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {TablePagination} from "@material-ui/core";
 import {IEpisode} from "../../../types/episode";
+import {TableButton} from "../../Custom/Button/TableButton";
 
 export type Props = { columns: string[], rows: IEpisode[] };
 
@@ -43,7 +44,9 @@ const Datatable = (props: Props) => {
                             <TableRow key={key}>
                                 {Object.values(episode).map((value: any, key: number) => (
                                     <TableCell key={key} align="center" component="th" scope="row">
-                                        {value}
+                                        {(key + 1) !== Object.keys(episode).length && value}
+                                        {(key + 1) === Object.keys(episode).length &&
+                                        <TableButton variant="contained" color="primary" href={`episodes/${value}`}>Detalles</TableButton>}
                                     </TableCell>
                                 ))}
                             </TableRow>

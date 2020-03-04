@@ -7,7 +7,7 @@ export const responseToEpisodes = (response: any[]) => {
         name: episode.name,
         air_date: episode.air_date,
         episode: episode.episode,
-        created: episode.created
+        id: episode.id
       })
     });
     return episodes;

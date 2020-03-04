@@ -1,1 +1,1 @@
-export const EpisodesTableColumns: string[] = ["Nombre", "Fecha de emisión", "Código", "Fecha de creación"];
+export const EpisodesTableColumns: string[] = ["Nombre", "Fecha de emisión", "Código", "Acciones"];
