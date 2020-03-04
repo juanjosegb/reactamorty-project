@@ -3,11 +3,11 @@
         "baseUrl": "./",
         "paths": {
             "@Assets/*": [
-                "src/app/assets/*"
+                "src/assets/*"
             ],
-            "@Components/*": [
-                "src/app/components/*"
-            ],
+            "@Components*": [
+                "src/components/*","src/components*"
+            ]
         }
     }
 }

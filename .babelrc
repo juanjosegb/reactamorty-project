@@ -19,8 +19,8 @@
                 ],
                 "root": "./",
                 "alias": {
-                    "assets": "./src/assets",
-                    "components": "./src/components"
+                    "@Assets": "./src/assets",
+                    "@Components": "./src/components"
                 }
             }
         ]
