@@ -23,9 +23,7 @@ export const CharacterDetailScreen = () => {
         }
 
         fetchCharacterById();
-
-        console.log(character)
-    }, [id, character])
+    }, [id])
 
 
     return (
