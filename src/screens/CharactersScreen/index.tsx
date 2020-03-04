@@ -20,10 +20,10 @@ const CharactersScreen = () => {
         //TODO: Use sagas
         const fetchCharacters = async () => {
             setCharacters(await (await GetAllCharacters()).data.results)
-        }
+        };
         fetchCharacters();
         console.log(characters)
-    }, [])
+    }, [characters]);
 
     return (
         <CustomContainerRaw key={1}>
@@ -33,7 +33,7 @@ const CharactersScreen = () => {
 
             <Grid container spacing={4} >
 
-                {characters != [] &&
+                {characters !== [] &&
                     characters.map((character: any, index: number) => (
                         <CardItem
                             key={index}
@@ -52,6 +52,6 @@ const CharactersScreen = () => {
         </CustomContainerRaw>
 
     )
-}
+};
 
 export default CharactersScreen
