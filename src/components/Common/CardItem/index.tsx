@@ -18,13 +18,6 @@ export type CardProps = { title?: string, description?: any, id?: number, urlToI
 
 const CardItem = (props: CardProps) => {
 
-    let path = `${props.topic}/${props.id}`;
-    let history = useHistory();
-
-    const navigateToDetails = (id: number | undefined) => {
-        history.push(path)
-    }
-
     return (
         <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
             <Card>
@@ -55,7 +48,7 @@ const CardItem = (props: CardProps) => {
                 </CardContent>
 
                 <CardActions>
-                    <TableButton size="small" color="primary" onClick={() => navigateToDetails(props.id)}>
+                    <TableButton size="small" color="primary" href={`${props.topic}/${props.id}`}>
                         See details
                     </TableButton>
                 </CardActions>
