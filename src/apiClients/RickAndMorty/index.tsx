@@ -1,7 +1,8 @@
-import React from 'react';
 import axios from 'axios';
-import {rickAndMortyApiConfig} from "../../environment/apiClients";
-import {concatPages, getNumberOfPages} from "../../utils/api";
+import React from 'react';
+
+import { rickAndMortyApiConfig } from "../../environment/apiClients";
+import { concatPages, getNumberOfPages } from "../../utils/api";
 
 const apiClient = axios.create({
     baseURL: rickAndMortyApiConfig.baseURL,
@@ -14,7 +15,7 @@ export const GetAllCharacters = () => {
     return apiClient.get(`character/`);
 };
 
-export const GetCharacters = (ids: [] = []) => {
+export const GetCharacters = (ids: any[] = []) => {
     return apiClient.get(`character/${ids}`);
 };
 
