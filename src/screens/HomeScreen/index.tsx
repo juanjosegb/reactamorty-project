@@ -1,8 +1,8 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel'
-import Slider1 from "../../assets/slider1.png"
-import Slider2 from "../../assets/slider2.png"
-import Slider3 from "../../assets/slider3.png"
+import Slider1 from "@Assets/slider1.png"
+import Slider2 from "@Assets/slider2.png"
+import Slider3 from "@Assets/slider3.png"
 
 const HomeScreen = () => {
     return (
