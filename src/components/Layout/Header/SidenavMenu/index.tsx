@@ -1,13 +1,12 @@
 import React from "react";
 
+import { ActiveLinkStyle } from "@Constants/ActiveLinkStyle";
+import { MenuItems } from "@Constants/MenuItems";
+import { CustomSidenavMenuImage } from "@Custom/Image";
+import { ListItemCenter } from "@Custom/ListItem";
+import { CustomNavLinkSidenav } from "@Custom/NavLink";
 import { Drawer, Grid, Hidden, List, ListItemIcon, ListItemText } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
-
-import { ActiveLinkStyle } from "../../../../constants/ActiveLinkStyle";
-import { MenuItems } from "../../../../constants/MenuItems";
-import { CustomSidenavMenuImage } from "../../../Custom/Image";
-import { ListItemCenter } from "../../../Custom/ListItem";
-import { CustomNavLinkSidenav } from "../../../Custom/NavLink";
 
 export const SidenavMenu = (props: any) => {
 

@@ -1,11 +1,10 @@
 import React from 'react';
 
+import { CustomToolbar } from '@Components/Custom/Toolbar';
+import { MainMenu } from '@Components/Layout/Header/MainMenu';
+import { SidenavMenu } from '@Components/Layout/Header/SidenavMenu';
 import { Grid } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
-
-import { CustomToolbar } from '../../../components/Custom/Toolbar';
-import { MainMenu } from '../../../components/Layout/Header/MainMenu';
-import { SidenavMenu } from '../../../components/Layout/Header/SidenavMenu';
 
 const Header = () => {
 

@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import Datatable from "../../../components/Common/Datatable";
-import {EpisodesTableColumns} from "../../../constants/EpisodesTableColumns";
-import {CustomContainerDatatable} from "../../../components/Custom/Container";
-import {GetAllEpisodes} from "../../../apiClients/RickAndMorty";
-import {responseToEpisodes} from '../../../utils/mappers/responseToEpisodes';
-import {IEpisode} from "../../../types/episode";
+import React, { useEffect, useState } from 'react'
+
+import Datatable from "@Components/Common/Datatable";
+import { CustomContainerDatatable } from "@Components/Custom/Container";
+import { EpisodesTableColumns } from "@Constants/EpisodesTableColumns";
+
+import { GetAllEpisodes } from "../../../apiClients/RickAndMorty";
+import { IEpisode } from "../../../types/episode";
+import { responseToEpisodes } from '../../../utils/mappers/responseToEpisodes';
 
 const EpisodesScreen = () => {
 
@@ -25,7 +27,7 @@ const EpisodesScreen = () => {
         <CustomContainerDatatable>
 
             {episodes &&
-            <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}/>
+                <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"} />
             }
         </CustomContainerDatatable>
     );

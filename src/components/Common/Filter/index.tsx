@@ -1,13 +1,11 @@
 import React from 'react'
 
-import { Divider, Icon, IconButton, InputBase, Paper } from '@material-ui/core';
-import DirectionsIcon from '@material-ui/icons/Directions';
+import { CenterContainer } from '@Custom/Container';
+import { CustomIcon } from '@Custom/Icon';
+import { BlockPaper } from '@Custom/Paper';
+import { Divider, IconButton, InputBase } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
-import { CenterContainer } from '../../Custom/Container';
-import { CustomIcon } from '../../Custom/Icon';
-import { BlockPaper } from '../../Custom/Paper';
 
 export const GenericFilter = (props: any) => {
 

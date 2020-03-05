@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import Datatable from "../../../components/Common/Datatable";
-import {LocationsTableColumns} from "../../../constants/LocationsTableColumns";
-import {CustomContainerDatatable} from "../../../components/Custom/Container";
-import {GetAllLocations} from "../../../apiClients/RickAndMorty";
-import {responseToLocations} from '../../../utils/mappers/responseToLocations';
-import {ILocation} from "../../../types/location";
+import React, { useEffect, useState } from 'react'
+
+import Datatable from "@Components/Common/Datatable";
+import { CustomContainerDatatable } from "@Components/Custom/Container";
+import { LocationsTableColumns } from "@Constants/LocationsTableColumns";
+
+import { GetAllLocations } from "../../../apiClients/RickAndMorty";
+import { ILocation } from "../../../types/location";
+import { responseToLocations } from '../../../utils/mappers/responseToLocations';
 
 const LocationsScreen = () => {
 
@@ -25,7 +27,7 @@ const LocationsScreen = () => {
         <CustomContainerDatatable>
 
             {locations &&
-            <Datatable columns={LocationsTableColumns} rows={locations} topic={"locations"}/>
+                <Datatable columns={LocationsTableColumns} rows={locations} topic={"locations"} />
             }
         </CustomContainerDatatable>
     );

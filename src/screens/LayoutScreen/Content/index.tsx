@@ -1,6 +1,7 @@
 import React from "react";
 
-import { CustomContainer } from "../../../components/Custom/Container";
+import { CustomContainer } from "@Components/Custom/Container";
+
 import Routes from "../../../router/router";
 
 const Content = () => {

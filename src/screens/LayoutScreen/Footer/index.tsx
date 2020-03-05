@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
+import { AlignedItem } from "@Components/Custom/AlignedItem";
+import { FooterDivider } from "@Components/Custom/Divider";
+import { CustomFooterImage } from "@Components/Custom/FooterImage";
+import { GridFooterDivider } from "@Components/Custom/GridFooterDivider";
+import LegalAdvice from "@Components/Layout/Footer/LegalAdvice";
+import SocialLinks from "@Components/Layout/Footer/SocialLinks";
+import StackedMenu from "@Components/Layout/Footer/StackedMenu";
 import { Grid } from "@material-ui/core";
-
-import { AlignedItem } from "../../../components/Custom/AlignedItem";
-import { FooterDivider } from "../../../components/Custom/Divider";
-import { CustomFooterImage } from "../../../components/Custom/FooterImage";
-import { GridFooterDivider } from "../../../components/Custom/GridFooterDivider";
-import LegalAdvice from "../../../components/Layout/Footer/LegalAdvice";
-import SocialLinks from "../../../components/Layout/Footer/SocialLinks";
-import StackedMenu from "../../../components/Layout/Footer/StackedMenu";
 
 const Footer = () => {
     const Trailer = styled.div`

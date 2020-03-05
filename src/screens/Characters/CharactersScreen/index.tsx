@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
+import CardItem from '@Components/Common/CardItem'
+import { GenericFilter } from '@Components/Common/Filter'
+import { CustomContainerRaw } from '@Components/Custom/Container'
+import { CustomGridCenterItems } from '@Components/Custom/Grid';
+import { CustomPaginator } from '@Components/Custom/Paginator';
+import { CustomTitle } from '@Components/Custom/Text'
+import { CharactersFilterOptions } from '@Constants/FilterOptions'
 import { Grid } from '@material-ui/core'
 
 import { GetAllCharacters } from '../../../apiClients/RickAndMorty'
-import CardItem from '../../../components/Common/CardItem'
-import { GenericFilter } from '../../../components/Common/Filter'
-import { CustomContainerRaw } from '../../../components/Custom/Container'
-import { CustomGridCenterItems } from '../../../components/Custom/Grid';
-import { CustomPaginator } from '../../../components/Custom/Paginator';
-import { CustomTitle } from '../../../components/Custom/Text'
-import { CharactersFilterOptions } from '../../../constants/FilterOptions'
 import { ICharacter } from '../../../types/character'
 import { formatDescription } from '../../../utils/formatDescription'
 

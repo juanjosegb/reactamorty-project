@@ -1,18 +1,15 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom';
 
+import { TableButton } from '@Custom/Button/TableButton';
+import { CardDescription } from '@Custom/Card/CardDescrption';
+import { CustomCardMedia } from '@Custom/Card/CardMedia';
+import { CardTitle } from '@Custom/Card/CardTitle';
+import { CardDivider } from '@Custom/Divider';
+import { CustomGridCenterItems } from '@Custom/Grid';
 import { Grid } from "@material-ui/core";
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-
-import { TableButton } from '../../Custom/Button/TableButton';
-import { CardDescription } from '../../Custom/Card/CardDescrption';
-import { CustomCardMedia } from '../../Custom/Card/CardMedia';
-import { CardTitle } from '../../Custom/Card/CardTitle';
-import { CardDivider } from '../../Custom/Divider';
-import { CustomGridCenterItems } from '../../Custom/Grid';
 
 export type CardProps = { title?: string, description?: any, id?: number, urlToImage?: string, topic?: string }
 
