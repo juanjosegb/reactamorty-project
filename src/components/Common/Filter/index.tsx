@@ -22,7 +22,7 @@ export const GenericFilter = (props: any) => {
         if (inputValue !== DEFAULT_FILTER_INPUT) {
             let newFilter =
                 [...allTopics].filter(topic =>
-                    topic[currentFilter.filter].toLocaleLowerCase().includes(inputValue)
+                    topic[currentFilter.filter].toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())
                 )
             setTopics(newFilter);
         } else {
@@ -50,7 +50,7 @@ export const GenericFilter = (props: any) => {
                 <InputBase
                     value={inputValue}
                     onKeyUpCapture={() => applyFilterCriteria()}
-                    onChange={(e: any) => setinputValue(e.nativeEvent.srcElement.value.toLocaleLowerCase())}
+                    onChange={(e: any) => setinputValue(e.nativeEvent.srcElement.value)}
                     placeholder={"Filter by " + `${currentFilter.filter}`}
                     inputProps={{ 'aria-label': 'search google maps' }}
                 />
