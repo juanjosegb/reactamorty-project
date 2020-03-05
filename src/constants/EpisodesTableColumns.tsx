@@ -1,0 +1,1 @@
+export const EpisodesTableColumns: string[] = ["Name", "Air date", "Episode", "Actions"];

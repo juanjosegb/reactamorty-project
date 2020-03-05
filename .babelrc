@@ -20,7 +20,10 @@
                 "root": "./",
                 "alias": {
                     "@Assets": "./src/assets",
-                    "@Components": "./src/components"
+                    "@Components": "./src/components/",
+                    "@Custom": "./src/components/Custom/",
+                    "@Constants": "./src/constants/",
+                    "@Screens": "./src/screens"
                 }
             }
         ]

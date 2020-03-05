@@ -1,6 +1,8 @@
-import React from 'react';
 import axios from 'axios';
-import {rickAndMortyApiConfig} from "../../environment/apiClients";
+import React from 'react';
+
+import { rickAndMortyApiConfig } from "../../environment/apiClients";
+import { concatPages, getNumberOfPages } from "../../utils/api";
 
 const apiClient = axios.create({
     baseURL: rickAndMortyApiConfig.baseURL,
@@ -10,10 +12,10 @@ const apiClient = axios.create({
 
 //Characters
 export const GetAllCharacters = () => {
-    return apiClient.get( `character/`);
+    return apiClient.get(`character/`);
 };
 
-export const GetCharacters = (ids: [] = []) => {
+export const GetCharacters = (ids: any[] = []) => {
     return apiClient.get(`character/${ids}`);
 };
 
@@ -22,27 +24,45 @@ export const GetFilteredCharacters = (name: string = "", status: string = "", sp
 };
 
 //Locations
-export const GetAllLocations = () => {
-    return apiClient.get( `location/`);
+export const GetAllLocations = async () => {
+    let response = await apiClient.get(`location/`);
+    const numberOfPages = getNumberOfPages(response);
+    return await concatPages(`location`, numberOfPages);
 };
 
-export const GetLocations = (ids: [] = []) => {
-    return apiClient.get(`location/${ids}`);
+export const GetLocations = async (ids: any[] = []) => {
+    let response = await apiClient.get(`location/${ids}`);
+    const numberOfPages = getNumberOfPages(response);
+    return (!numberOfPages) ? response.data : await concatPages(`location/${ids}`, numberOfPages);
 };
 
-export const GetFilteredLocations = (name: string = "", type: string = "", dimension: string = "") => {
-    return apiClient.get(`location/?name=${name}&type=${type}&dimension=${dimension}`);
+export const GetFilteredLocations = async (page: string = "", name: string = "", type: string = "", dimension: string = "") => {
+    let response = await apiClient.get(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`);
+    const numberOfPages = getNumberOfPages(response);
+    return (!numberOfPages) ? response.data : await concatPages(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`, numberOfPages);
 };
 
 //Episodes
-export const GetAllEpisodes = () => {
-    return apiClient.get( `episode/`);
+export const GetAllEpisodes = async () => {
+    let response = await apiClient.get(`episode/`);
+    const numberOfPages = getNumberOfPages(response);
+    return await concatPages(`episode`, numberOfPages);
 };
 
-export const GetEpisodes = (ids: [] = []) => {
-    return apiClient.get(`episode/${ids}`);
+export const GetEpisodes = async (ids: any[] = []) => {
+    let response = await apiClient.get(`episode/${ids}`);
+    const numberOfPages = getNumberOfPages(response);
+    return (!numberOfPages) ? response.data : await concatPages(`episode/${ids}`, numberOfPages);
 };
 
-export const GetFilteredEpisodes = (name: string = "", episode: string = "") => {
-    return apiClient.get(`episode/?name=${name}&episode=${episode}`);
+export const GetFilteredEpisodes = async (name: string = "", episode: string = "") => {
+    let response = await apiClient.get(`episode/?name=${name}&episode=${episode}`);
+    const numberOfPages = getNumberOfPages(response);
+    return (!numberOfPages) ? response.data : await concatPages(`episode/?name=${name}&episode=${episode}`, numberOfPages);
+};
+
+export const GetDataByPage = (page: number, url: string) => {
+    return url.indexOf("?") !== -1 ?
+        apiClient.get(`${url}&page=${page}`) :
+        apiClient.get(`${url}/?page=${page}`);
 };

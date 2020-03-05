@@ -1,13 +1,12 @@
 import React from "react";
 
+import { ActiveLinkStyle } from "@Constants/ActiveLinkStyle";
+import { MenuItems } from "@Constants/MenuItems";
+import { CustomSidenavMenuImage } from "@Custom/Image";
+import { ListItemCenter } from "@Custom/ListItem";
+import { CustomNavLinkSidenav } from "@Custom/NavLink";
 import { Drawer, Grid, Hidden, List, ListItemIcon, ListItemText } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
-
-import { ActiveLinkStyle } from "../../../../constants/ActiveLinkStyle";
-import { MenuItems } from "../../../../constants/MenuItems";
-import { CustomSidenavMenuImage } from "../../../Custom/Image";
-import { ListItemCenter } from "../../../Custom/ListItem";
-import { CustomNavLinkSidenav } from "../../../Custom/NavLink";
 
 export const SidenavMenu = (props: any) => {
 
@@ -30,8 +29,8 @@ export const SidenavMenu = (props: any) => {
             <CustomSidenavMenuImage src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png" />
             <List>
                 {MenuItems.map((menu, index) => (
-                    <CustomNavLinkSidenav to={menu.route} activeStyle={ActiveLinkStyle} exact={true}>
-                        <ListItemCenter button key={index}>
+                    <CustomNavLinkSidenav key={index} to={menu.route} activeStyle={ActiveLinkStyle} exact={true}>
+                        <ListItemCenter button>
                             <ListItemIcon style={{ minWidth: 0 }}>
                                 {menu.icon}
                             </ListItemIcon>
@@ -45,7 +44,7 @@ export const SidenavMenu = (props: any) => {
 
     return (
         <Hidden only={['md', 'xl', 'lg']}>
-            <Grid alignContent="flex-end">
+            <Grid container alignContent="flex-end">
                 <MenuIcon onClick={toggleDrawer('left', true)} />
 
                 <Drawer style={{ textAlign: 'center', backgroundColor: "transparent" }} open={sideMenu.left} onClose={toggleDrawer('left', false)}>

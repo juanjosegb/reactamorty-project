@@ -6,7 +6,19 @@
                 "src/assets/*"
             ],
             "@Components*": [
-                "src/components/*","src/components*"
+                "src/components/*",
+                "src/components*"
+            ],
+            "@Custom*": [
+                "src/components/Custom/*",
+            ],
+            "@Constants*": [
+                "src/constants/*",
+                "src/constants*"
+            ],
+            "@Screens*": [
+                "src/screens/*",
+                "src/screens*"
             ]
         }
     }
