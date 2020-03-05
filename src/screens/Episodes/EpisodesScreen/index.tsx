@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import Datatable from "../../components/Common/Datatable";
-import {EpisodesTableColumns} from "../../constants/EpisodesTableColumns";
-import {CustomContainerDatatable} from "../../components/Custom/Container";
-import {GetAllEpisodes} from "../../apiClients/RickAndMorty";
-import {responseToEpisodes} from '../../utils/mappers/responseToEpisodes';
-import {IEpisode} from "../../types/episode";
+import Datatable from "../../../components/Common/Datatable";
+import {EpisodesTableColumns} from "../../../constants/EpisodesTableColumns";
+import {CustomContainerDatatable} from "../../../components/Custom/Container";
+import {GetAllEpisodes} from "../../../apiClients/RickAndMorty";
+import {responseToEpisodes} from '../../../utils/mappers/responseToEpisodes';
+import {IEpisode} from "../../../types/episode";
 
 const EpisodesScreen = () => {
 
@@ -25,7 +25,7 @@ const EpisodesScreen = () => {
         <CustomContainerDatatable>
 
             {episodes &&
-            <Datatable columns={EpisodesTableColumns} rows={episodes}/>
+            <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}/>
             }
         </CustomContainerDatatable>
     );

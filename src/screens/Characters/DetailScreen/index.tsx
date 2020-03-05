@@ -16,10 +16,10 @@ import { responseToEpisodes } from "../../../utils/mappers/responseToEpisodes"
 
 export const CharacterDetailScreen = () => {
 
-    const { id } = useParams()
+    const { id } = useParams();
 
-    const [character, setCharacter] = useState<ICharacter>({} as ICharacter)
-    const [episodes, setEpisodes] = useState<IEpisode[]>([] as IEpisode[])
+    const [character, setCharacter] = useState<ICharacter>({} as ICharacter);
+    const [episodes, setEpisodes] = useState<IEpisode[]>([] as IEpisode[]);
 
     useEffect(() => {
 
@@ -28,23 +28,19 @@ export const CharacterDetailScreen = () => {
             character.episode.forEach((chapter) => {
                 episodesIds.push(Number.parseInt(chapter.split('episode/')[1]))
             });
-            let appareances = await GetEpisodes(episodesIds)
+            let appareances = await GetEpisodes(episodesIds);
 
             Array.isArray(appareances) ? setEpisodes(responseToEpisodes(appareances)) : setEpisodes(responseToEpisodes([appareances]));
-        }
+        };
 
         const fetchCharacterById = async () => {
-            let result = await (await GetCharacters([id?.toString()])).data
-            setCharacter(result)
+            let result = await (await GetCharacters([id?.toString()])).data;
+            setCharacter(result);
             await fetchAppareances(result)
-        }
+        };
 
         fetchCharacterById();
-    }, [id])
-
-    useEffect(() => {
-
-    })
+    }, [id]);
 
 
     return (
@@ -58,7 +54,7 @@ export const CharacterDetailScreen = () => {
 
                 <Grid item xs={12} sm={12} lg={3} spacing={0} >
                     <CustomGridBordered item xs={12}>
-                        <img src={character.image ? character.image : "https://i.pinimg.com/originals/ce/78/0b/ce780bcbdd3f806c053624340b39fc48.gif"} alt="avatar" width="100%" height="auto" />
+                        <img src={character.image ? character.image : "https://evonexus.org/wp-content/uploads/2013/12/dummy-200x200.png"} alt="avatar" width="100%" height="auto" />
                     </CustomGridBordered>
                 </Grid>
 
@@ -119,11 +115,11 @@ export const CharacterDetailScreen = () => {
 
             <CustomContainerDatatable>
                 {episodes.length > 0 &&
-                    <Datatable columns={EpisodesTableColumns} rows={episodes} />
+                <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}/>
                 }
             </CustomContainerDatatable>
 
 
         </CustomContainerRaw>
     )
-}
+};

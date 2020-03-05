@@ -6,10 +6,12 @@ import {
 
 import CharactersScreen from "../screens/Characters/CharactersScreen";
 import {CharacterDetailScreen} from "../screens/Characters/DetailScreen";
-import EpisodesScreen from "../screens/EpisodesScreen";
+import EpisodesScreen from "../screens/Episodes/EpisodesScreen";
 import HomeScreen from "../screens/HomeScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import LocationsScreen from "../screens/LocationsScreen";
+import LocationsScreen from "../screens/Locations/LocationsScreen";
+import {LocationDetailScreen} from "../screens/Locations/DetailScreen";
+import {EpisodeDetailScreen} from "../screens/Episodes/DetailScreen";
 
 const Routes = () => {
 
@@ -21,8 +23,10 @@ const Routes = () => {
             <Route path="/characters/:id" component={CharacterDetailScreen}/>
 
             <Route exact path="/episodes" component={EpisodesScreen}/>
+            <Route path="/episodes/:id" component={EpisodeDetailScreen}/>
 
             <Route exact path="/locations" component={LocationsScreen}/>
+            <Route path="/locations/:id" component={LocationDetailScreen}/>
             <Route component={NotFoundScreen}/>
         </Switch>
     )

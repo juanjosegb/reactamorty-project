@@ -10,12 +10,13 @@ import {TablePagination} from "@material-ui/core";
 import {IEpisode} from "../../../types/episode";
 import {TableButton} from "../../Custom/Button/TableButton";
 
-export type Props = { columns: string[], rows: any[] };
+export type Props = { columns: string[], rows: any[], topic: string };
 
 const Datatable = (props: Props) => {
 
     const {rows} = props;
     const {columns} = props;
+    const {topic} = props;
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -46,7 +47,7 @@ const Datatable = (props: Props) => {
                                     <TableCell key={key} align="center" component="th" scope="row">
                                         {(key + 1) !== Object.keys(episode).length && value}
                                         {(key + 1) === Object.keys(episode).length &&
-                                        <TableButton variant="contained" color="primary" href={`episodes/${value}`}>Read More</TableButton>}
+                                        <TableButton variant="contained" color="primary" href={`${topic}/${value}`}>Read More</TableButton>}
                                     </TableCell>
                                 ))}
                             </TableRow>
