@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
-import { Grid, TextField } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 
 import { GetAllCharacters } from '../../../apiClients/RickAndMorty'
 import CardItem from '../../../components/Common/CardItem'
+import { GenericFilter } from '../../../components/Common/Filter'
 import { CustomContainerRaw } from '../../../components/Custom/Container'
 import { CustomGridCenterItems } from '../../../components/Custom/Grid';
 import { CustomPaginator } from '../../../components/Custom/Paginator';
 import { CustomTitle } from '../../../components/Custom/Text'
+import { CharactersFilterOptions } from '../../../constants/FilterOptions'
 import { ICharacter } from '../../../types/character'
 import { formatDescription } from '../../../utils/formatDescription'
 
@@ -28,15 +30,7 @@ const CharactersScreen = () => {
         fetchCharacters();
     }, [])
 
-    const filterCurrentCharacters = (e: any) => {
-        if (e.nativeEvent.srcElement.value != "") {
-            let newFilter = [...pageCharacters].filter(character => character.name.toLocaleLowerCase().includes(e.nativeEvent.srcElement.value.toLocaleLowerCase()))
-            setCharacters(newFilter);
-        } else {
-            setCharacters(pageCharacters);
-        }
 
-    }
 
     return (
         <CustomContainerRaw key={1}>
@@ -44,9 +38,7 @@ const CharactersScreen = () => {
                 List of all Characters
             </CustomTitle>
 
-            <Grid item>
-                <TextField onChange={(e) => { filterCurrentCharacters(e) }} id="input-with-icon-grid" label="Find by name" />
-            </Grid>
+            <GenericFilter setTopics={setCharacters} allTopics={pageCharacters} filterOptions={CharactersFilterOptions} />
 
             <Grid container spacing={4} >
 

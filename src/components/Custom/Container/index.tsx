@@ -16,6 +16,11 @@ export const CustomDivider = styled.div`
     padding: 2px;
 `;
 
+export const CenterContainer = styled.div`
+    text-align: center;
+    margin-bottom: 30px;
+`
+
 export const CustomContainerDatatable = styled.div`
     margin-top: 20px;
     table {
