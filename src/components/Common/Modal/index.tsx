@@ -1,9 +1,9 @@
 import React from 'react';
-import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import {CustomFade, CustomModal, TitleModal} from "@ComponentsCustom/Modal";
+import {ComplexButton} from "@ComponentsCustom/Button/ComplexButton";
 
-export type Props = { button: string, title: string, content: any};
+export type Props = { button: string, title: string, content: any };
 
 export const TransitionsModal = (props: Props) => {
 
@@ -22,10 +22,10 @@ export const TransitionsModal = (props: Props) => {
 
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
+            <ComplexButton variant="contained" color="primary" onClick={handleOpen}>
                 {button}
-            </button>
-            <Modal
+            </ComplexButton>
+            <CustomModal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 open={open}
@@ -36,13 +36,13 @@ export const TransitionsModal = (props: Props) => {
                     timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <CustomFade in={open}>
                     <div>
-                        <h2 id="transition-modal-title">{title}</h2>
+                        <TitleModal id="transition-modal-title">{title}</TitleModal>
                         <p id="transition-modal-description">{content}</p>
                     </div>
-                </Fade>
-            </Modal>
+                </CustomFade>
+            </CustomModal>
         </div>
     );
 };
