@@ -1,6 +1,6 @@
 import React from "react";
-import {NotFoundImage} from "../../components/Custom/NotFoundImage";
-import Image from "../../assets/NotFound.png"
+import {NotFoundImage} from "@Components/Custom/NotFoundImage";
+import Image from "@Assets/NotFound.png"
 
 const NotFoundScreen = () => {
     return (
