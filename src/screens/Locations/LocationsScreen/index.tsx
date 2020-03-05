@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import Datatable from "../../components/Common/Datatable";
-import {LocationsTableColumns} from "../../constants/LocationsTableColumns";
-import {CustomContainerDatatable} from "../../components/Custom/Container";
-import {GetAllLocations} from "../../apiClients/RickAndMorty";
-import {responseToLocations} from '../../utils/mappers/responseToLocations';
-import {ILocation} from "../../types/location";
+import Datatable from "../../../components/Common/Datatable";
+import {LocationsTableColumns} from "../../../constants/LocationsTableColumns";
+import {CustomContainerDatatable} from "../../../components/Custom/Container";
+import {GetAllLocations} from "../../../apiClients/RickAndMorty";
+import {responseToLocations} from '../../../utils/mappers/responseToLocations';
+import {ILocation} from "../../../types/location";
 
 const LocationsScreen = () => {
 
@@ -25,7 +25,7 @@ const LocationsScreen = () => {
         <CustomContainerDatatable>
 
             {locations &&
-            <Datatable columns={LocationsTableColumns} rows={locations}/>
+            <Datatable columns={LocationsTableColumns} rows={locations} topic={"locations"}/>
             }
         </CustomContainerDatatable>
     );

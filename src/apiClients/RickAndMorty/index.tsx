@@ -30,16 +30,16 @@ export const GetAllLocations = async () => {
     return await concatPages(`location`, numberOfPages);
 };
 
-export const GetLocations = async (ids: [] = []) => {
+export const GetLocations = async (ids: any[] = []) => {
     let response = await apiClient.get(`location/${ids}`);
     const numberOfPages = getNumberOfPages(response);
-    return await concatPages(`location/${ids}`, numberOfPages);
+    return (!numberOfPages) ? response.data : await concatPages(`location/${ids}`, numberOfPages);
 };
 
 export const GetFilteredLocations = async (page: string = "", name: string = "", type: string = "", dimension: string = "") => {
     let response = await apiClient.get(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`);
     const numberOfPages = getNumberOfPages(response);
-    return await concatPages(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`, numberOfPages);
+    return (!numberOfPages) ? response.data : await concatPages(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`, numberOfPages);
 };
 
 //Episodes
