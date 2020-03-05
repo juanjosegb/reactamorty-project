@@ -11,7 +11,6 @@
             ],
             "@Custom*": [
                 "src/components/Custom/*",
-                "src/components/Custom*"
             ],
             "@Constants*": [
                 "src/constants/*",

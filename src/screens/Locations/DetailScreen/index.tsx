@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
+import { ListCharacters } from "@Components/Common/List/ListCharacters"
 import { CardTitle } from "@Components/Custom/Card/CardTitle"
 import { CustomContainerRaw } from "@Components/Custom/Container"
 import { CustomGridCenterItems } from "@Components/Custom/Grid"
@@ -16,7 +17,7 @@ export const LocationDetailScreen = () => {
     const { id } = useParams();
 
     const [location, setLocation] = useState<ILocation>({} as ILocation);
-    const [characters, setCharacters] = useState<ICharacter>({} as ICharacter);
+    const [characters, setCharacters] = useState<ICharacter[]>({} as ICharacter[]);
 
     useEffect(() => {
 
@@ -70,6 +71,13 @@ export const LocationDetailScreen = () => {
 
 
             </CustomGridCenterItems>
+
+
+            <CustomTitle>
+                Residents
+            </CustomTitle>
+
+            <ListCharacters characters={characters} />
 
 
         </CustomContainerRaw>

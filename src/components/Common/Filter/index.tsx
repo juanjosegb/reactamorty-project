@@ -49,7 +49,8 @@ export const GenericFilter = (props: any) => {
 
                 <InputBase
                     value={inputValue}
-                    onChange={(e: any) => { setinputValue(e.nativeEvent.srcElement.value.toLocaleLowerCase()); applyFilterCriteria(); }}
+                    onKeyUpCapture={() => applyFilterCriteria()}
+                    onChange={(e: any) => setinputValue(e.nativeEvent.srcElement.value.toLocaleLowerCase())}
                     placeholder={"Filter by " + `${currentFilter.filter}`}
                     inputProps={{ 'aria-label': 'search google maps' }}
                 />

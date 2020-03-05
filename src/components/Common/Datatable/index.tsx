@@ -49,7 +49,7 @@ const Datatable = (props: Props) => {
                                     <TableCell key={key} align="center" component="th" scope="row">
                                         {(key + 1) !== Object.keys(episode).length && value}
                                         {(key + 1) === Object.keys(episode).length &&
-                                            <TableButton variant="contained" color="primary" href={`${topic}/${value}`}>Read More</TableButton>}
+                                            <TableButton variant="contained" color="primary" href={`/${topic}/${value}`}>Read More</TableButton>}
                                     </TableCell>
                                 ))}
                             </TableRow>

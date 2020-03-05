@@ -1,6 +1,6 @@
 
-export const CharactersFilterOptions = ['name', 'status']
+export const CharactersFilterOptions = ['name', 'status', 'species'];
 
-export const LocationsFilterOptions = ['name']
+export const LocationsFilterOptions = ['name', 'type', 'dimension'];
 
-export const EpisodesFilterOptions = ['name']
+export const EpisodesFilterOptions = ['name', 'episode']

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
 import Datatable from "@Components/Common/Datatable";
+import { GenericFilter } from '@Components/Common/Filter';
 import { CustomContainerDatatable } from "@Components/Custom/Container";
+import { LocationsFilterOptions } from '@Constants/FilterOptions';
 import { LocationsTableColumns } from "@Constants/LocationsTableColumns";
 
 import { GetAllLocations } from "../../../apiClients/RickAndMorty";
@@ -10,13 +12,16 @@ import { responseToLocations } from '../../../utils/mappers/responseToLocations'
 
 const LocationsScreen = () => {
 
+    const [allLocations, setAllLocations] = useState([] as ILocation[]);
     const [locations, setLocations] = useState([] as ILocation[]);
 
     useEffect(() => {
         //Forced call to get data from API
         //TODO: Use sagas
         const fetchLocations = async () => {
-            setLocations(responseToLocations((await GetAllLocations())))
+            const locationsCollection: ILocation[] = responseToLocations((await GetAllLocations()));
+            setAllLocations(locationsCollection);
+            setLocations(locationsCollection);
         };
         fetchLocations();
     }, []);
@@ -25,6 +30,8 @@ const LocationsScreen = () => {
     return (
 
         <CustomContainerDatatable>
+
+            <GenericFilter setTopics={setLocations} allTopics={allLocations} filterOptions={LocationsFilterOptions} />
 
             {locations &&
                 <Datatable columns={LocationsTableColumns} rows={locations} topic={"locations"} />
