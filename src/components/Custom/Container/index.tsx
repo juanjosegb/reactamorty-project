@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import {Container} from "@material-ui/core";
+import { Container } from "@material-ui/core";
 
 export const CustomContainer = styled(Container)`
     background: linear-gradient(#87BFCF, #7dd333);
@@ -12,8 +12,12 @@ export const CustomContainerRaw = styled.div`
     padding-top: 2vh;
 `;
 
+export const CustomDivider = styled.div`
+    padding: 2px;
+`;
+
 export const CustomContainerDatatable = styled.div`
-    margin-top: 10vh;
+    margin-top: 20px;
     table {
         border: solid 2px #38B1C8;
     }

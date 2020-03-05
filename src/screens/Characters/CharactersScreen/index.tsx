@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Grid } from '@material-ui/core'
+import { Grid, TextField } from '@material-ui/core'
 
 import { GetAllCharacters } from '../../../apiClients/RickAndMorty'
 import CardItem from '../../../components/Common/CardItem'
@@ -13,6 +13,7 @@ import { formatDescription } from '../../../utils/formatDescription'
 
 const CharactersScreen = () => {
 
+    const [pageCharacters, setPageCharacters] = useState<ICharacter[]>([]);
     const [characters, setCharacters] = useState<ICharacter[]>([]);
 
     useEffect(() => {
@@ -20,17 +21,32 @@ const CharactersScreen = () => {
         //Forced call to get data from API
         //TODO: Use sagas
         const fetchCharacters = async () => {
-            setCharacters(await (await GetAllCharacters()).data.results)
+            let pageCharacters: ICharacter[] = await (await GetAllCharacters()).data.results;
+            setPageCharacters(pageCharacters);
+            setCharacters(pageCharacters);
         }
         fetchCharacters();
-        console.log(characters)
     }, [])
+
+    const filterCurrentCharacters = (e: any) => {
+        if (e.nativeEvent.srcElement.value != "") {
+            let newFilter = [...pageCharacters].filter(character => character.name.toLocaleLowerCase().includes(e.nativeEvent.srcElement.value.toLocaleLowerCase()))
+            setCharacters(newFilter);
+        } else {
+            setCharacters(pageCharacters);
+        }
+
+    }
 
     return (
         <CustomContainerRaw key={1}>
             <CustomTitle>
                 List of all Characters
             </CustomTitle>
+
+            <Grid item>
+                <TextField onChange={(e) => { filterCurrentCharacters(e) }} id="input-with-icon-grid" label="Find by name" />
+            </Grid>
 
             <Grid container spacing={4} >
 

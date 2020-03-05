@@ -2,6 +2,7 @@ import React from "react"
 
 import { Grid } from "@material-ui/core"
 
+import { CustomDivider } from "../components/Custom/Container"
 import { CustomGridCenterItems } from "../components/Custom/Grid"
 import { BoldSpan, CustomSpanStatus } from "../components/Custom/Text"
 import { ICharacter } from "../types/character"
@@ -11,28 +12,28 @@ export const formatDescription = (character: ICharacter) => {
     return (
         <CustomGridCenterItems container>
             <Grid item xs={6}>
-                <div>
+                <CustomDivider>
                     <BoldSpan>Gender:</BoldSpan> {character.gender}
-                </div>
-                <div>
+                </CustomDivider>
+                <CustomDivider>
                     <BoldSpan>Status:</BoldSpan> <CustomSpanStatus>{character.status}</CustomSpanStatus>
-                </div>
-                <div>
+                </CustomDivider>
+                <CustomDivider>
                     <BoldSpan>Species:</BoldSpan> {character.species}
-                </div>
-                <div>
+                </CustomDivider>
+                <CustomDivider>
                     <BoldSpan>Species:</BoldSpan> {character.species}
-                </div>
+                </CustomDivider>
             </Grid>
 
 
             <Grid item xs={6}>
-                <div>
+                <CustomDivider>
                     <BoldSpan>Origin:</BoldSpan> {character.origin.name}
-                </div>
-                <div>
+                </CustomDivider>
+                <CustomDivider>
                     <BoldSpan>Location:</BoldSpan> {character.location.name}
-                </div>
+                </CustomDivider>
             </Grid>
         </CustomGridCenterItems>
     )

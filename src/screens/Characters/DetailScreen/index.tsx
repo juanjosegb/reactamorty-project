@@ -58,7 +58,7 @@ export const CharacterDetailScreen = () => {
 
                 <Grid item xs={12} sm={12} lg={3} spacing={0} >
                     <CustomGridBordered item xs={12}>
-                        <img src={character.image ? character.image : "https://evonexus.org/wp-content/uploads/2013/12/dummy-200x200.png"} alt="avatar" width="100%" height="auto" />
+                        <img src={character.image ? character.image : "https://i.pinimg.com/originals/ce/78/0b/ce780bcbdd3f806c053624340b39fc48.gif"} alt="avatar" width="100%" height="auto" />
                     </CustomGridBordered>
                 </Grid>
 

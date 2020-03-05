@@ -5,7 +5,7 @@ export const CustomTitle = styled.h1`
     color: #ED9896;
     text-align: center;
     margin-bottom: 30px;
-    margin-top: 15px;
+    margin-top: 30px;
     text-shadow: 1px 0 #B22825, -1px 0 #B22825, 0 -1px #B22825, 0 1px #B22825;
 `;
 
@@ -24,5 +24,5 @@ export const BoldSpan = styled.span`
 `;
 
 export const CustomSpanStatus = styled.span`
-    color: ${props => props.children?.toString() === 'Alive' ? 'green' : props.children?.toString() === 'Dead' ? 'red' : 'yellow'};
+    color: ${props => props.children?.toString() === 'Alive' ? 'green' : props.children?.toString() === 'Dead' ? 'red' : '#b1b100'};
 `;
