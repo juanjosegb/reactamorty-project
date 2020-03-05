@@ -22,7 +22,7 @@ export const MainMenu = () => {
             <CustomTopMenuImage src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png" />
             <List className={classes.inline} >
                 {MenuItems.map((menu: any, index: number) => (
-                    <CustomNavLink to={menu.route} activeClassName="active" activeStyle={ActiveLinkStyle} exact={true} key={index}>
+                    <CustomNavLink to={menu.route} activeClassName="active" activeStyle={ActiveLinkStyle} exact={menu.route === "/" ? true : false} key={index}>
                         <ListItemMenu button alignItems="center">
                             <ListItemIcon>
                                 {menu.icon}
