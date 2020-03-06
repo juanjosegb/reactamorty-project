@@ -2,14 +2,15 @@ import React from 'react';
 import Backdrop from '@material-ui/core/Backdrop';
 import {CustomFade, CustomModal, TitleModal} from "@ComponentsCustom/Modal";
 import {ComplexButton} from "@ComponentsCustom/Button/ComplexButton";
+import {CloseIcon} from "@ComponentsCustom/CloseIcon";
 
-export type Props = { button: string, title: string, content: any };
+export type Props = { children: any, button: string, title: string };
 
 export const TransitionsModal = (props: Props) => {
 
     const {button} = props;
     const {title} = props;
-    const {content} = props;
+    const {children} = props;
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
@@ -38,8 +39,11 @@ export const TransitionsModal = (props: Props) => {
             >
                 <CustomFade in={open}>
                     <div>
-                        <TitleModal id="transition-modal-title">{title}</TitleModal>
-                        <p id="transition-modal-description">{content}</p>
+                        <TitleModal id="transition-modal-title">
+                            {title}
+                            <CloseIcon onClick={handleClose}/>
+                        </TitleModal>
+                        <div id="transition-modal-description">{children}</div>
                     </div>
                 </CustomFade>
             </CustomModal>

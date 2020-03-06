@@ -13,6 +13,7 @@ import {CharactersFilterOptions} from '../../../constants/FilterOptions'
 import {ICharacter} from '../../../types/character'
 import {formatDescription} from '../../../utils/formatDescription'
 import {TransitionsModal} from "@ComponentsCommon/Modal";
+import {ComplexFilter} from "@ComponentsCommon/ComplexFilter";
 
 const CharactersScreen = () => {
 
@@ -42,7 +43,9 @@ const CharactersScreen = () => {
                 <GenericFilter setTopics={setCharacters} allTopics={pageCharacters}
                                filterOptions={CharactersFilterOptions}/>
 
-                <TransitionsModal button={"Complex Filter"} title={"Complex Filter"} content={"Formik Form"}/>
+                <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
+                    <ComplexFilter/>
+                </TransitionsModal>
             </CustomGridCenterItems>
 
             <Grid container spacing={4}>

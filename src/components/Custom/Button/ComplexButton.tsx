@@ -3,6 +3,7 @@ import {Button} from "@material-ui/core";
 
 
 export const ComplexButton = styled(Button)`
+    margin: 30px;
     color: white;
     background-color: #7dd333;
     &:hover{

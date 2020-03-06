@@ -8,7 +8,7 @@ export const CustomModal = styled(Modal)`
 `;
 
 export const CustomFade = styled(Fade)`
-      min-width: 50%;
+      width: 70%;
       background-color: white;
       border: 2px solid #7dd333;
       border-radius: 5px;
