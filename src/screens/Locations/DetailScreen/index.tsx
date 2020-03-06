@@ -1,22 +1,23 @@
-import React, {useEffect, useState} from "react"
-import {useParams} from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 
-import {Grid, Paper} from "@material-ui/core"
+import { ListCharacters } from "@Components/Common/List/ListCharacters"
+import { CardTitle } from "@Components/Custom/Card/CardTitle"
+import { CustomContainerRaw } from "@Components/Custom/Container"
+import { CustomGridCenterItems } from "@Components/Custom/Grid"
+import { CustomSubTitle, CustomTitle } from "@Components/Custom/Text"
+import { Grid, Paper } from "@material-ui/core"
 
-import {GetCharacters, GetLocations} from "../../../apiClients/RickAndMorty"
-import {CardTitle} from "../../../components/Custom/Card/CardTitle"
-import {CustomContainerRaw} from "../../../components/Custom/Container"
-import {CustomGridCenterItems} from "../../../components/Custom/Grid"
-import {CustomSubTitle, CustomTitle} from "../../../components/Custom/Text"
-import {ILocation} from "../../../types/location";
-import {ICharacter} from "../../../types/character";
+import { GetCharacters, GetLocations } from "../../../apiClients/RickAndMorty"
+import { ICharacter } from "../../../types/character";
+import { ILocation } from "../../../types/location";
 
 export const LocationDetailScreen = () => {
 
-    const {id} = useParams();
+    const { id } = useParams();
 
     const [location, setLocation] = useState<ILocation>({} as ILocation);
-    const [characters, setCharacters] = useState<ICharacter>({} as ICharacter);
+    const [characters, setCharacters] = useState<ICharacter[]>({} as ICharacter[]);
 
     useEffect(() => {
 
@@ -70,6 +71,13 @@ export const LocationDetailScreen = () => {
 
 
             </CustomGridCenterItems>
+
+
+            <CustomTitle>
+                Residents
+            </CustomTitle>
+
+            <ListCharacters characters={characters} />
 
 
         </CustomContainerRaw>

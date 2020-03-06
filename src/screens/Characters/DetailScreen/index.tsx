@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
+import Datatable from "@Components/Common/Datatable"
+import { CardTitle } from "@Components/Custom/Card/CardTitle"
+import { CustomContainerDatatable, CustomContainerRaw } from "@Components/Custom/Container"
+import { CustomGridBordered, CustomGridCenterItems } from "@Components/Custom/Grid"
+import { CustomSubTitle, CustomTitle } from "@Components/Custom/Text"
+import { EpisodesTableColumns } from "@Constants/EpisodesTableColumns"
 import { Grid, Paper } from "@material-ui/core"
 
 import { GetCharacters, GetEpisodes } from "../../../apiClients/RickAndMorty"
-import Datatable from "../../../components/Common/Datatable"
-import { CardTitle } from "../../../components/Custom/Card/CardTitle"
-import { CustomContainerDatatable, CustomContainerRaw } from "../../../components/Custom/Container"
-import { CustomGridBordered, CustomGridCenterItems } from "../../../components/Custom/Grid"
-import { CustomSubTitle, CustomTitle } from "../../../components/Custom/Text"
-import { EpisodesTableColumns } from "../../../constants/EpisodesTableColumns"
 import { ICharacter } from "../../../types/character"
 import { IEpisode } from "../../../types/episode"
 import { responseToEpisodes } from "../../../utils/mappers/responseToEpisodes"
@@ -54,7 +54,7 @@ export const CharacterDetailScreen = () => {
 
                 <Grid item xs={12} sm={12} lg={3} spacing={0} >
                     <CustomGridBordered item xs={12}>
-                        <img src={character.image ? character.image : "https://evonexus.org/wp-content/uploads/2013/12/dummy-200x200.png"} alt="avatar" width="100%" height="auto" />
+                        <img src={character.image ? character.image : "https://i.gifer.com/7TwJ.gif"} alt="avatar" width="100%" height="auto" />
                     </CustomGridBordered>
                 </Grid>
 
@@ -115,7 +115,7 @@ export const CharacterDetailScreen = () => {
 
             <CustomContainerDatatable>
                 {episodes.length > 0 &&
-                <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}/>
+                    <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"} />
                 }
             </CustomContainerDatatable>
 

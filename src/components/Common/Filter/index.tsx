@@ -1,13 +1,11 @@
 import React from 'react'
 
-import { Divider, Icon, IconButton, InputBase, Paper } from '@material-ui/core';
-import DirectionsIcon from '@material-ui/icons/Directions';
+import { CenterContainer } from '@Custom/Container';
+import { CustomIcon } from '@Custom/Icon';
+import { BlockPaper } from '@Custom/Paper';
+import { Divider, IconButton, InputBase } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
-import { CenterContainer } from '../../Custom/Container';
-import { CustomIcon } from '../../Custom/Icon';
-import { BlockPaper } from '../../Custom/Paper';
 
 export const GenericFilter = (props: any) => {
 
@@ -24,7 +22,7 @@ export const GenericFilter = (props: any) => {
         if (inputValue !== DEFAULT_FILTER_INPUT) {
             let newFilter =
                 [...allTopics].filter(topic =>
-                    topic[currentFilter.filter].toLocaleLowerCase().includes(inputValue)
+                    topic[currentFilter.filter].toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())
                 )
             setTopics(newFilter);
         } else {
@@ -51,7 +49,8 @@ export const GenericFilter = (props: any) => {
 
                 <InputBase
                     value={inputValue}
-                    onChange={(e: any) => { setinputValue(e.nativeEvent.srcElement.value.toLocaleLowerCase()); applyFilterCriteria(); }}
+                    onKeyUpCapture={() => applyFilterCriteria()}
+                    onChange={(e: any) => setinputValue(e.nativeEvent.srcElement.value)}
                     placeholder={"Filter by " + `${currentFilter.filter}`}
                     inputProps={{ 'aria-label': 'search google maps' }}
                 />

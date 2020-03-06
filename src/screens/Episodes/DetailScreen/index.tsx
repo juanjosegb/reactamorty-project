@@ -1,21 +1,23 @@
-import React, {useEffect, useState} from "react"
-import {useParams} from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 
-import {Grid, Paper} from "@material-ui/core"
+import { ListCharacters } from "@Components/Common/List/ListCharacters";
+import { ListItemCard } from "@Components/Custom/ListItem";
+import { Avatar, Grid, List, ListItemAvatar, ListItemText, Paper } from "@material-ui/core";
 
-import {GetCharacters, GetEpisodes} from "../../../apiClients/RickAndMorty"
-import {CardTitle} from "../../../components/Custom/Card/CardTitle"
-import {CustomContainerRaw} from "../../../components/Custom/Container"
-import {CustomGridCenterItems} from "../../../components/Custom/Grid"
-import {CustomSubTitle, CustomTitle} from "../../../components/Custom/Text"
-import {ICharacter} from "../../../types/character"
-import {IEpisode} from "../../../types/episode"
+import { GetCharacters, GetEpisodes } from "../../../apiClients/RickAndMorty";
+import { CardTitle } from "../../../components/Custom/Card/CardTitle";
+import { CustomContainerRaw } from "../../../components/Custom/Container";
+import { CustomGridCenterItems } from "../../../components/Custom/Grid";
+import { CustomSubTitle, CustomTitle } from "../../../components/Custom/Text";
+import { ICharacter } from "../../../types/character";
+import { IEpisode } from "../../../types/episode";
 
 export const EpisodeDetailScreen = () => {
 
-    const {id} = useParams();
+    const { id } = useParams();
 
-    const [characters, setCharacters] = useState<ICharacter>({} as ICharacter);
+    const [characters, setCharacters] = useState<ICharacter[]>({} as ICharacter[]);
     const [episode, setEpisode] = useState<IEpisode>({} as IEpisode);
 
     useEffect(() => {
@@ -63,14 +65,17 @@ export const EpisodeDetailScreen = () => {
                                 <CustomSubTitle>Dimension</CustomSubTitle>
                                 <CardTitle>{episode.episode ? episode.episode : "Episode"}</CardTitle>
                             </CustomGridCenterItems>
-
                         </Grid>
-
                     </Paper>
                 </Grid>
-
-
             </CustomGridCenterItems>
+
+
+            <CustomTitle>
+                Participants
+            </CustomTitle>
+
+            <ListCharacters characters={characters} />
 
 
         </CustomContainerRaw>

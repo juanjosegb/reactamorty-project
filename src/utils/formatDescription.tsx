@@ -1,10 +1,10 @@
 import React from "react"
 
+import { CustomDivider } from "@Components/Custom/Container"
+import { CustomGridCenterItems } from "@Components/Custom/Grid"
+import { BoldSpan, CustomSpanStatus } from "@Components/Custom/Text"
 import { Grid } from "@material-ui/core"
 
-import { CustomDivider } from "../components/Custom/Container"
-import { CustomGridCenterItems } from "../components/Custom/Grid"
-import { BoldSpan, CustomSpanStatus } from "../components/Custom/Text"
 import { ICharacter } from "../types/character"
 
 export const formatDescription = (character: ICharacter) => {

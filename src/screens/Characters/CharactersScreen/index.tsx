@@ -1,19 +1,17 @@
 import React, {useEffect, useState} from 'react'
 
-import {Grid} from '@material-ui/core'
+import CardItem from '@Components/Common/CardItem'
+import { GenericFilter } from '@Components/Common/Filter'
+import { CustomContainerRaw } from '@Components/Custom/Container'
+import { CustomGridCenterItems } from '@Components/Custom/Grid';
+import { CustomPaginator } from '@Components/Custom/Paginator';
+import { CustomTitle } from '@Components/Custom/Text'
+import { CharactersFilterOptions } from '@Constants/FilterOptions'
+import { Grid } from '@material-ui/core'
 
-import {GetAllCharacters} from '../../../apiClients/RickAndMorty'
-import CardItem from '@ComponentsCommon/CardItem'
-import {GenericFilter} from '@ComponentsCommon/Filter'
-import {CustomContainerRaw} from '@ComponentsCustom/Container'
-import {CustomGridCenterItems} from '@ComponentsCustom/Grid';
-import {CustomPaginator} from '@ComponentsCustom/Paginator';
-import {CustomTitle} from '@ComponentsCustom/Text'
-import {CharactersFilterOptions} from '../../../constants/FilterOptions'
-import {ICharacter} from '../../../types/character'
-import {formatDescription} from '../../../utils/formatDescription'
-import {TransitionsModal} from "@ComponentsCommon/Modal";
-import {ComplexFilter} from "@ComponentsCommon/ComplexFilter";
+import { GetAllCharacters } from '../../../apiClients/RickAndMorty'
+import { ICharacter } from '../../../types/character'
+import { formatDescription } from '../../../utils/formatDescription'
 
 const CharactersScreen = () => {
 

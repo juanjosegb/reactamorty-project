@@ -1,22 +1,24 @@
 import React from "react";
-import TableContainer from "@material-ui/core/TableContainer";
+
+import { TableButton } from "@Custom/Button/TableButton";
+import { TablePagination } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import {TablePagination} from "@material-ui/core";
-import {IEpisode} from "../../../types/episode";
-import {TableButton} from "../../Custom/Button/TableButton";
+
+import { IEpisode } from "../../../types/episode";
 
 export type Props = { columns: string[], rows: any[], topic: string };
 
 const Datatable = (props: Props) => {
 
-    const {rows} = props;
-    const {columns} = props;
-    const {topic} = props;
+    const { rows } = props;
+    const { columns } = props;
+    const { topic } = props;
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -47,7 +49,7 @@ const Datatable = (props: Props) => {
                                     <TableCell key={key} align="center" component="th" scope="row">
                                         {(key + 1) !== Object.keys(episode).length && value}
                                         {(key + 1) === Object.keys(episode).length &&
-                                        <TableButton variant="contained" color="primary" href={`${topic}/${value}`}>Read More</TableButton>}
+                                            <TableButton variant="contained" color="primary" href={`/${topic}/${value}`}>Read More</TableButton>}
                                     </TableCell>
                                 ))}
                             </TableRow>
