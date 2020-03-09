@@ -21,17 +21,15 @@ export const historyReducer = (state: IHistoryState = initialState, action: any)
             };
 
         case ADD_EPISODES_HISTORY:
-            state.episodesHistory.push(action.payload);
             return {
                 ...state,
-                charactersHistory: state.charactersHistory
+                episodesHistory: [...state.episodesHistory, action.payload]
             };
 
         case ADD_LOCATIONS_HISTORY:
-            state.locationsHistory.push(action.payload);
             return {
                 ...state,
-                charactersHistory: state.charactersHistory
+                locationsHistory: [...state.locationsHistory, action.payload]
             };
         default:
             return initialState;
