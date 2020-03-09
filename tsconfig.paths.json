@@ -5,20 +5,23 @@
             "@Assets/*": [
                 "src/assets/*"
             ],
-            "@Components*": [
-                "src/components/*",
-                "src/components*"
+            "@Components/*": [
+                "src/components/*"
             ],
-            "@Custom*": [
-                "src/components/Custom/*",
+            "@Router/*": [
+                "src/router/*"
             ],
-            "@Constants*": [
-                "src/constants/*",
-                "src/constants*"
+            "@Store/*": [
+                "src/store/*"
             ],
-            "@Screens*": [
-                "src/screens/*",
-                "src/screens*"
+            "@Custom/*": [
+                "src/components/Custom/*"
+            ],
+            "@Constants/*": [
+                "src/constants/*"
+            ],
+            "@Screens/*": [
+                "src/screens/*"
             ]
         }
     }
