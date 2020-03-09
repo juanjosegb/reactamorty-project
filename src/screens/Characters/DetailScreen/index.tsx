@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 
 import Datatable from "@Components/Common/Datatable"
@@ -7,6 +8,9 @@ import { CustomContainerDatatable, CustomContainerRaw } from "@Components/Custom
 import { CustomGridBordered, CustomGridCenterItems } from "@Components/Custom/Grid"
 import { CustomSubTitle, CustomTitle } from "@Components/Custom/Text"
 import { EpisodesTableColumns } from "@Constants/EpisodesTableColumns"
+import { ADD_CHARACTERS_HISTORY } from "@Store/constants/actions"
+import { RootState } from "@Store/reducers"
+import { IHistoryState } from "@Store/reducers/history"
 import { Grid, Paper } from "@material-ui/core"
 
 import { GetCharacters, GetEpisodes } from "../../../apiClients/RickAndMorty"
@@ -21,8 +25,15 @@ export const CharacterDetailScreen = () => {
     const [character, setCharacter] = useState<ICharacter>({} as ICharacter);
     const [episodes, setEpisodes] = useState<IEpisode[]>([] as IEpisode[]);
 
-    useEffect(() => {
+    const historyState: IHistoryState = useSelector((state: RootState) => state.historyState);
+    const dispatch = useDispatch();
 
+
+
+    console.log(historyState)
+
+
+    useEffect(() => {
         const fetchAppareances = async (character: ICharacter) => {
             let episodesIds: number[] = [];
             character.episode.forEach((chapter) => {
@@ -38,7 +49,9 @@ export const CharacterDetailScreen = () => {
             setCharacter(result);
             await fetchAppareances(result)
         };
-
+        if (id) {
+            dispatch({ type: ADD_CHARACTERS_HISTORY, payload: `${id}` })
+        }
         fetchCharacterById();
     }, [id]);
 

@@ -6,24 +6,16 @@
         [
             "module-resolver",
             {
-                "extensions": [
-                    ".ios.ts",
-                    ".android.ts",
-                    ".ts",
-                    ".ios.tsx",
-                    ".android.tsx",
-                    ".tsx",
-                    ".jsx",
-                    ".js",
-                    ".json"
-                ],
-                "root": "./",
+                "root": ".",
                 "alias": {
                     "@Assets": "./src/assets",
-                    "@Components": "./src/components/",
-                    "@Custom": "./src/components/Custom/",
-                    "@Constants": "./src/constants/",
-                    "@Screens": "./src/screens"
+                    "@Components": "./src/components",
+                    "@Router": "./src/router",
+                    "@Store": "./src/store",
+                    "@Custom": "./src/components/Custom",
+                    "@Constants": "./src/constants",
+                    "@Screens": "./src/screens",
+                    "@Utils": "./src/utils"
                 }
             }
         ]
