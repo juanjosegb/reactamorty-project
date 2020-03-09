@@ -28,11 +28,6 @@ export const CharacterDetailScreen = () => {
     const historyState: IHistoryState = useSelector((state: RootState) => state.historyState);
     const dispatch = useDispatch();
 
-
-
-    console.log(historyState)
-
-
     useEffect(() => {
 
         const fetchAppareances = async (character: ICharacter) => {

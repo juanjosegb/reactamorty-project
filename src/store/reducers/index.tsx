@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 
 import { historyReducer } from "./history";
+import { locationsReducer } from "./locations";
 
 export const rootReducer = combineReducers(
     {
-        historyState: historyReducer
+        historyState: historyReducer,
+        locationsState: locationsReducer
     }
 );
 
