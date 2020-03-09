@@ -1,13 +1,18 @@
-import {Formik} from "formik";
+import {Field, Formik} from "formik";
 import React from "react";
 import {Grid, TextField} from "@material-ui/core";
-import {ComplexButton} from "@ComponentsCustom/Button/ComplexButton";
-import {CustomGridCenterItems} from "@ComponentsCustom/Grid";
-import {SelectInput} from "@ComponentsCommon/SelectInput";
+import {ComplexButton} from "@Components/Custom/Button/ComplexButton";
+import {CustomGridCenterItems} from "@Components/Custom/Grid";
+import {ICriteria} from "../../../types/filter";
+import {SelectInput} from "@Components/Common/SelectInput";
 
-export const ComplexFilter = () => {
+export type Props = { topicCriteria: ICriteria[], initialValues: any };
+
+export const ComplexFilter = (props: Props) => {
+    const {topicCriteria, initialValues} = props;
+
     return <Formik
-        initialValues={{name: '', status: '', species: '', type: '', gender: '', origin: ''}}
+        initialValues={initialValues}
         validate={values => {
             return {};
         }}
@@ -26,24 +31,21 @@ export const ComplexFilter = () => {
           }) => (
             <form onSubmit={handleSubmit}>
                 <Grid container>
-                    <CustomGridCenterItems item xs={12} sm={6}>
-                        <SelectInput label={"Status"} options={["Alive", "Dead", "unknown"]}/>
-                    </CustomGridCenterItems>
-                    <CustomGridCenterItems item xs={12} sm={6}>
-                        <SelectInput label={"Gender"} options={["Female", "Male", "Genderless", "unknown"]}/>
-                    </CustomGridCenterItems>
-                    <CustomGridCenterItems item xs={12} sm={6}>
-                        <TextField id="name" label="Name" value={values.name} onChange={handleChange}/>
-                    </CustomGridCenterItems>
-                    <CustomGridCenterItems item xs={12} sm={6}>
-                        <TextField id="species" label="Species" value={values.species} onChange={handleChange}/>
-                    </CustomGridCenterItems>
-                    <CustomGridCenterItems item xs={12} sm={6}>
-                        <TextField id="type" label="Type" value={values.type} onChange={handleChange}/>
-                    </CustomGridCenterItems>
-                    <CustomGridCenterItems item xs={12} sm={6}>
-                        <TextField id="origin" label="Origin" value={values.origin} onChange={handleChange}/>
-                    </CustomGridCenterItems>
+                    {topicCriteria.map((criteria: ICriteria, key: number) => (
+                        <CustomGridCenterItems item xs={12} sm={6} key={key}>
+                            {
+                                Array.isArray(criteria.value) && (
+                                    <Field as="select" name={criteria.topic} component={SelectInput}
+                                           label={criteria.topic} options={criteria.value}/>)
+                            }
+                            {
+                                !Array.isArray(criteria.value) && (
+                                    <TextField id={`${criteria.topic}`} label={`${criteria.value}`}
+                                               onChange={handleChange}/>)
+                            }
+
+                        </CustomGridCenterItems>
+                    ))}
                     <CustomGridCenterItems item xs={12} sm={12}>
                         <ComplexButton type="submit" disabled={isSubmitting}>
                             Find
@@ -51,8 +53,6 @@ export const ComplexFilter = () => {
                     </CustomGridCenterItems>
                 </Grid>
             </form>
-
-
         )}
     </Formik>
 };

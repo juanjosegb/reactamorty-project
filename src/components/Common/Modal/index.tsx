@@ -1,8 +1,8 @@
 import React from 'react';
 import Backdrop from '@material-ui/core/Backdrop';
-import {CustomFade, CustomModal, TitleModal} from "@ComponentsCustom/Modal";
-import {ComplexButton} from "@ComponentsCustom/Button/ComplexButton";
-import {CloseIcon} from "@ComponentsCustom/CloseIcon";
+import {CustomFade, CustomModal, TitleModal} from "@Components/Custom/Modal";
+import {ComplexButton} from "@Components/Custom/Button/ComplexButton";
+import {CloseIcon} from "@Components/Custom/CloseIcon";
 
 export type Props = { children: any, button: string, title: string };
 

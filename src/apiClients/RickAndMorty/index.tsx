@@ -36,7 +36,7 @@ export const GetLocations = async (ids: any[] = []) => {
     return (!numberOfPages) ? response.data : await concatPages(`location/${ids}`, numberOfPages);
 };
 
-export const GetFilteredLocations = async (page: string = "", name: string = "", type: string = "", dimension: string = "") => {
+export const GetFilteredLocations = async (name: string = "", type: string = "", dimension: string = "", page: string = "") => {
     let response = await apiClient.get(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`);
     const numberOfPages = getNumberOfPages(response);
     return (!numberOfPages) ? response.data : await concatPages(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`, numberOfPages);

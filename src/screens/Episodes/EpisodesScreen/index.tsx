@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 
 import Datatable from "@Components/Common/Datatable";
-import { GenericFilter } from '@Components/Common/Filter';
-import { CustomContainerDatatable } from "@Components/Custom/Container";
-import { EpisodesTableColumns } from "@Constants/EpisodesTableColumns";
-import { EpisodesFilterOptions } from '@Constants/FilterOptions';
+import {GenericFilter} from '@Components/Common/Filter';
+import {CustomContainerDatatable, CustomContainerRaw} from "@Components/Custom/Container";
+import {EpisodesTableColumns} from "@Constants/EpisodesTableColumns";
+import {EpisodesFilterOptions} from '@Constants/FilterOptions';
 
-import { GetAllEpisodes } from "../../../apiClients/RickAndMorty";
-import { IEpisode } from "../../../types/episode";
-import { responseToEpisodes } from '../../../utils/mappers/responseToEpisodes';
+import {GetAllEpisodes} from "../../../apiClients/RickAndMorty";
+import {IEpisode} from "../../../types/episode";
+import {responseToEpisodes} from '../../../utils/mappers/responseToEpisodes';
+import {TransitionsModal} from "@Components/Common/Modal";
+import {ComplexFilter} from "@Components/Common/ComplexFilter";
+import {EpisodeCriteria, ValuesEpisodesCriteria} from "@Constants/episodes";
+import {CustomGridCenterItems} from "@Components/Custom/Grid";
+import {CustomTitle} from "@Components/Custom/Text";
 
 const EpisodesScreen = () => {
 
@@ -29,14 +34,29 @@ const EpisodesScreen = () => {
 
     return (
 
-        <CustomContainerDatatable>
+        <CustomContainerRaw key={1}>
+            <CustomTitle>
+                List of all Episodes
+            </CustomTitle>
 
-            <GenericFilter setTopics={setEpisodes} allTopics={allEpisodes} filterOptions={EpisodesFilterOptions} />
+            <CustomContainerDatatable>
 
-            {episodes &&
-                <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"} />
-            }
-        </CustomContainerDatatable>
+                <CustomGridCenterItems xs={12}>
+
+                    <GenericFilter setTopics={setEpisodes} allTopics={allEpisodes}
+                                   filterOptions={EpisodesFilterOptions}/>
+
+                    <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
+                        <ComplexFilter topicCriteria={EpisodeCriteria} initialValues={ValuesEpisodesCriteria}/>
+                    </TransitionsModal>
+
+                </CustomGridCenterItems>
+
+                {episodes &&
+                <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}/>
+                }
+            </CustomContainerDatatable>
+        </CustomContainerRaw>
     );
 };
 

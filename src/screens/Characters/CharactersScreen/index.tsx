@@ -1,17 +1,20 @@
 import React, {useEffect, useState} from 'react'
 
 import CardItem from '@Components/Common/CardItem'
-import { GenericFilter } from '@Components/Common/Filter'
-import { CustomContainerRaw } from '@Components/Custom/Container'
-import { CustomGridCenterItems } from '@Components/Custom/Grid';
-import { CustomPaginator } from '@Components/Custom/Paginator';
-import { CustomTitle } from '@Components/Custom/Text'
-import { CharactersFilterOptions } from '@Constants/FilterOptions'
-import { Grid } from '@material-ui/core'
+import {GenericFilter} from '@Components/Common/Filter'
+import {CustomContainerRaw} from '@Components/Custom/Container'
+import {CustomGridCenterItems} from '@Components/Custom/Grid';
+import {CustomPaginator} from '@Components/Custom/Paginator';
+import {CustomTitle} from '@Components/Custom/Text'
+import {CharactersFilterOptions} from '@Constants/FilterOptions'
+import {Grid} from '@material-ui/core'
 
-import { GetAllCharacters } from '../../../apiClients/RickAndMorty'
-import { ICharacter } from '../../../types/character'
-import { formatDescription } from '../../../utils/formatDescription'
+import {GetAllCharacters} from '../../../apiClients/RickAndMorty'
+import {ICharacter} from '../../../types/character'
+import {formatDescription} from '../../../utils/formatDescription'
+import {TransitionsModal} from "@Components/Common/Modal";
+import {ComplexFilter} from "@Components/Common/ComplexFilter";
+import {CharacterCriteria, ValuesCharactersCriteria} from "@Constants/characters";
 
 const CharactersScreen = () => {
 
@@ -42,7 +45,7 @@ const CharactersScreen = () => {
                                filterOptions={CharactersFilterOptions}/>
 
                 <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
-                    <ComplexFilter/>
+                    <ComplexFilter topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria}/>
                 </TransitionsModal>
             </CustomGridCenterItems>
 
