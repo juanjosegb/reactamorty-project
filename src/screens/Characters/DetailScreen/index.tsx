@@ -34,6 +34,7 @@ export const CharacterDetailScreen = () => {
 
 
     useEffect(() => {
+
         const fetchAppareances = async (character: ICharacter) => {
             let episodesIds: number[] = [];
             character.episode.forEach((chapter) => {
