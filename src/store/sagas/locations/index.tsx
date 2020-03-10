@@ -1,16 +1,25 @@
-import { put, takeLatest } from 'redux-saga/effects';
-import { GetAllLocations } from 'src/apiClients/RickAndMorty';
+import {put, takeLatest} from 'redux-saga/effects';
+import {fetchLocationsDone, fetchLocationsError} from '@Store/actions/locations';
+import {FETCH_LOCATIONS} from "@Store/constants/locations";
+import {GetAllLocations} from "@ApiClients/RickAndMorty";
+import {responseToLocations} from "@Utils//mappers/responseToLocations";
+import {ILocation} from "../../../types/location";
+import {IReduxAction} from "@Store/actions";
+import {checkDateIsDeprecated} from "@Utils/date";
 
-import { fetchLocationsDone, fetchLocationsError } from '@Store/actions/locations';
-import { FETCH_LOCATIONS } from "@Store/constants/locations";
-
-function* fetchLocationsAsync() {
+function* fetchLocationsAsync(action: IReduxAction) {
+    console.log(action);
     try {
-        const results = yield (() => {
-            console.log(GetAllLocations());
-            return GetAllLocations();
-        })
-
+        let results: ILocation[];
+        if (checkDateIsDeprecated(action.payload.date) || (action.payload.locations.length == 0)) {
+            results = yield (GetAllLocations().then(
+                response => {
+                    return responseToLocations(response);
+                }
+            ));
+        } else {
+            results = action.payload.locations
+        }
         yield put(fetchLocationsDone(results))
     } catch (error) {
         yield put(fetchLocationsError());

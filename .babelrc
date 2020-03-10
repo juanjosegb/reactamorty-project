@@ -8,6 +8,7 @@
             {
                 "root": ".",
                 "alias": {
+                    "@ApiClients": "./src/apiClients",
                     "@Assets": "./src/assets",
                     "@Components": "./src/components",
                     "@Router": "./src/router",
