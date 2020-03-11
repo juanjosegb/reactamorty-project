@@ -7,7 +7,7 @@ import { IReduxAction } from "..";
 
 export const fetchCharacters = (page: number): IReduxAction => {
     return {
-        type: FETCH_CHARACTERS
+        type: FETCH_CHARACTERS,
         payload: page
     };
 };

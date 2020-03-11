@@ -30,6 +30,10 @@ const CharactersScreen = () => {
         fetchCharacters();
     }, [])
 
+    const handleChange = (event: object, page: number) => {
+        console.log("Página " + page)
+    };
+
 
     return (
         <>
@@ -58,7 +62,8 @@ const CharactersScreen = () => {
 
                 </Grid>
                 <CustomGridCenterItems xs={12}>
-                    <CustomPaginator count={10} variant="outlined" color="inherit" showFirstButton showLastButton/>
+                    <CustomPaginator count={10} variant="outlined" color="inherit" onChange={handleChange}
+                                     showFirstButton showLastButton/>
                 </CustomGridCenterItems>
 
             </CustomContainerRaw>
