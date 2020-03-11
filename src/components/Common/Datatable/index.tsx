@@ -11,16 +11,16 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import {IEpisode} from "../../../types/episode";
 import {GenericFilter} from "@Components/Common/Filter";
-import {LocationsFilterOptions} from "@Constants/FilterOptions";
 import {CustomContainerDatatable} from "@Custom/Container";
 
-export type Props = { columns: string[], rows: any[], topic: string };
+export type Props = { columns: string[], rows: any[], topic: string , filter: string[]};
 
 const Datatable = (props: Props) => {
 
     const {rows} = props;
     const {columns} = props;
     const {topic} = props;
+    const {filter} = props;
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [filteredRows, setFilteredRows] = useState(rows as any[]);
@@ -38,7 +38,7 @@ const Datatable = (props: Props) => {
     return (
         <CustomContainerDatatable>
             <GenericFilter setTopics={setFilteredRows} allTopics={rows}
-                           filterOptions={LocationsFilterOptions}/>
+                           filterOptions={filter}/>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table">
                     <TableHead>

@@ -17,6 +17,7 @@ import { GetCharacters, GetEpisodes } from "../../../apiClients/RickAndMorty"
 import { ICharacter } from "../../../types/character"
 import { IEpisode } from "../../../types/episode"
 import { responseToEpisodes } from "../../../utils/mappers/responseToEpisodes"
+import {EpisodesFilterOptions} from "@Constants/FilterOptions";
 
 export const CharacterDetailScreen = () => {
 
@@ -124,7 +125,7 @@ export const CharacterDetailScreen = () => {
 
             <CustomContainerDatatable>
                 {episodes.length > 0 &&
-                    <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"} />
+                    <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"} filter={EpisodesFilterOptions}/>
                 }
             </CustomContainerDatatable>
 
