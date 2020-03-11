@@ -38,7 +38,7 @@ const CharactersScreen = () => {
                 List of all Characters
             </CustomTitle>
 
-            <GenericFilter setTopics={setCharacters} allTopics={pageCharacters} filterOptions={CharactersFilterOptions} />
+            <GenericFilter setTopics={setCharacters} allTopics={pageCharacters} filterOptions={CharactersFilterOptions} isFilterTable={false}/>
 
             <Grid container spacing={4} >
 

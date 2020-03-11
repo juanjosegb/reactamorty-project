@@ -10,13 +10,11 @@ import SearchIcon from '@material-ui/icons/Search';
 export const GenericFilter = (props: any) => {
 
     const DEFAULT_FILTER_INPUT = "";
-    const {filterOptions} = props;
-    const {allTopics, setTopics} = props;
+    const {allTopics, setTopics, setPages, filterOptions, isFilterTable} = props;
     const [inputValue, setinputValue] = React.useState(DEFAULT_FILTER_INPUT);
     const [currentFilter, setCurrentFilter] = React.useState({index: 0, filter: filterOptions[0]});
 
     const applyFilterCriteria = () => {
-        console.log(inputValue);
         if (inputValue !== DEFAULT_FILTER_INPUT) {
             let newFilter =
                 [...allTopics].filter(topic =>
@@ -26,7 +24,9 @@ export const GenericFilter = (props: any) => {
         } else {
             setTopics(allTopics);
         }
-
+        if(isFilterTable){
+            setPages(0);
+        }
     };
 
     const swapFilter = () => {
