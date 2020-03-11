@@ -8,7 +8,6 @@ import {IReduxAction} from "@Store/actions";
 import {checkDateIsDeprecated} from "@Utils/date";
 
 function* fetchLocationsAsync(action: IReduxAction) {
-    console.log(action);
     try {
         let results: ILocation[];
         if (checkDateIsDeprecated(action.payload.date) || (action.payload.locations.length == 0)) {
@@ -24,7 +23,6 @@ function* fetchLocationsAsync(action: IReduxAction) {
     } catch (error) {
         yield put(fetchLocationsError());
     }
-
 }
 
 

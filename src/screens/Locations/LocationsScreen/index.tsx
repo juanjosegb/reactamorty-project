@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 
 import Datatable from "@Components/Common/Datatable";
-import {CustomContainerDatatable} from "@Components/Custom/Container";
 import {LocationsTableColumns} from "@Constants/LocationsTableColumns";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchLocations} from "@Store/actions/locations";
