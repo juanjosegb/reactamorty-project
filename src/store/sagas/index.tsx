@@ -1,11 +1,12 @@
-import {all} from 'redux-saga/effects';
+import { all } from 'redux-saga/effects';
 
-import locationsSaga from '@Store/sagas/locations';
 import episodesSaga from "@Store/sagas/episodes";
+import locationsSaga from '@Store/sagas/locations';
 
 export default function* rootSaga() {
     yield all([
         locationsSaga(),
-        episodesSaga()
+        episodesSaga(),
+        //TODO: INCLUDE CHARACTERS SAGA
     ])
 }
