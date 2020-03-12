@@ -33,7 +33,6 @@ const CharactersScreen = () => {
         dispatch(fetchCharacters(page));
     };
 
-
     return (
         <>
             <CustomTitle>

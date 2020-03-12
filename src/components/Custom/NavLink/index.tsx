@@ -22,3 +22,14 @@ export const CustomNavLinkSidenav = styled(NavLink)`
     color: white;
   }
 `;
+
+export const CustomHistoryLink = styled(NavLink)`
+  text-align: center;
+  text-decoration:none;
+  font-weight: bold;
+  color: #2a2e28;
+  &:hover{
+    text-decoration: none;
+    color: #7dd333;
+  }
+`;
