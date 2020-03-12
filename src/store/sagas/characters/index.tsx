@@ -8,11 +8,10 @@ import {GetAllCharacters} from "@ApiClients/RickAndMorty";
 
 function* fetchCharactersAsync(action: IReduxAction) {
     try {
-        console.log(action.payload.page);
         let results: ICharacter[];
-        results = yield (GetAllCharacters(action.payload.page).then(
+        results = yield (GetAllCharacters(action.payload).then(
             response => {
-                return response;
+                return response.data.results;
             }
         ));
         yield put(fetchCharactersDone(results))

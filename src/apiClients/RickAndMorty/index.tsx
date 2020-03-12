@@ -11,7 +11,7 @@ const apiClient = axios.create({
 
 
 //Characters
-export const GetAllCharacters = (page: string = "") => {
+export const GetAllCharacters = (page: number = 1) => {
     return apiClient.get(`character/?page=${page}`);
 };
 

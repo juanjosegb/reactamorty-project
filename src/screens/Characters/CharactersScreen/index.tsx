@@ -23,7 +23,7 @@ const CharactersScreen = () => {
     }, []);
 
     const handleChange = (event: object, page: number) => {
-        console.log("Página " + page)
+        dispatch(fetchCharacters(page));
     };
 
 
@@ -59,6 +59,6 @@ const CharactersScreen = () => {
         </>
 
     )
-}
+};
 
 export default CharactersScreen

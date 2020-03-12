@@ -4,7 +4,7 @@ import { FETCH_CHARACTERS, FETCH_CHARACTERS_DONE, FETCH_CHARACTERS_ERROR } from 
 
 import { IReduxAction } from "..";
 
-export const fetchCharacters = (page: string = ""): IReduxAction => {
+export const fetchCharacters = (page: number = 1): IReduxAction => {
     return {
         type: FETCH_CHARACTERS,
         payload: page
