@@ -42,8 +42,8 @@ const CharactersScreen = () => {
 
                 <Grid container spacing={4}>
 
-                    {filteredCharacters.length > 0 &&
-                    filteredCharacters.map((character: ICharacter, index: number) => (
+                    {getCurrentCharacters(charactersState).length > 0 &&
+                    getCurrentCharacters(charactersState).map((character: ICharacter, index: number) => (
                         <CardItem
                             key={index}
                             title={character.name}
