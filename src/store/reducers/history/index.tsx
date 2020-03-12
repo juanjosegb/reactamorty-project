@@ -32,7 +32,7 @@ export const historyReducer = (state: IHistoryState = initialState, action: any)
                 locationsHistory: [...state.locationsHistory, action.payload]
             };
         default:
-            return initialState;
+            return state;
 
     }
 
