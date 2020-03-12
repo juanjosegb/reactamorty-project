@@ -1,7 +1,7 @@
-import { ICharacter } from "src/types/character";
+import {ICharacter} from "src/types/character";
 
-import { IReduxAction } from "@Store/actions";
-import { FETCH_CHARACTERS, FETCH_CHARACTERS_DONE, FETCH_CHARACTERS_ERROR } from "@Store/constants/characters";
+import {IReduxAction} from "@Store/actions";
+import {FETCH_CHARACTERS, FETCH_CHARACTERS_DONE, FETCH_CHARACTERS_ERROR} from "@Store/constants/characters";
 
 export interface ICharacterState {
     currentCharacters: ICharacter[],
@@ -12,7 +12,7 @@ export interface ICharacterState {
 
 const initialState: ICharacterState = {
     currentCharacters: [],
-    page: 0,
+    page: 1,
     isFetching: false,
     isError: false
 };
@@ -26,13 +26,13 @@ export const charactersReducer = (state: ICharacterState = initialState, action:
                 page: action.payload,
                 isFetching: true,
                 currentCharacters: []
-            }
+            };
         case FETCH_CHARACTERS_DONE:
             return {
                 ...state,
                 isFetching: false,
                 currentCharacters: action.payload
-            }
+            };
         case FETCH_CHARACTERS_ERROR:
             return {
                 ...state,
@@ -40,7 +40,7 @@ export const charactersReducer = (state: ICharacterState = initialState, action:
                 currentCharacters: [],
                 isFetching: false,
                 isError: true
-            }
+            };
         default:
             return initialState;
 
