@@ -9,6 +9,11 @@ import {getLocations, ILocationState} from "@Store/reducers/locations";
 import {LocationsFilterOptions} from "@Constants/FilterOptions";
 import {CustomTitle} from "@Custom/Text";
 import {CustomContainerRaw} from "@Custom/Container";
+import {CustomGridCenterItems} from "@Custom/Grid";
+import {TransitionsModal} from "@Components/Common/Modal";
+import {ComplexFilter} from "@Components/Common/ComplexFilter";
+import {CharacterCriteria, ValuesCharactersCriteria} from "@Constants/characters";
+import {LocationCriteria, ValuesLocationsCriteria} from "@Constants/locations";
 
 const LocationsScreen = () => {
     const dispatch = useDispatch();
@@ -23,6 +28,11 @@ const LocationsScreen = () => {
             <CustomTitle>
                 List of all Locations
             </CustomTitle>
+            <CustomGridCenterItems>
+                <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
+                    <ComplexFilter topicCriteria={LocationCriteria} initialValues={ValuesLocationsCriteria}/>
+                </TransitionsModal>
+            </CustomGridCenterItems>
             {getLocations(locationsState).length > 0 && (
                 <Datatable columns={LocationsTableColumns} rows={getLocations(locationsState)} topic={"locations"}
                            filter={LocationsFilterOptions}/>)}

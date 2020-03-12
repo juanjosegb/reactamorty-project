@@ -14,6 +14,9 @@ import {getCurrentCharacters, getTotalPages, ICharacterState} from "@Store/reduc
 import {RootState} from "@Store/reducers";
 import {GenericFilter} from "@Components/Common/Filter";
 import {CharactersFilterOptions} from "@Constants/FilterOptions";
+import {TransitionsModal} from "@Components/Common/Modal";
+import {ComplexFilter} from "@Components/Common/ComplexFilter";
+import {CharacterCriteria, ValuesCharactersCriteria} from "@Constants/characters";
 
 const CharactersScreen = () => {
 
@@ -42,6 +45,11 @@ const CharactersScreen = () => {
 
                 <GenericFilter setTopics={setFilteredCharacters} allTopics={getCurrentCharacters(charactersState)}
                                filterOptions={CharactersFilterOptions} isFilterTable={false}/>
+                <CustomGridCenterItems>
+                    <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
+                        <ComplexFilter topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria}/>
+                    </TransitionsModal>
+                </CustomGridCenterItems>
 
                 <Grid container spacing={4}>
 
@@ -60,7 +68,8 @@ const CharactersScreen = () => {
 
                 </Grid>
                 <CustomGridCenterItems xs={12}>
-                    <CustomPaginator count={getTotalPages(charactersState)} variant="outlined" color="inherit" onChange={handleChange}
+                    <CustomPaginator count={getTotalPages(charactersState)} variant="outlined" color="inherit"
+                                     onChange={handleChange}
                                      showFirstButton showLastButton/>
                 </CustomGridCenterItems>
 
