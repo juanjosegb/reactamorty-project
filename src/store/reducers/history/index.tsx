@@ -1,4 +1,10 @@
-import {ADD_CHARACTERS_HISTORY, ADD_EPISODES_HISTORY, ADD_LOCATIONS_HISTORY} from "@Store/constants/actions"
+import {
+    ADD_CHARACTERS_HISTORY,
+    ADD_EPISODES_HISTORY,
+    ADD_LOCATIONS_HISTORY,
+    CLEAN_HISTORY
+} from "@Store/constants/actions"
+import {checkCanAddToHistory} from "@Utils/history";
 
 export interface IHistoryState {
     charactersHistory: string[],
@@ -17,23 +23,26 @@ export const historyReducer = (state: IHistoryState = initialState, action: any)
         case ADD_CHARACTERS_HISTORY:
             return {
                 ...state,
-                charactersHistory: [...state.charactersHistory, action.payload]
+                charactersHistory: checkCanAddToHistory(state.charactersHistory, action) ? [...state.charactersHistory, action.payload] : state.charactersHistory
             };
 
         case ADD_EPISODES_HISTORY:
             return {
                 ...state,
-                episodesHistory: [...state.episodesHistory, action.payload]
+                episodesHistory: checkCanAddToHistory(state.episodesHistory, action) ? [...state.episodesHistory, action.payload] : state.episodesHistory
             };
 
         case ADD_LOCATIONS_HISTORY:
             return {
                 ...state,
-                locationsHistory: [...state.locationsHistory, action.payload]
+                locationsHistory: checkCanAddToHistory(state.locationsHistory, action) ? [...state.locationsHistory, action.payload] : state.locationsHistory
             };
-        default:
+
+        case CLEAN_HISTORY:
             return state;
 
+        default:
+            return state;
     }
 
 };
