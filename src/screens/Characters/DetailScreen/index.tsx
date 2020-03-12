@@ -1,39 +1,32 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import React, {useEffect, useState} from "react"
+import {useDispatch} from "react-redux"
+import {useParams} from "react-router-dom"
 
 import Datatable from "@Components/Common/Datatable"
-import { CardTitle } from "@Components/Custom/Card/CardTitle"
-import { CustomContainerDatatable, CustomContainerRaw } from "@Components/Custom/Container"
-import { CustomGridBordered, CustomGridCenterItems } from "@Components/Custom/Grid"
-import { CustomSubTitle, CustomTitle } from "@Components/Custom/Text"
-import { EpisodesTableColumns } from "@Constants/EpisodesTableColumns"
-import { ADD_CHARACTERS_HISTORY } from "@Store/constants/actions"
-import { RootState } from "@Store/reducers"
-import { IHistoryState } from "@Store/reducers/history"
-import { Grid, Paper } from "@material-ui/core"
+import {CardTitle} from "@Components/Custom/Card/CardTitle"
+import {CustomContainerDatatable, CustomContainerRaw} from "@Components/Custom/Container"
+import {CustomGridBordered, CustomGridCenterItems} from "@Components/Custom/Grid"
+import {CustomSubTitle, CustomTitle} from "@Components/Custom/Text"
+import {EpisodesTableColumns} from "@Constants/EpisodesTableColumns"
+import {Grid, Paper} from "@material-ui/core"
 
-import { GetCharacters, GetEpisodes } from "../../../apiClients/RickAndMorty"
-import { ICharacter } from "../../../types/character"
-import { IEpisode } from "../../../types/episode"
-import { responseToEpisodes } from "../../../utils/mappers/responseToEpisodes"
+import {GetCharacters, GetEpisodes} from "../../../apiClients/RickAndMorty"
+import {ICharacter} from "../../../types/character"
+import {IEpisode} from "../../../types/episode"
+import {responseToEpisodes} from "../../../utils/mappers/responseToEpisodes"
+import {EpisodesFilterOptions} from "@Constants/FilterOptions";
+import {addCharacterHistory} from "@Store/actions/history";
 
 export const CharacterDetailScreen = () => {
 
-    const { id } = useParams();
+    const {id} = useParams();
 
     const [character, setCharacter] = useState<ICharacter>({} as ICharacter);
     const [episodes, setEpisodes] = useState<IEpisode[]>([] as IEpisode[]);
-
-    const historyState: IHistoryState = useSelector((state: RootState) => state.historyState);
     const dispatch = useDispatch();
 
-
-
-    console.log(historyState)
-
-
     useEffect(() => {
+
         const fetchAppareances = async (character: ICharacter) => {
             let episodesIds: number[] = [];
             character.episode.forEach((chapter) => {
@@ -47,11 +40,11 @@ export const CharacterDetailScreen = () => {
         const fetchCharacterById = async () => {
             let result = await (await GetCharacters([id?.toString()])).data;
             setCharacter(result);
-            await fetchAppareances(result)
+            await fetchAppareances(result);
+            if (id) {
+                dispatch(addCharacterHistory(id, result.name))
+            }
         };
-        if (id) {
-            dispatch({ type: ADD_CHARACTERS_HISTORY, payload: `${id}` })
-        }
         fetchCharacterById();
     }, [id]);
 
@@ -63,16 +56,17 @@ export const CharacterDetailScreen = () => {
                 Detail
             </CustomTitle>
 
-            <CustomGridCenterItems container spacing={6} >
+            <CustomGridCenterItems container spacing={6}>
 
-                <Grid item xs={12} sm={12} lg={3} spacing={0} >
+                <Grid item xs={12} sm={12} lg={3} spacing={0}>
                     <CustomGridBordered item xs={12}>
-                        <img src={character.image ? character.image : "https://i.gifer.com/7TwJ.gif"} alt="avatar" width="100%" height="auto" />
+                        <img src={character.image ? character.image : "https://i.gifer.com/7TwJ.gif"} alt="avatar"
+                             width="100%" height="auto"/>
                     </CustomGridBordered>
                 </Grid>
 
 
-                <Grid item xs={12} sm={12} lg={9} >
+                <Grid item xs={12} sm={12} lg={9}>
                     <Paper>
                         <Grid container spacing={4}>
                             <CustomGridCenterItems xs={12} sm={6}>
@@ -128,7 +122,8 @@ export const CharacterDetailScreen = () => {
 
             <CustomContainerDatatable>
                 {episodes.length > 0 &&
-                    <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"} />
+                <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}
+                           filter={EpisodesFilterOptions}/>
                 }
             </CustomContainerDatatable>
 

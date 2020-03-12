@@ -1,62 +1,31 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 
 import Datatable from "@Components/Common/Datatable";
-import {GenericFilter} from '@Components/Common/Filter';
-import {CustomContainerDatatable, CustomContainerRaw} from "@Components/Custom/Container";
 import {EpisodesTableColumns} from "@Constants/EpisodesTableColumns";
-import {EpisodesFilterOptions} from '@Constants/FilterOptions';
-
-import {GetAllEpisodes} from "../../../apiClients/RickAndMorty";
-import {IEpisode} from "../../../types/episode";
-import {responseToEpisodes} from '../../../utils/mappers/responseToEpisodes';
-import {TransitionsModal} from "@Components/Common/Modal";
-import {ComplexFilter} from "@Components/Common/ComplexFilter";
-import {EpisodeCriteria, ValuesEpisodesCriteria} from "@Constants/episodes";
-import {CustomGridCenterItems} from "@Components/Custom/Grid";
-import {CustomTitle} from "@Components/Custom/Text";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "@Store/reducers";
+import {getEpisodes, IEpisodeState} from "@Store/reducers/episodes";
+import {fetchEpisodes} from "@Store/actions/episodes";
+import {EpisodesFilterOptions} from "@Constants/FilterOptions";
+import {CustomTitle} from "@Custom/Text";
 
 const EpisodesScreen = () => {
-
-    const [allEpisodes, setAllEpisodes] = useState([] as IEpisode[]);
-    const [episodes, setEpisodes] = useState([] as IEpisode[]);
+    const dispatch = useDispatch();
+    const episodesState: IEpisodeState = useSelector((state: RootState) => state.episodesState);
 
     useEffect(() => {
-        //Forced call to get data from API
-        //TODO: Use sagas
-        const fetchEpisodes = async () => {
-            let episodeCollection: IEpisode[] = responseToEpisodes((await GetAllEpisodes()));
-            setAllEpisodes(episodeCollection);
-            setEpisodes(episodeCollection);
-        };
-        fetchEpisodes();
+        dispatch(fetchEpisodes(episodesState));
     }, []);
 
-
     return (
-
-        <CustomContainerRaw key={1}>
+        <>
             <CustomTitle>
                 List of all Episodes
             </CustomTitle>
-
-            <CustomContainerDatatable>
-
-                <CustomGridCenterItems xs={12}>
-
-                    <GenericFilter setTopics={setEpisodes} allTopics={allEpisodes}
-                                   filterOptions={EpisodesFilterOptions}/>
-
-                    <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
-                        <ComplexFilter topicCriteria={EpisodeCriteria} initialValues={ValuesEpisodesCriteria}/>
-                    </TransitionsModal>
-
-                </CustomGridCenterItems>
-
-                {episodes &&
-                <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}/>
-                }
-            </CustomContainerDatatable>
-        </CustomContainerRaw>
+            {getEpisodes(episodesState).length > 0 && (
+                <Datatable columns={EpisodesTableColumns} rows={getEpisodes(episodesState)} topic={"episodes"}
+                           filter={EpisodesFilterOptions}/>)}
+        </>
     );
 };
 

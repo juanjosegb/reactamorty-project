@@ -1,75 +1,71 @@
 import React, {useEffect, useState} from 'react'
 
 import CardItem from '@Components/Common/CardItem'
-import {GenericFilter} from '@Components/Common/Filter'
-import {CustomContainerRaw} from '@Components/Custom/Container'
+import {CustomContainerDatatable, CustomContainerRaw} from '@Components/Custom/Container'
 import {CustomGridCenterItems} from '@Components/Custom/Grid';
 import {CustomPaginator} from '@Components/Custom/Paginator';
 import {CustomTitle} from '@Components/Custom/Text'
-import {CharactersFilterOptions} from '@Constants/FilterOptions'
 import {Grid} from '@material-ui/core'
-
-import {GetAllCharacters} from '../../../apiClients/RickAndMorty'
 import {ICharacter} from '../../../types/character'
 import {formatDescription} from '../../../utils/formatDescription'
-import {TransitionsModal} from "@Components/Common/Modal";
-import {ComplexFilter} from "@Components/Common/ComplexFilter";
-import {CharacterCriteria, ValuesCharactersCriteria} from "@Constants/characters";
+import {fetchCharacters} from "@Store/actions/characters";
+import {useDispatch, useSelector} from "react-redux";
+import {getCurrentCharacters, getTotalPages, ICharacterState} from "@Store/reducers/characters";
+import {RootState} from "@Store/reducers";
+import {GenericFilter} from "@Components/Common/Filter";
+import {CharactersFilterOptions} from "@Constants/FilterOptions";
 
 const CharactersScreen = () => {
 
-    const [pageCharacters, setPageCharacters] = useState<ICharacter[]>([]);
-    const [characters, setCharacters] = useState<ICharacter[]>([]);
+    const dispatch = useDispatch();
+    const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
+    const [filteredCharacters, setFilteredCharacters] = useState<ICharacter[]>([]);
 
     useEffect(() => {
-
-        //Forced call to get data from API
-        //TODO: Use sagas
-        const fetchCharacters = async () => {
-            let pageCharacters: ICharacter[] = await (await GetAllCharacters()).data.results;
-            setPageCharacters(pageCharacters);
-            setCharacters(pageCharacters);
-        };
-        fetchCharacters();
+        dispatch(fetchCharacters());
     }, []);
 
+    useEffect(() => {
+        setFilteredCharacters(getCurrentCharacters(charactersState));
+    }, [getCurrentCharacters(charactersState)]);
+
+    const handleChange = (event: object, page: number) => {
+        dispatch(fetchCharacters(page));
+    };
 
     return (
-        <CustomContainerRaw key={1}>
+        <>
             <CustomTitle>
                 List of all Characters
             </CustomTitle>
+            <CustomContainerRaw key={1}>
 
-            <CustomGridCenterItems xs={12}>
-                <GenericFilter setTopics={setCharacters} allTopics={pageCharacters}
-                               filterOptions={CharactersFilterOptions}/>
+                <GenericFilter setTopics={setFilteredCharacters} allTopics={getCurrentCharacters(charactersState)}
+                               filterOptions={CharactersFilterOptions} isFilterTable={false}/>
 
-                <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
-                    <ComplexFilter topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria}/>
-                </TransitionsModal>
-            </CustomGridCenterItems>
+                <Grid container spacing={4}>
 
-            <Grid container spacing={4}>
+                    {filteredCharacters.length > 0 &&
+                    filteredCharacters.map((character: ICharacter, index: number) => (
+                        <CardItem
+                            key={index}
+                            title={character.name}
+                            urlToImage={character.image}
+                            description={formatDescription(character)}
+                            id={character.id}
+                            topic={"characters"}
+                        />
+                    ))
+                    }
 
-                {characters != [] &&
-                characters.map((character: ICharacter, index: number) => (
-                    <CardItem
-                        key={index}
-                        title={character.name}
-                        urlToImage={character.image}
-                        description={formatDescription(character)}
-                        id={character.id}
-                        topic={"characters"}
-                    />
-                ))
-                }
+                </Grid>
+                <CustomGridCenterItems xs={12}>
+                    <CustomPaginator count={getTotalPages(charactersState)} variant="outlined" color="inherit" onChange={handleChange}
+                                     showFirstButton showLastButton/>
+                </CustomGridCenterItems>
 
-            </Grid>
-            <CustomGridCenterItems xs={12}>
-                <CustomPaginator count={10} variant="outlined" color="inherit" showFirstButton showLastButton/>
-            </CustomGridCenterItems>
-
-        </CustomContainerRaw>
+            </CustomContainerRaw>
+        </>
 
     )
 };

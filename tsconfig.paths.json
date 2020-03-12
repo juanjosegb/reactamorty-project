@@ -2,6 +2,9 @@
     "compilerOptions": {
         "baseUrl": "./",
         "paths": {
+            "@ApiClients/*": [
+                "src/apiClients/*"
+            ],
             "@Assets/*": [
                 "src/assets/*"
             ],
@@ -22,6 +25,9 @@
             ],
             "@Screens/*": [
                 "src/screens/*"
+            ],
+            "@Utils/*": [
+                "src/utils/*"
             ]
         }
     }

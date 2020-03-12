@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import React, {useEffect, useState} from "react"
+import {useParams} from "react-router-dom"
 
-import { ListCharacters } from "@Components/Common/List/ListCharacters"
-import { CardTitle } from "@Components/Custom/Card/CardTitle"
-import { CustomContainerRaw } from "@Components/Custom/Container"
-import { CustomGridCenterItems } from "@Components/Custom/Grid"
-import { CustomSubTitle, CustomTitle } from "@Components/Custom/Text"
-import { Grid, Paper } from "@material-ui/core"
+import {ListCharacters} from "@Components/Common/List/ListCharacters"
+import {CardTitle} from "@Components/Custom/Card/CardTitle"
+import {CustomContainerRaw} from "@Components/Custom/Container"
+import {CustomGridCenterItems} from "@Components/Custom/Grid"
+import {CustomSubTitle, CustomTitle} from "@Components/Custom/Text"
+import {Grid, Paper} from "@material-ui/core"
 
-import { GetCharacters, GetLocations } from "../../../apiClients/RickAndMorty"
-import { ICharacter } from "../../../types/character";
-import { ILocation } from "../../../types/location";
+import {GetCharacters, GetLocations} from "../../../apiClients/RickAndMorty"
+import {ICharacter} from "../../../types/character";
+import {ILocation} from "../../../types/location";
+import {useDispatch} from "react-redux";
+import {addLocationHistory} from "@Store/actions/history";
 
 export const LocationDetailScreen = () => {
 
-    const { id } = useParams();
+    const {id} = useParams();
 
     const [location, setLocation] = useState<ILocation>({} as ILocation);
     const [characters, setCharacters] = useState<ICharacter[]>({} as ICharacter[]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
@@ -34,6 +37,9 @@ export const LocationDetailScreen = () => {
             let result = await GetLocations([id?.toString()]);
             setLocation(result);
             await fetchResidents(result);
+            if (id) {
+                dispatch(addLocationHistory(id, result.name));
+            }
         };
 
         fetchLocationById();
@@ -77,7 +83,7 @@ export const LocationDetailScreen = () => {
                 Residents
             </CustomTitle>
 
-            <ListCharacters characters={characters} />
+            <ListCharacters characters={characters}/>
 
 
         </CustomContainerRaw>

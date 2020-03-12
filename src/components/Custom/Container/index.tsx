@@ -22,7 +22,7 @@ export const CenterContainer = styled.div`
 `
 
 export const CustomContainerDatatable = styled.div`
-    margin-top: 20px;
+    margin-top: 50px;
     table {
         border: solid 2px #38B1C8;
     }
