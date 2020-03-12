@@ -1,11 +1,13 @@
-import {put, takeLatest} from 'redux-saga/effects';
-import {fetchLocationsDone, fetchLocationsError} from '@Store/actions/locations';
-import {FETCH_LOCATIONS} from "@Store/constants/locations";
-import {GetAllLocations} from "@ApiClients/RickAndMorty";
-import {responseToLocations} from "@Utils//mappers/responseToLocations";
-import {ILocation} from "../../../types/location";
-import {IReduxAction} from "@Store/actions";
-import {checkDateIsDeprecated} from "@Utils/date";
+import { put, takeLatest } from 'redux-saga/effects';
+
+import { GetAllLocations } from "@ApiClients/RickAndMorty";
+import { IReduxAction } from "@Store/actions";
+import { fetchLocationsCache, fetchLocationsDone, fetchLocationsError } from '@Store/actions/locations';
+import { FETCH_LOCATIONS } from "@Store/constants/locations";
+import { responseToLocations } from "@Utils//mappers/responseToLocations";
+import { checkDateIsDeprecated } from "@Utils/date";
+
+import { ILocation } from "../../../types/location";
 
 function* fetchLocationsAsync(action: IReduxAction) {
     try {
@@ -16,10 +18,13 @@ function* fetchLocationsAsync(action: IReduxAction) {
                     return responseToLocations(response);
                 }
             ));
+            yield put(fetchLocationsDone(results))
         } else {
+
             results = action.payload.locations
+            yield put(fetchLocationsCache(results))
         }
-        yield put(fetchLocationsDone(results))
+
     } catch (error) {
         yield put(fetchLocationsError());
     }
