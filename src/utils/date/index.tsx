@@ -1,6 +1,7 @@
-import {DeprecatedDate} from "@Constants/DeprecatedDate";
-
+import { DeprecatedDate } from "@Constants/DeprecatedDate";
 
 export const checkDateIsDeprecated = (currentDate: Date) => {
-    return new Date(currentDate) < DeprecatedDate()
+    console.log(new Date())
+    console.log(DeprecatedDate(currentDate))
+    return new Date() > DeprecatedDate(currentDate)
 };
