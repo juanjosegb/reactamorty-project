@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import CardItem from '@Components/Common/CardItem'
-import {CustomContainerRaw} from '@Components/Custom/Container'
+import {CustomContainerDatatable, CustomContainerRaw} from '@Components/Custom/Container'
 import {CustomGridCenterItems} from '@Components/Custom/Grid';
 import {CustomPaginator} from '@Components/Custom/Paginator';
 import {CustomTitle} from '@Components/Custom/Text'
@@ -12,11 +12,14 @@ import {fetchCharacters} from "@Store/actions/characters";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCharacters, ICharacterState} from "@Store/reducers/characters";
 import {RootState} from "@Store/reducers";
+import {GenericFilter} from "@Components/Common/Filter";
+import {CharactersFilterOptions} from "@Constants/FilterOptions";
 
 const CharactersScreen = () => {
 
     const dispatch = useDispatch();
     const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
+    const [filteredCharacters, setFilteredCharacters] = useState(getCurrentCharacters(charactersState) as []);
 
     useEffect(() => {
         dispatch(fetchCharacters());
@@ -34,10 +37,13 @@ const CharactersScreen = () => {
             </CustomTitle>
             <CustomContainerRaw key={1}>
 
+                <GenericFilter setTopics={setFilteredCharacters} allTopics={getCurrentCharacters(charactersState)}
+                               filterOptions={CharactersFilterOptions} isFilterTable={false}/>
+
                 <Grid container spacing={4}>
 
-                    {getCurrentCharacters(charactersState).length > 0 &&
-                    getCurrentCharacters(charactersState).map((character: ICharacter, index: number) => (
+                    {filteredCharacters.length > 0 &&
+                    filteredCharacters.map((character: ICharacter, index: number) => (
                         <CardItem
                             key={index}
                             title={character.name}
