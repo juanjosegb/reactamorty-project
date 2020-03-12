@@ -11,16 +11,16 @@ const apiClient = axios.create({
 
 
 //Characters
-export const GetAllCharacters = () => {
-    return apiClient.get(`character/`);
+export const GetAllCharacters = (page: string = "") => {
+    return apiClient.get(`character/?page=${page}`);
 };
 
 export const GetCharacters = (ids: any[] = []) => {
     return apiClient.get(`character/${ids}`);
 };
 
-export const GetFilteredCharacters = (name: string = "", status: string = "", species: string = "", type: string = "", gender: string = "") => {
-    return apiClient.get(`character/?name=${name}&status=${status}&species=${species}&type=${type}&gender=${gender}`);
+export const GetFilteredCharacters = (page: string = "", name: string = "", status: string = "", species: string = "", type: string = "", gender: string = "") => {
+    return apiClient.get(`character/?page=${page}&name=${name}&status=${status}&species=${species}&type=${type}&gender=${gender}`);
 };
 
 //Locations

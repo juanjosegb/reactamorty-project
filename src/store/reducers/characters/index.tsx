@@ -17,7 +17,7 @@ const initialState: ICharacterState = {
     isError: false
 };
 
-export const historyReducer = (state: ICharacterState = initialState, action: IReduxAction): ICharacterState => {
+export const charactersReducer = (state: ICharacterState = initialState, action: IReduxAction): ICharacterState => {
     switch (action.type) {
 
         case FETCH_CHARACTERS:

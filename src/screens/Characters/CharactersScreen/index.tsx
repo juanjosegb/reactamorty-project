@@ -1,34 +1,26 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 
 import CardItem from '@Components/Common/CardItem'
-import {GenericFilter} from '@Components/Common/Filter'
 import {CustomContainerRaw} from '@Components/Custom/Container'
 import {CustomGridCenterItems} from '@Components/Custom/Grid';
 import {CustomPaginator} from '@Components/Custom/Paginator';
 import {CustomTitle} from '@Components/Custom/Text'
-import {CharactersFilterOptions} from '@Constants/FilterOptions'
 import {Grid} from '@material-ui/core'
-
-import {GetAllCharacters} from '../../../apiClients/RickAndMorty'
 import {ICharacter} from '../../../types/character'
 import {formatDescription} from '../../../utils/formatDescription'
+import {fetchCharacters} from "@Store/actions/characters";
+import {useDispatch, useSelector} from "react-redux";
+import {getCurrentCharacters, ICharacterState} from "@Store/reducers/characters";
+import {RootState} from "@Store/reducers";
 
 const CharactersScreen = () => {
 
-    const [pageCharacters, setPageCharacters] = useState<ICharacter[]>([]);
-    const [characters, setCharacters] = useState<ICharacter[]>([]);
+    const dispatch = useDispatch();
+    const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
 
     useEffect(() => {
-
-        //Forced call to get data from API
-        //TODO: Use sagas
-        const fetchCharacters = async () => {
-            let pageCharacters: ICharacter[] = await (await GetAllCharacters()).data.results;
-            setPageCharacters(pageCharacters);
-            setCharacters(pageCharacters);
-        }
-        fetchCharacters();
-    }, [])
+        dispatch(fetchCharacters());
+    }, []);
 
     const handleChange = (event: object, page: number) => {
         console.log("Página " + page)
@@ -42,13 +34,10 @@ const CharactersScreen = () => {
             </CustomTitle>
             <CustomContainerRaw key={1}>
 
-                <GenericFilter setTopics={setCharacters} allTopics={pageCharacters}
-                               filterOptions={CharactersFilterOptions} isFilterTable={false}/>
-
                 <Grid container spacing={4}>
 
-                    {characters != [] &&
-                    characters.map((character: ICharacter, index: number) => (
+                    {getCurrentCharacters(charactersState).length > 0 &&
+                    getCurrentCharacters(charactersState).map((character: ICharacter, index: number) => (
                         <CardItem
                             key={index}
                             title={character.name}
