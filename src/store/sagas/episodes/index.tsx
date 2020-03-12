@@ -1,11 +1,13 @@
-import {put, takeLatest} from 'redux-saga/effects';
-import {fetchEpisodesDone, fetchEpisodesError} from '@Store/actions/episodes';
-import {FETCH_EPISODES} from "@Store/constants/episodes";
-import {GetAllEpisodes} from "@ApiClients/RickAndMorty";
-import {responseToEpisodes} from "@Utils//mappers/responseToEpisodes";
-import {IEpisode} from "../../../types/episode";
-import {IReduxAction} from "@Store/actions";
-import {checkDateIsDeprecated} from "@Utils/date";
+import { put, takeLatest } from 'redux-saga/effects';
+
+import { GetAllEpisodes } from "@ApiClients/RickAndMorty";
+import { IReduxAction } from "@Store/actions";
+import { fetchEpisodesCache, fetchEpisodesDone, fetchEpisodesError } from '@Store/actions/episodes';
+import { FETCH_EPISODES } from "@Store/constants/episodes";
+import { responseToEpisodes } from "@Utils//mappers/responseToEpisodes";
+import { checkDateIsDeprecated } from "@Utils/date";
+
+import { IEpisode } from "../../../types/episode";
 
 function* fetchEpisodesAsync(action: IReduxAction) {
     try {
@@ -16,10 +18,11 @@ function* fetchEpisodesAsync(action: IReduxAction) {
                     return responseToEpisodes(response);
                 }
             ));
+            yield put(fetchEpisodesDone(results))
         } else {
             results = action.payload.locations
+            yield put(fetchEpisodesCache(results))
         }
-        yield put(fetchEpisodesDone(results))
     } catch (error) {
         yield put(fetchEpisodesError());
     }

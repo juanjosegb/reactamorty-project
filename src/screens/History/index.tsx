@@ -54,8 +54,8 @@ const HistoryScreen = () => {
 
                             {
                                 getLocationsHistory(historyState).length > 0 &&
-                                getLocationsHistory(historyState).map((character: any, index) => (
-                                    <CustomHistoryLink to={`/characters/${character.id}`} key={index}>{character.name}</CustomHistoryLink>
+                                getLocationsHistory(historyState).map((location: any, index) => (
+                                    <div><CustomHistoryLink to={`/locations/${location.id}`} key={index}>{location.name}</CustomHistoryLink></div>
                                 ))
                             }
                             {
@@ -72,8 +72,8 @@ const HistoryScreen = () => {
                         </CustomSubTitle>
                             {
                                 getEpisodesHistory(historyState).length > 0 &&
-                                getEpisodesHistory(historyState).map((character: any, index) => (
-                                    <div key={index}>{character.name}</div>
+                                getEpisodesHistory(historyState).map((episode: any, index) => (
+                                    <div><CustomHistoryLink to={`/episodes/${episode.id}`} key={index}>{episode.name}</CustomHistoryLink></div>
                                 ))
                             }
                             {
