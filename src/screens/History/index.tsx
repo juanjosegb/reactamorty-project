@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import { TableButton } from '@Components/Custom/Button/TableButton';
 import { CustomContainerRaw } from '@Components/Custom/Container';
@@ -9,13 +9,15 @@ import { CustomSubTitle, CustomTitle } from '@Components/Custom/Text';
 import { RootState } from "@Store/reducers";
 import { IHistoryState, getCharactersHistory, getEpisodesHistory, getLocationsHistory } from '@Store/reducers/history';
 import { Grid, Paper } from '@material-ui/core';
+import {cleanHistory} from "@Store/actions/history";
 
 const HistoryScreen = () => {
     const historyState: IHistoryState = useSelector((state: RootState) => state.historyState);
+    const dispatch = useDispatch();
 
     const resetHistory = () => {
-        console.log('Reseting');
-    }
+        dispatch(cleanHistory())
+    };
 
     return (
         <>

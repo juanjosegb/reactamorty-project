@@ -23,23 +23,23 @@ export const historyReducer = (state: IHistoryState = initialState, action: any)
         case ADD_CHARACTERS_HISTORY:
             return {
                 ...state,
-                charactersHistory: checkCanAddToHistory(state.charactersHistory, action) ? [...state.charactersHistory, action.payload] : state.charactersHistory
+                charactersHistory: checkCanAddToHistory(state.charactersHistory, action) ? [action.payload, ...state.charactersHistory] : state.charactersHistory
             };
 
         case ADD_EPISODES_HISTORY:
             return {
                 ...state,
-                episodesHistory: checkCanAddToHistory(state.episodesHistory, action) ? [...state.episodesHistory, action.payload] : state.episodesHistory
+                episodesHistory: checkCanAddToHistory(state.episodesHistory, action) ? [action.payload, ...state.episodesHistory] : state.episodesHistory
             };
 
         case ADD_LOCATIONS_HISTORY:
             return {
                 ...state,
-                locationsHistory: checkCanAddToHistory(state.locationsHistory, action) ? [...state.locationsHistory, action.payload] : state.locationsHistory
+                locationsHistory: checkCanAddToHistory(state.locationsHistory, action) ? [action.payload, ...state.locationsHistory] : state.locationsHistory
             };
 
         case CLEAN_HISTORY:
-            return state;
+            return initialState;
 
         default:
             return state;

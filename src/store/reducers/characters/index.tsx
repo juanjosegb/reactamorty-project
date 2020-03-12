@@ -47,7 +47,7 @@ export const charactersReducer = (state: ICharacterState = initialState, action:
                 totalPages: 0
             };
         default:
-            return initialState;
+            return state;
 
     }
 
