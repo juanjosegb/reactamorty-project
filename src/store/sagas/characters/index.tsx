@@ -11,7 +11,7 @@ function* fetchCharactersAsync(action: IReduxAction) {
         let results: ICharacter[];
         results = yield (GetAllCharacters(action.payload).then(
             response => {
-                return response.data.results;
+                return {results: response.data.results, pages: response.data.info.pages};
             }
         ));
         yield put(fetchCharactersDone(results))

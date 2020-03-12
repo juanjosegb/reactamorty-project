@@ -7,14 +7,16 @@ export interface ICharacterState {
     currentCharacters: ICharacter[],
     page: Number,
     isFetching: Boolean,
-    isError: Boolean
+    isError: Boolean,
+    totalPages: Number
 }
 
 const initialState: ICharacterState = {
     currentCharacters: [],
     page: 1,
     isFetching: false,
-    isError: false
+    isError: false,
+    totalPages: 0
 };
 
 export const charactersReducer = (state: ICharacterState = initialState, action: IReduxAction): ICharacterState => {
@@ -25,13 +27,15 @@ export const charactersReducer = (state: ICharacterState = initialState, action:
                 ...state,
                 page: action.payload,
                 isFetching: true,
-                currentCharacters: []
+                currentCharacters: [],
+                totalPages: 0
             };
         case FETCH_CHARACTERS_DONE:
             return {
                 ...state,
                 isFetching: false,
-                currentCharacters: action.payload
+                currentCharacters: action.payload.results,
+                totalPages: action.payload.pages
             };
         case FETCH_CHARACTERS_ERROR:
             return {
@@ -39,7 +43,8 @@ export const charactersReducer = (state: ICharacterState = initialState, action:
                 page: 0,
                 currentCharacters: [],
                 isFetching: false,
-                isError: true
+                isError: true,
+                totalPages: 0
             };
         default:
             return initialState;
@@ -50,5 +55,6 @@ export const charactersReducer = (state: ICharacterState = initialState, action:
 
 export const getCurrentCharacters = (state: ICharacterState) => state.currentCharacters;
 export const getCurrentPage = (state: ICharacterState) => state.page;
+export const getTotalPages = (state: ICharacterState) => state.totalPages;
 export const getCharactersFetching = (state: ICharacterState) => state.isFetching;
 export const getCharactersError = (state: ICharacterState) => state.isError;

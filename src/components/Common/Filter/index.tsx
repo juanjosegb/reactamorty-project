@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import {CenterContainer} from '@Custom/Container';
 import {CustomIcon} from '@Custom/Icon';
@@ -6,6 +6,10 @@ import {BlockPaper} from '@Custom/Paper';
 import {Divider, IconButton, InputBase} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import {getCurrentCharacters, getCurrentPage, ICharacterState} from "@Store/reducers/characters";
+import {fetchCharacters} from "@Store/actions/characters";
+import {useSelector} from "react-redux";
+import {RootState} from "@Store/reducers";
 
 export const GenericFilter = (props: any) => {
 
@@ -13,6 +17,11 @@ export const GenericFilter = (props: any) => {
     const {allTopics, setTopics, setPages, filterOptions, isFilterTable} = props;
     const [inputValue, setinputValue] = React.useState(DEFAULT_FILTER_INPUT);
     const [currentFilter, setCurrentFilter] = React.useState({index: 0, filter: filterOptions[0]});
+    const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
+
+    useEffect(() => {
+        setinputValue(DEFAULT_FILTER_INPUT);
+    }, [getCurrentPage(charactersState)]);
 
     const applyFilterCriteria = () => {
         if (inputValue !== DEFAULT_FILTER_INPUT) {
