@@ -5,3 +5,8 @@ export interface IEpisode {
     id: number
 }
 
+
+export interface IFilterEpisode {
+    name: string,
+    episode: string
+}

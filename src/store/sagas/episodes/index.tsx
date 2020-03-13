@@ -1,13 +1,13 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import {all, put, takeLatest} from 'redux-saga/effects';
 
-import { GetAllEpisodes } from "@ApiClients/RickAndMorty";
-import { IReduxAction } from "@Store/actions";
-import { fetchEpisodesCache, fetchEpisodesDone, fetchEpisodesError } from '@Store/actions/episodes';
-import { FETCH_EPISODES } from "@Store/constants/episodes";
-import { responseToEpisodes } from "@Utils//mappers/responseToEpisodes";
-import { checkDateIsDeprecated } from "@Utils/date";
+import {GetAllEpisodes, GetFilteredEpisodes} from "@ApiClients/RickAndMorty";
+import {IReduxAction} from "@Store/actions";
+import {fetchEpisodesCache, fetchEpisodesDone, fetchEpisodesError} from '@Store/actions/episodes';
+import {FETCH_EPISODES, FETCH_FILTERED_EPISODES} from "@Store/constants/episodes";
+import {responseToEpisodes} from "@Utils//mappers/responseToEpisodes";
+import {checkDateIsDeprecated} from "@Utils/date";
 
-import { IEpisode } from "../../../types/episode";
+import {IEpisode} from "../../../types/episode";
 
 function* fetchEpisodesAsync(action: IReduxAction) {
     try {
@@ -20,7 +20,7 @@ function* fetchEpisodesAsync(action: IReduxAction) {
             ));
             yield put(fetchEpisodesDone(results))
         } else {
-            results = action.payload.locations
+            results = action.payload.locations;
             yield put(fetchEpisodesCache(results))
         }
     } catch (error) {
@@ -28,7 +28,18 @@ function* fetchEpisodesAsync(action: IReduxAction) {
     }
 }
 
+function* fetchFilteredEpisodesAsync(action: IReduxAction) {
+    console.log(action.payload);
+    try {
+        let results: IEpisode[];
+        results = yield (GetFilteredEpisodes(action.payload));
+        yield put(fetchEpisodesCache(results))
+    } catch (error) {
+        yield put(fetchEpisodesError());
+    }
+}
+
 
 export default function* episodesSaga() {
-    yield takeLatest(FETCH_EPISODES, fetchEpisodesAsync)
+    yield all([yield takeLatest(FETCH_EPISODES, fetchEpisodesAsync), yield takeLatest(FETCH_FILTERED_EPISODES, fetchFilteredEpisodesAsync)]);
 }

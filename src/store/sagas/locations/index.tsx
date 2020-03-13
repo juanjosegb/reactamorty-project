@@ -1,13 +1,13 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import {all, put, takeLatest} from 'redux-saga/effects';
 
-import { GetAllLocations } from "@ApiClients/RickAndMorty";
-import { IReduxAction } from "@Store/actions";
-import { fetchLocationsCache, fetchLocationsDone, fetchLocationsError } from '@Store/actions/locations';
-import { FETCH_LOCATIONS } from "@Store/constants/locations";
-import { responseToLocations } from "@Utils//mappers/responseToLocations";
-import { checkDateIsDeprecated } from "@Utils/date";
+import {GetAllLocations, GetFilteredLocations} from "@ApiClients/RickAndMorty";
+import {IReduxAction} from "@Store/actions";
+import {fetchLocationsCache, fetchLocationsDone, fetchLocationsError} from '@Store/actions/locations';
+import {FETCH_FILTERED_LOCATIONS, FETCH_LOCATIONS} from "@Store/constants/locations";
+import {responseToLocations} from "@Utils//mappers/responseToLocations";
+import {checkDateIsDeprecated} from "@Utils/date";
 
-import { ILocation } from "../../../types/location";
+import {ILocation} from "../../../types/location";
 
 function* fetchLocationsAsync(action: IReduxAction) {
     try {
@@ -29,7 +29,22 @@ function* fetchLocationsAsync(action: IReduxAction) {
     }
 }
 
+function* fetchFilteredLocationsAsync(action: IReduxAction) {
+    try {
+        let results: ILocation[];
+        if (checkDateIsDeprecated(action.payload.date) || (action.payload.episodes.length === 0)) {
+            results = yield (GetFilteredLocations(action.payload));
+            yield put(fetchLocationsDone(results))
+        } else {
+            results = action.payload.episodes;
+            yield put(fetchLocationsCache(results))
+        }
+    } catch (error) {
+        yield put(fetchLocationsError());
+    }
+}
+
 
 export default function* locationsSaga() {
-    yield takeLatest(FETCH_LOCATIONS, fetchLocationsAsync)
+    yield all([yield takeLatest(FETCH_LOCATIONS, fetchLocationsAsync), yield takeLatest(FETCH_FILTERED_LOCATIONS, fetchFilteredLocationsAsync)]);
 }

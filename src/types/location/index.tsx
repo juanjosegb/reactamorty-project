@@ -5,3 +5,9 @@ export interface ILocation {
     id: number
 }
 
+
+export interface IFilterLocation {
+    name: string,
+    type: string,
+    dimension: string
+}

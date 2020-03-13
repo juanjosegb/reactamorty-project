@@ -10,7 +10,6 @@ import {EpisodesFilterOptions} from "@Constants/FilterOptions";
 import {CustomTitle} from "@Custom/Text";
 import {CustomGridCenterItems} from "@Custom/Grid";
 import {TransitionsModal} from "@Components/Common/Modal";
-import {ComplexFilter} from "@Components/Common/ComplexFilter";
 import {EpisodeCriteria, ValuesEpisodesCriteria} from "@Constants/episodes";
 
 const EpisodesScreen = () => {

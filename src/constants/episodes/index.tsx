@@ -1,4 +1,5 @@
 import {ICriteria} from "../../types/filter";
+import {IFilterEpisode} from "../../types/episode";
 
 export const EpisodeCriteria: ICriteria[] = [
     {
@@ -14,3 +15,9 @@ export const EpisodeCriteria: ICriteria[] = [
 ];
 
 export const ValuesEpisodesCriteria = {name: '', episode: ''};
+
+export const FilterEpisodeDefault: IFilterEpisode =
+    {
+        name: "",
+        episode: ""
+    };

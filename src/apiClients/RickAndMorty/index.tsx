@@ -4,6 +4,10 @@ import {rickAndMortyApiConfig} from "../../environment/apiClients";
 import {concatPages, getNumberOfPages} from "../../utils/api";
 import {IFilterCharacter} from "../../types/character";
 import {FilterCharacterDefault} from "@Constants/characters";
+import {IFilterEpisode} from "../../types/episode";
+import {FilterEpisodeDefault} from "@Constants/episodes";
+import {FilterLocationDefault} from "@Constants/locations";
+import {IFilterLocation} from "../../types/location";
 
 const apiClient = axios.create({
     baseURL: rickAndMortyApiConfig.baseURL,
@@ -37,10 +41,8 @@ export const GetLocations = async (ids: any[] = []) => {
     return (!numberOfPages) ? response.data : await concatPages(`location/${ids}`, numberOfPages);
 };
 
-export const GetFilteredLocations = async (name: string = "", type: string = "", dimension: string = "", page: string = "") => {
-    let response = await apiClient.get(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`);
-    const numberOfPages = getNumberOfPages(response);
-    return (!numberOfPages) ? response.data : await concatPages(`location/?page=${page}&name=${name}&type=${type}&dimension=${dimension}`, numberOfPages);
+export const GetFilteredLocations = async (filter: IFilterLocation = FilterLocationDefault) => {
+    return apiClient.get(`locations/?name=${filter.name}&type=${filter.type}&dimension=${filter.dimension}`);
 };
 
 //Episodes
@@ -56,10 +58,8 @@ export const GetEpisodes = async (ids: any[] = []) => {
     return (!numberOfPages) ? response.data : await concatPages(`episode/${ids}`, numberOfPages);
 };
 
-export const GetFilteredEpisodes = async (name: string = "", episode: string = "") => {
-    let response = await apiClient.get(`episode/?name=${name}&episode=${episode}`);
-    const numberOfPages = getNumberOfPages(response);
-    return (!numberOfPages) ? response.data : await concatPages(`episode/?name=${name}&episode=${episode}`, numberOfPages);
+export const GetFilteredEpisodes = async (filter: IFilterEpisode = FilterEpisodeDefault) => {
+    return apiClient.get(`episodes/?episode=${filter.episode}&name=${filter.name}`);
 };
 
 export const GetDataByPage = (page: number, url: string) => {

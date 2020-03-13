@@ -1,6 +1,11 @@
-import { IEpisode } from "src/types/episode";
+import {IEpisode} from "src/types/episode";
 
-import { FETCH_EPISODES, FETCH_EPISODES_DONE, FETCH_EPISODES_ERROR } from "@Store/constants/episodes";
+import {
+    FETCH_EPISODES,
+    FETCH_EPISODES_DONE,
+    FETCH_EPISODES_ERROR,
+    FETCH_FILTERED_EPISODES
+} from "@Store/constants/episodes";
 
 export interface IEpisodeState {
     episodes: IEpisode[],
@@ -36,6 +41,11 @@ export const episodesReducer = (state: IEpisodeState = initialState, action: any
                 ...state,
                 isFetching: false,
                 isError: true
+            };
+        case FETCH_FILTERED_EPISODES:
+            return {
+                ...state,
+                isFetching: true
             };
         default:
             return state

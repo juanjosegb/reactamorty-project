@@ -1,6 +1,13 @@
-import { ILocation } from "src/types/location";
+import {ILocation} from "src/types/location";
 
-import { FETCH_LOCATIONS, FETCH_LOCATIONS_CACHE, FETCH_LOCATIONS_DONE, FETCH_LOCATIONS_ERROR } from "@Store/constants/locations";
+import {
+    FETCH_FILTERED_LOCATIONS,
+    FETCH_LOCATIONS,
+    FETCH_LOCATIONS_CACHE,
+    FETCH_LOCATIONS_DONE,
+    FETCH_LOCATIONS_ERROR
+} from "@Store/constants/locations";
+import {FETCH_FILTERED_EPISODES} from "@Store/constants/episodes";
 
 export interface ILocationState {
     locations: ILocation[],
@@ -43,6 +50,11 @@ export const locationsReducer = (state: ILocationState = initialState, action: a
                 ...state,
                 isFetching: false,
                 isError: true
+            };
+        case FETCH_FILTERED_LOCATIONS:
+            return {
+                ...state,
+                isFetching: true
             };
         default:
             return state
