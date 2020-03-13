@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React from 'react';
 
 import { rickAndMortyApiConfig } from "../../environment/apiClients";
 import { concatPages, getNumberOfPages } from "../../utils/api";

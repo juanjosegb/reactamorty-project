@@ -6,8 +6,7 @@ import {BlockPaper} from '@Custom/Paper';
 import {Divider, IconButton, InputBase} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import {getCurrentCharacters, getCurrentPage, ICharacterState} from "@Store/reducers/characters";
-import {fetchCharacters} from "@Store/actions/characters";
+import {getCurrentPage, ICharacterState} from "@Store/reducers/characters";
 import {useSelector} from "react-redux";
 import {RootState} from "@Store/reducers";
 
@@ -61,7 +60,7 @@ export const GenericFilter = (props: any) => {
                     value={inputValue}
                     onKeyUpCapture={() => applyFilterCriteria()}
                     onChange={(e: any) => setinputValue(e.nativeEvent.srcElement.value)}
-                    placeholder={"Filter by " + `${currentFilter.filter}`}
+                    placeholder={"Filter by " + currentFilter.filter}
                     inputProps={{'aria-label': 'search google maps'}}
                 />
 

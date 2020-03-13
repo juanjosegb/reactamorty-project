@@ -8,11 +8,9 @@ import {RootState} from "@Store/reducers";
 import {getLocations, ILocationState} from "@Store/reducers/locations";
 import {LocationsFilterOptions} from "@Constants/FilterOptions";
 import {CustomTitle} from "@Custom/Text";
-import {CustomContainerRaw} from "@Custom/Container";
 import {CustomGridCenterItems} from "@Custom/Grid";
 import {TransitionsModal} from "@Components/Common/Modal";
 import {ComplexFilter} from "@Components/Common/ComplexFilter";
-import {CharacterCriteria, ValuesCharactersCriteria} from "@Constants/characters";
 import {LocationCriteria, ValuesLocationsCriteria} from "@Constants/locations";
 
 const LocationsScreen = () => {

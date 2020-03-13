@@ -12,7 +12,7 @@ import { ILocation } from "../../../types/location";
 function* fetchLocationsAsync(action: IReduxAction) {
     try {
         let results: ILocation[];
-        if (checkDateIsDeprecated(action.payload.date) || (action.payload.locations.length == 0)) {
+        if (checkDateIsDeprecated(action.payload.date) || (action.payload.locations.length === 0)) {
             results = yield (GetAllLocations().then(
                 response => {
                     return responseToLocations(response);

@@ -11,8 +11,6 @@ import {CustomTitle} from "@Custom/Text";
 import {CustomGridCenterItems} from "@Custom/Grid";
 import {TransitionsModal} from "@Components/Common/Modal";
 import {ComplexFilter} from "@Components/Common/ComplexFilter";
-import {CharacterCriteria, ValuesCharactersCriteria} from "@Constants/characters";
-import {CustomContainerRaw} from "@Custom/Container";
 import {EpisodeCriteria, ValuesEpisodesCriteria} from "@Constants/episodes";
 
 const EpisodesScreen = () => {

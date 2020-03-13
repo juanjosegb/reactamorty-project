@@ -12,7 +12,7 @@ import { IEpisode } from "../../../types/episode";
 function* fetchEpisodesAsync(action: IReduxAction) {
     try {
         let results: IEpisode[];
-        if (checkDateIsDeprecated(action.payload.date) || (action.payload.episodes.length == 0)) {
+        if (checkDateIsDeprecated(action.payload.date) || (action.payload.episodes.length === 0)) {
             results = yield (GetAllEpisodes().then(
                 response => {
                     return responseToEpisodes(response);
