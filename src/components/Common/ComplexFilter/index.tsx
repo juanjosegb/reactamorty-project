@@ -9,10 +9,10 @@ import {valuesToFilterCharacter} from "@Utils/mappers/valuesToFilterCharacter";
 import {fetchFilteredCharacters} from "@Store/actions/characters";
 import {useDispatch} from "react-redux";
 
-export type Props = { topicCriteria: ICriteria[], initialValues: any };
+export type Props = { topicCriteria: ICriteria[], initialValues: any, setModalOpen: any };
 
 export const ComplexFilter = (props: Props) => {
-    const {topicCriteria, initialValues} = props;
+    const {topicCriteria, initialValues, setModalOpen} = props;
     const dispatch = useDispatch();
 
     return <Formik
@@ -24,6 +24,7 @@ export const ComplexFilter = (props: Props) => {
             let filterOptions = valuesToFilterCharacter(values);
             dispatch(fetchFilteredCharacters(filterOptions));
             setSubmitting(false);
+            setModalOpen(false);
         }}
     >
         {({

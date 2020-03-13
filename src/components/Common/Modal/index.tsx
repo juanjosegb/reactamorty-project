@@ -3,14 +3,14 @@ import Backdrop from '@material-ui/core/Backdrop';
 import {CustomFade, CustomModal, TitleModal} from "@Components/Custom/Modal";
 import {ComplexButton} from "@Components/Custom/Button/ComplexButton";
 import {CloseIcon} from "@Components/Custom/CloseIcon";
+import {ICriteria} from "../../../types/filter";
+import {ComplexFilter} from "@Components/Common/ComplexFilter";
 
-export type Props = { children: any, button: string, title: string };
+export type Props = { topicCriteria: ICriteria[], initialValues: any, button: string, title: string };
 
 export const TransitionsModal = (props: Props) => {
 
-    const {button} = props;
-    const {title} = props;
-    const {children} = props;
+    const {topicCriteria, initialValues, button, title} = props;
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
@@ -43,7 +43,9 @@ export const TransitionsModal = (props: Props) => {
                             {title}
                             <CloseIcon onClick={handleClose}/>
                         </TitleModal>
-                        <div id="transition-modal-description">{children}</div>
+                        <div id="transition-modal-description">
+                            <ComplexFilter topicCriteria={topicCriteria} initialValues={initialValues} setModalOpen={setOpen}/>
+                        </div>
                     </div>
                 </CustomFade>
             </CustomModal>

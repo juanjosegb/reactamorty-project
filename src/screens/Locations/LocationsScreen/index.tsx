@@ -27,9 +27,7 @@ const LocationsScreen = () => {
                 List of all Locations
             </CustomTitle>
             <CustomGridCenterItems>
-                <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
-                    <ComplexFilter topicCriteria={LocationCriteria} initialValues={ValuesLocationsCriteria}/>
-                </TransitionsModal>
+                <TransitionsModal button={"Complex Filter"} title={"Complex Filter"} topicCriteria={LocationCriteria} initialValues={ValuesLocationsCriteria}/>
             </CustomGridCenterItems>
             {getLocations(locationsState).length > 0 && (
                 <Datatable columns={LocationsTableColumns} rows={getLocations(locationsState)} topic={"locations"}

@@ -27,9 +27,7 @@ const EpisodesScreen = () => {
                 List of all Episodes
             </CustomTitle>
             <CustomGridCenterItems>
-                <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}>
-                    <ComplexFilter topicCriteria={EpisodeCriteria} initialValues={ValuesEpisodesCriteria}/>
-                </TransitionsModal>
+                <TransitionsModal button={"Complex Filter"} title={"Complex Filter"} topicCriteria={EpisodeCriteria} initialValues={ValuesEpisodesCriteria}/>
             </CustomGridCenterItems>
             {getEpisodes(episodesState).length > 0 && (
                 <Datatable columns={EpisodesTableColumns} rows={getEpisodes(episodesState)} topic={"episodes"}
