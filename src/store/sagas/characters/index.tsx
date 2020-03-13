@@ -1,10 +1,11 @@
-import {put, takeLatest} from 'redux-saga/effects';
+import {all, put, takeLatest} from 'redux-saga/effects';
 import {ICharacter} from 'src/types/character';
 
 import {IReduxAction} from "@Store/actions";
 import {fetchCharactersDone, fetchCharactersError} from '@Store/actions/characters';
-import {FETCH_CHARACTERS} from '@Store/constants/characters';
-import {GetAllCharacters} from "@ApiClients/RickAndMorty";
+import {FETCH_CHARACTERS, FETCH_FILTERED_CHARACTERS} from '@Store/constants/characters';
+import {GetAllCharacters, GetFilteredCharacters} from "@ApiClients/RickAndMorty";
+import {FETCH_LOCATIONS} from "@Store/constants/locations";
 
 function* fetchCharactersAsync(action: IReduxAction) {
     try {
@@ -20,6 +21,21 @@ function* fetchCharactersAsync(action: IReduxAction) {
     }
 }
 
+function* fetchFilteredCharactersAsync(action: IReduxAction) {
+    console.log(action.payload);
+    try {
+        let results: ICharacter[];
+        results = yield (GetFilteredCharacters(action.payload).then(
+            response => {
+                return {results: response.data.results, pages: response.data.info.pages};
+            }
+        ));
+        yield put(fetchCharactersDone(results))
+    } catch (error) {
+        yield put(fetchCharactersError());
+    }
+}
+
 export default function* charactersSaga() {
-    yield takeLatest(FETCH_CHARACTERS, fetchCharactersAsync)
+    yield all([yield takeLatest(FETCH_CHARACTERS, fetchCharactersAsync), yield takeLatest(FETCH_FILTERED_CHARACTERS, fetchFilteredCharactersAsync)])
 }

@@ -5,11 +5,15 @@ import {ComplexButton} from "@Components/Custom/Button/ComplexButton";
 import {CustomGridCenterItems} from "@Components/Custom/Grid";
 import {ICriteria} from "../../../types/filter";
 import {SelectInput} from "@Components/Common/SelectInput";
+import {valuesToFilterCharacter} from "@Utils/mappers/valuesToFilterCharacter";
+import {fetchFilteredCharacters} from "@Store/actions/characters";
+import {useDispatch} from "react-redux";
 
 export type Props = { topicCriteria: ICriteria[], initialValues: any };
 
 export const ComplexFilter = (props: Props) => {
     const {topicCriteria, initialValues} = props;
+    const dispatch = useDispatch();
 
     return <Formik
         initialValues={initialValues}
@@ -17,10 +21,9 @@ export const ComplexFilter = (props: Props) => {
             return {};
         }}
         onSubmit={(values, {setSubmitting}) => {
-            setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-            }, 400);
+            let filterOptions = valuesToFilterCharacter(values);
+            dispatch(fetchFilteredCharacters(filterOptions));
+            setSubmitting(false);
         }}
     >
         {({

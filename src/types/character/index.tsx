@@ -12,3 +12,12 @@ export interface ICharacter {
     url: string,
     created: string
 }
+
+export interface IFilterCharacter {
+    page: number,
+    name: string,
+    status: string,
+    species: string,
+    type: string,
+    gender: string
+}

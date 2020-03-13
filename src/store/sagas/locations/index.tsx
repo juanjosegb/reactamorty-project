@@ -20,8 +20,7 @@ function* fetchLocationsAsync(action: IReduxAction) {
             ));
             yield put(fetchLocationsDone(results))
         } else {
-
-            results = action.payload.locations
+            results = action.payload.locations;
             yield put(fetchLocationsCache(results))
         }
 

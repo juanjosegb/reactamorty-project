@@ -1,6 +1,8 @@
 import {ICriteria} from "../../types/filter";
 import {GenderOptions} from "@Constants/GenderOptions";
 import {StatusOptions} from "@Constants/StatusOptions";
+import {IFilterCharacter} from "../../types/character";
+import {getNumberOfPages} from "@Utils/api";
 
 export const CharacterCriteria: ICriteria[] = [
     {
@@ -36,3 +38,13 @@ export const CharacterCriteria: ICriteria[] = [
 ];
 
 export const ValuesCharactersCriteria = {name: '', status: '', species: '', type: '', gender: '', origin: ''};
+
+export const FilterCharacterDefault: IFilterCharacter =
+    {
+        page: 1,
+        name: "",
+        status: "",
+        species: "",
+        type: "",
+        gender: ""
+    };

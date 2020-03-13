@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-import { rickAndMortyApiConfig } from "../../environment/apiClients";
-import { concatPages, getNumberOfPages } from "../../utils/api";
+import {rickAndMortyApiConfig} from "../../environment/apiClients";
+import {concatPages, getNumberOfPages} from "../../utils/api";
+import {IFilterCharacter} from "../../types/character";
+import {FilterCharacterDefault} from "@Constants/characters";
 
 const apiClient = axios.create({
     baseURL: rickAndMortyApiConfig.baseURL,
@@ -18,8 +20,8 @@ export const GetCharacters = (ids: any[] = []) => {
     return apiClient.get(`character/${ids}`);
 };
 
-export const GetFilteredCharacters = (page: string = "", name: string = "", status: string = "", species: string = "", type: string = "", gender: string = "") => {
-    return apiClient.get(`character/?page=${page}&name=${name}&status=${status}&species=${species}&type=${type}&gender=${gender}`);
+export const GetFilteredCharacters = (filter: IFilterCharacter = FilterCharacterDefault) => {
+    return apiClient.get(`character/?page=${filter.page}&name=${filter.name}&status=${filter.status}&species=${filter.species}&type=${filter.type}&gender=${filter.gender}`);
 };
 
 //Locations
