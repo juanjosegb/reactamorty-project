@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import {CenterContainer} from '@Custom/Container';
 import {CustomIcon} from '@Custom/Icon';
@@ -14,8 +14,8 @@ export const GenericFilter = (props: any) => {
 
     const DEFAULT_FILTER_INPUT = "";
     const {allTopics, setTopics, setPages, filterOptions, isFilterTable} = props;
-    const [inputValue, setinputValue] = React.useState(DEFAULT_FILTER_INPUT);
-    const [currentFilter, setCurrentFilter] = React.useState({index: 0, filter: filterOptions[0]});
+    const [inputValue, setinputValue] = useState(DEFAULT_FILTER_INPUT);
+    const [currentFilter, setCurrentFilter] = useState({index: 0, filter: filterOptions[0]});
     const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
 
     useEffect(() => {

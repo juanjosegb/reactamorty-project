@@ -1,4 +1,4 @@
-import {IFilterEpisode} from "../../types/episode";
+import {IFilterEpisode} from "@Types/episode";
 import {FilterEpisodeDefault} from "@Constants/episodes";
 
 export const valuesToFilterEpisode = (values: any) => {

@@ -4,10 +4,10 @@ import {GetAllLocations, GetFilteredLocations} from "@ApiClients/RickAndMorty";
 import {IReduxAction} from "@Store/actions";
 import {fetchLocationsCache, fetchLocationsDone, fetchLocationsError} from '@Store/actions/locations';
 import {FETCH_FILTERED_LOCATIONS, FETCH_LOCATIONS} from "@Store/constants/locations";
-import {responseToLocations} from "@Utils//mappers/responseToLocations";
+import {responseToLocations} from "@Utils/mappers/responseToLocations";
 import {checkDateIsDeprecated} from "@Utils/date";
 
-import {ILocation} from "../../../types/location";
+import {ILocation} from "@Types/location";
 
 function* fetchLocationsAsync(action: IReduxAction) {
     try {

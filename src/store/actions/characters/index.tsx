@@ -1,4 +1,4 @@
-import {ICharacter, IFilterCharacter} from "src/types/character";
+import {ICharacter, IFilterCharacter} from "@Types/character";
 
 import {
     FETCH_CHARACTERS,

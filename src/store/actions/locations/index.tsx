@@ -1,4 +1,4 @@
-import {IFilterLocation, ILocation} from "src/types/location";
+import {IFilterLocation, ILocation} from "@Types/location";
 
 import {
     FETCH_FILTERED_LOCATIONS,

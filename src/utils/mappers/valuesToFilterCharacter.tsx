@@ -1,4 +1,4 @@
-import {IFilterCharacter} from "../../types/character";
+import {IFilterCharacter} from "@Types/character";
 import {FilterCharacterDefault} from "@Constants/characters";
 
 export const valuesToFilterCharacter = (values: any) => {

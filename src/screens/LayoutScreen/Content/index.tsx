@@ -2,7 +2,7 @@ import React from "react";
 
 import { CustomContainer } from "@Components/Custom/Container";
 
-import Routes from "../../../router/router";
+import Routes from "@Router/router";
 
 const Content = () => {
 

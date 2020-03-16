@@ -1,4 +1,4 @@
-import {IFilterLocation} from "../../types/location";
+import {IFilterLocation} from "@Types/location";
 import {FilterLocationDefault} from "@Constants/locations";
 
 export const valuesToFilterLocation = (values: any) => {

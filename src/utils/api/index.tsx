@@ -1,4 +1,4 @@
-import {GetDataByPage} from "../../apiClients/RickAndMorty";
+import {GetDataByPage} from "@ApiClients/RickAndMorty";
 
 
 const calculatePageSize = (response: any) => {

@@ -1,4 +1,4 @@
-import { IEpisode } from "../../types/episode";
+import { IEpisode } from "@Types/episode";
 
 export const responseToEpisodes = (response: any[]) => {
     var episodes: IEpisode[] = [];

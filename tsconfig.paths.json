@@ -28,6 +28,12 @@
             ],
             "@Utils/*": [
                 "src/utils/*"
+            ],
+            "@Environment/*": [
+                "src/environment/*"
+            ],
+            "@Types/*": [
+                "src/types/*"
             ]
         }
     }

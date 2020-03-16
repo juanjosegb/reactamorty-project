@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -12,9 +12,9 @@ export const SelectInput = (props: Props) => {
     const {label} = props;
     const {field} = props;
 
-    const inputLabel = React.useRef<HTMLLabelElement>(null);
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
+    const inputLabel = useRef<HTMLLabelElement>(null);
+    const [labelWidth, setLabelWidth] = useState(0);
+    useEffect(() => {
         setLabelWidth(inputLabel.current!.offsetWidth);
     }, []);
 

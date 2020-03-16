@@ -10,10 +10,10 @@ import {CustomSubTitle, CustomTitle} from "@Components/Custom/Text"
 import {EpisodesTableColumns} from "@Constants/EpisodesTableColumns"
 import {Grid, Paper} from "@material-ui/core"
 
-import {GetCharacters, GetEpisodes} from "../../../apiClients/RickAndMorty"
-import {ICharacter} from "../../../types/character"
-import {IEpisode} from "../../../types/episode"
-import {responseToEpisodes} from "../../../utils/mappers/responseToEpisodes"
+import {GetCharacters, GetEpisodes} from "@ApiClients/RickAndMorty"
+import {ICharacter} from "@Types/character"
+import {IEpisode} from "@Types/episode"
+import {responseToEpisodes} from "@Utils/mappers/responseToEpisodes"
 import {EpisodesFilterOptions} from "@Constants/FilterOptions";
 import {addCharacterHistory} from "@Store/actions/history";
 import {getEpisodes, IEpisodeState} from "@Store/reducers/episodes";
