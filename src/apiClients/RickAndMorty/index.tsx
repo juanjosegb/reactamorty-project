@@ -51,7 +51,7 @@ export const GetFilteredLocations = async (filter: IFilterLocation = FilterLocat
 export const GetAllEpisodes = async () => {
     let response = await apiClient.get(`episode/`);
     const numberOfPages = getNumberOfPages(response);
-    return await concatPages(`episode`, numberOfPages);
+    return (!numberOfPages) ? response.data : await concatPages(`episode/`, numberOfPages);
 };
 
 export const GetEpisodes = async (ids: any[] = []) => {
