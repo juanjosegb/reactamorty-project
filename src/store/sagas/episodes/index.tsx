@@ -15,12 +15,12 @@ function* fetchEpisodesAsync(action: IReduxAction) {
         if (checkDateIsDeprecated(action.payload.date) || (action.payload.episodes.length === 0)) {
             results = yield (GetAllEpisodes().then(
                 response => {
-                    return responseToEpisodes(response);
+                    return responseToEpisodes(response.data.results);
                 }
             ));
             yield put(fetchEpisodesDone(results))
         } else {
-            results = action.payload.locations;
+            results = action.payload.episodes;
             yield put(fetchEpisodesCache(results))
         }
     } catch (error) {
@@ -29,11 +29,14 @@ function* fetchEpisodesAsync(action: IReduxAction) {
 }
 
 function* fetchFilteredEpisodesAsync(action: IReduxAction) {
-    console.log(action.payload);
     try {
         let results: IEpisode[];
-        results = yield (GetFilteredEpisodes(action.payload));
-        yield put(fetchEpisodesCache(results))
+        results = yield (GetFilteredEpisodes(action.payload).then(
+            response => {
+                return responseToEpisodes(response.data.results);
+            }
+        ));
+        yield put(fetchEpisodesDone(results))
     } catch (error) {
         yield put(fetchEpisodesError());
     }

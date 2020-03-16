@@ -7,7 +7,6 @@ import {
     FETCH_LOCATIONS_DONE,
     FETCH_LOCATIONS_ERROR
 } from "@Store/constants/locations";
-import {FETCH_FILTERED_EPISODES} from "@Store/constants/episodes";
 
 export interface ILocationState {
     locations: ILocation[],
