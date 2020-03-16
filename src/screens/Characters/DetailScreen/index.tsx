@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {useParams} from "react-router-dom"
 
 import Datatable from "@Components/Common/Datatable"
@@ -16,6 +16,8 @@ import {IEpisode} from "../../../types/episode"
 import {responseToEpisodes} from "../../../utils/mappers/responseToEpisodes"
 import {EpisodesFilterOptions} from "@Constants/FilterOptions";
 import {addCharacterHistory} from "@Store/actions/history";
+import {getEpisodes, IEpisodeState} from "@Store/reducers/episodes";
+import {RootState} from "@Store/reducers";
 
 export const CharacterDetailScreen = () => {
 
@@ -24,6 +26,8 @@ export const CharacterDetailScreen = () => {
     const [character, setCharacter] = useState<ICharacter>({} as ICharacter);
     const [episodes, setEpisodes] = useState<IEpisode[]>([] as IEpisode[]);
     const dispatch = useDispatch();
+    const episodesState: IEpisodeState = useSelector((state: RootState) => state.episodesState);
+
 
     useEffect(() => {
 
@@ -123,7 +127,7 @@ export const CharacterDetailScreen = () => {
             <CustomContainerDatatable>
                 {episodes.length > 0 &&
                 <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}
-                           filter={EpisodesFilterOptions}/>
+                           filter={EpisodesFilterOptions} state={episodesState} getTopic={getEpisodes}/>
                 }
             </CustomContainerDatatable>
 

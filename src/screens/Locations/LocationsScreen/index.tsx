@@ -33,7 +33,7 @@ const LocationsScreen = () => {
             </CustomGridCenterItems>
             {getLocations(locationsState).length > 0 && (
                 <Datatable columns={LocationsTableColumns} rows={getLocations(locationsState)} topic={"locations"}
-                           filter={LocationsFilterOptions}/>)}
+                           filter={LocationsFilterOptions} state={locationsState} getTopic={getLocations}/>)}
         </>
     );
 };

@@ -33,7 +33,7 @@ const EpisodesScreen = () => {
             </CustomGridCenterItems>
             {getEpisodes(episodesState).length > 0 && (
                 <Datatable columns={EpisodesTableColumns} rows={getEpisodes(episodesState)} topic={"episodes"}
-                           filter={EpisodesFilterOptions}/>)}
+                           filter={EpisodesFilterOptions} state={episodesState} getTopic={getEpisodes}/>)}
         </>
     );
 };

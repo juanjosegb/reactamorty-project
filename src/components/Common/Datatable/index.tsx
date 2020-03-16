@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {TableButton} from "@Custom/Button/TableButton";
 import {TablePagination} from "@material-ui/core";
@@ -13,14 +13,18 @@ import {IEpisode} from "../../../types/episode";
 import {GenericFilter} from "@Components/Common/Filter";
 import {CustomContainerDatatable} from "@Custom/Container";
 
-export type Props = { columns: string[], rows: any[], topic: string, filter: string[] };
+export type Props = { columns: string[], rows: any[], topic: string, filter: string[], state: any, getTopic: any};
 
 const Datatable = (props: Props) => {
 
-    const {rows, columns, topic, filter} = props;
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [filteredRows, setFilteredRows] = useState(rows as any[]);
+    const {rows, columns, topic, filter, state, getTopic} = props;
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [filteredRows, setFilteredRows] = useState(getTopic(state) as any[]);
+
+    useEffect(() => {
+        setFilteredRows(getTopic(state));
+    }, [getTopic(state)]);
 
 
     const handleChangePage = (event: unknown, newPage: number) => {
