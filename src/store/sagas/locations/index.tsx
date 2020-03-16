@@ -32,13 +32,13 @@ function* fetchLocationsAsync(action: IReduxAction) {
 function* fetchFilteredLocationsAsync(action: IReduxAction) {
     try {
         let results: ILocation[];
-        if (checkDateIsDeprecated(action.payload.date) || (action.payload.episodes.length === 0)) {
-            results = yield (GetFilteredLocations(action.payload));
-            yield put(fetchLocationsDone(results))
-        } else {
-            results = action.payload.episodes;
-            yield put(fetchLocationsCache(results))
-        }
+        results = yield (GetFilteredLocations(action.payload).then(
+            response => {
+                console.log(response);
+                return responseToLocations(response);
+            }
+        ));
+        yield put(fetchLocationsDone(results))
     } catch (error) {
         yield put(fetchLocationsError());
     }

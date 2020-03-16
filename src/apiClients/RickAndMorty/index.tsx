@@ -42,12 +42,16 @@ export const GetLocations = async (ids: any[] = []) => {
 };
 
 export const GetFilteredLocations = async (filter: IFilterLocation = FilterLocationDefault) => {
-    return apiClient.get(`location/?name=${filter.name}&type=${filter.type}&dimension=${filter.dimension}`);
+    let response = await apiClient.get(`location/?name=${filter.name}&type=${filter.type}&dimension=${filter.dimension}`);
+    const numberOfPages = getNumberOfPages(response);
+    return (!numberOfPages) ? response.data : await concatPages(`location/?name=${filter.name}&type=${filter.type}&dimension=${filter.dimension}`, numberOfPages);
 };
 
 //Episodes
-export const GetAllEpisodes = () => {
-    return apiClient.get(`episode/`);
+export const GetAllEpisodes = async () => {
+    let response = await apiClient.get(`episode/`);
+    const numberOfPages = getNumberOfPages(response);
+    return await concatPages(`episode`, numberOfPages);
 };
 
 export const GetEpisodes = async (ids: any[] = []) => {
@@ -56,8 +60,10 @@ export const GetEpisodes = async (ids: any[] = []) => {
     return (!numberOfPages) ? response.data : await concatPages(`episode/${ids}`, numberOfPages);
 };
 
-export const GetFilteredEpisodes = (filter: IFilterEpisode = FilterEpisodeDefault) => {
-    return apiClient.get(`episode/?episode=${filter.episode}&name=${filter.name}`);
+export const GetFilteredEpisodes = async (filter: IFilterEpisode = FilterEpisodeDefault) => {
+    let response = await apiClient.get(`episode/?episode=${filter.episode}&name=${filter.name}`);
+    const numberOfPages = getNumberOfPages(response);
+    return (!numberOfPages) ? response.data : await concatPages(`episode/?episode=${filter.episode}&name=${filter.name}`, numberOfPages);
 };
 
 export const GetDataByPage = (page: number, url: string) => {

@@ -8,7 +8,7 @@ import {CustomTitle} from '@Components/Custom/Text'
 import {Grid} from '@material-ui/core'
 import {ICharacter} from '../../../types/character'
 import {formatDescription} from '../../../utils/formatDescription'
-import {fetchCharacters} from "@Store/actions/characters";
+import {fetchCharacters, fetchFilteredCharacters} from "@Store/actions/characters";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCharacters, getTotalPages, ICharacterState} from "@Store/reducers/characters";
 import {RootState} from "@Store/reducers";
@@ -16,6 +16,7 @@ import {GenericFilter} from "@Components/Common/Filter";
 import {CharactersFilterOptions} from "@Constants/FilterOptions";
 import {TransitionsModal} from "@Components/Common/Modal";
 import {CharacterCriteria, ValuesCharactersCriteria} from "@Constants/characters";
+import {valuesToFilterCharacter} from "@Utils/mappers/valuesToFilterCharacter";
 
 const CharactersScreen = () => {
 
@@ -45,7 +46,7 @@ const CharactersScreen = () => {
                 <GenericFilter setTopics={setFilteredCharacters} allTopics={getCurrentCharacters(charactersState)}
                                filterOptions={CharactersFilterOptions} isFilterTable={false}/>
                 <CustomGridCenterItems>
-                    <TransitionsModal button={"Complex Filter"} title={"Complex Filter"} topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria}/>
+                    <TransitionsModal button={"Complex Filter"} title={"Complex Filter"} topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria} formatter={valuesToFilterCharacter} fetch={fetchFilteredCharacters}/>
                 </CustomGridCenterItems>
 
                 <Grid container spacing={4}>
