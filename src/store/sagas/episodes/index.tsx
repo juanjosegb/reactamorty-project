@@ -15,7 +15,7 @@ function* fetchEpisodesAsync(action: IReduxAction) {
         if (checkDateIsDeprecated(action.payload.date) || (action.payload.episodes.length === 0)) {
             results = yield (GetAllEpisodes().then(
                 response => {
-                    return responseToEpisodes(response.data.results);
+                    return responseToEpisodes(response);
                 }
             ));
             yield put(fetchEpisodesDone(results))
@@ -33,7 +33,7 @@ function* fetchFilteredEpisodesAsync(action: IReduxAction) {
         let results: IEpisode[];
         results = yield (GetFilteredEpisodes(action.payload).then(
             response => {
-                return responseToEpisodes(response.data.results);
+                return responseToEpisodes(response);
             }
         ));
         yield put(fetchEpisodesDone(results))
