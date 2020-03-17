@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
 
-  sample:
+  reactamorty:
     container_name: reactamorty
     build:
       context: .
