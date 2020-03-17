@@ -1,14 +1,14 @@
 import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
 
-import { TableButton } from '@Components/Custom/Button/TableButton';
-import { CustomContainerRaw } from '@Components/Custom/Container';
-import { CustomGridCenterItems } from '@Components/Custom/Grid';
-import { CustomHistoryLink } from '@Components/Custom/NavLink';
-import { CustomSubTitle, CustomTitle } from '@Components/Custom/Text';
-import { RootState } from "@Store/reducers";
-import { IHistoryState, getCharactersHistory, getEpisodesHistory, getLocationsHistory } from '@Store/reducers/history';
-import { Grid, Paper } from '@material-ui/core';
+import {TableButton} from '@Components/Custom/Button/TableButton';
+import {CustomContainerRaw} from '@Components/Custom/Container';
+import {CustomGridCenterItems} from '@Components/Custom/Grid';
+import {CustomHistoryLink} from '@Components/Custom/NavLink';
+import {CustomSubTitle, CustomTitle} from '@Components/Custom/Text';
+import {RootState} from "@Store/reducers";
+import {IHistoryState, getCharactersHistory, getEpisodesHistory, getLocationsHistory} from '@Store/reducers/history';
+import {Grid, Paper} from '@material-ui/core';
 import {cleanHistory} from "@Store/actions/history";
 
 const HistoryScreen = () => {
@@ -34,11 +34,12 @@ const HistoryScreen = () => {
                         <Paper>
                             <CustomSubTitle>
                                 Characters
-                        </CustomSubTitle>
+                            </CustomSubTitle>
                             {
                                 getCharactersHistory(historyState).length > 0 &&
                                 getCharactersHistory(historyState).map((character: any, index) => (
-                                    <div><CustomHistoryLink to={`/characters/${character.id}`} key={index}>{character.name}</CustomHistoryLink></div>
+                                    <div><CustomHistoryLink to={`/characters/${character.id}`}
+                                                            key={index}>{character.name}</CustomHistoryLink></div>
                                 ))
                             }
                             {
@@ -52,12 +53,13 @@ const HistoryScreen = () => {
                         <Paper>
                             <CustomSubTitle>
                                 Locations
-                        </CustomSubTitle>
+                            </CustomSubTitle>
 
                             {
                                 getLocationsHistory(historyState).length > 0 &&
                                 getLocationsHistory(historyState).map((location: any, index) => (
-                                    <div><CustomHistoryLink to={`/locations/${location.id}`} key={index}>{location.name}</CustomHistoryLink></div>
+                                    <div><CustomHistoryLink to={`/locations/${location.id}`}
+                                                            key={index}>{location.name}</CustomHistoryLink></div>
                                 ))
                             }
                             {
@@ -71,11 +73,12 @@ const HistoryScreen = () => {
                         <Paper>
                             <CustomSubTitle>
                                 Episodes
-                        </CustomSubTitle>
+                            </CustomSubTitle>
                             {
                                 getEpisodesHistory(historyState).length > 0 &&
                                 getEpisodesHistory(historyState).map((episode: any, index) => (
-                                    <div><CustomHistoryLink to={`/episodes/${episode.id}`} key={index}>{episode.name}</CustomHistoryLink></div>
+                                    <div><CustomHistoryLink to={`/episodes/${episode.id}`}
+                                                            key={index}>{episode.name}</CustomHistoryLink></div>
                                 ))
                             }
                             {

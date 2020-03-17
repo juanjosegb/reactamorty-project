@@ -8,14 +8,14 @@ import AppBar from '@material-ui/core/AppBar';
 
 const Header = () => {
 
-    const [sideMenu, setSidenavMenu] = React.useState({ left: false });
+    const [sideMenu, setSidenavMenu] = React.useState({left: false});
 
     return (
         <Grid container item xs={12} spacing={0}>
             <AppBar position="fixed">
                 <CustomToolbar>
-                    <MainMenu />
-                    <SidenavMenu sideMenu={sideMenu} setSidenavMenu={setSidenavMenu} />
+                    <MainMenu/>
+                    <SidenavMenu sideMenu={sideMenu} setSidenavMenu={setSidenavMenu}/>
                 </CustomToolbar>
             </AppBar>
         </Grid>

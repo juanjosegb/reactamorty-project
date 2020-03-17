@@ -7,9 +7,9 @@ import {
     FETCH_LOCATIONS_DONE,
     FETCH_LOCATIONS_ERROR
 } from "@Store/constants/locations";
-import { ILocationState } from "@Store/reducers/locations";
+import {ILocationState} from "@Store/reducers/locations";
 
-import { IReduxAction } from "..";
+import {IReduxAction} from "..";
 
 export const fetchLocations = (state: ILocationState): IReduxAction => {
     return {
@@ -19,7 +19,7 @@ export const fetchLocations = (state: ILocationState): IReduxAction => {
 };
 
 export const fetchLocationsDone = (locations: ILocation[]): IReduxAction => {
-    return { type: FETCH_LOCATIONS_DONE, payload: locations };
+    return {type: FETCH_LOCATIONS_DONE, payload: locations};
 };
 
 export const fetchLocationsCache = (locations: ILocation[]): IReduxAction => {
@@ -30,7 +30,7 @@ export const fetchLocationsCache = (locations: ILocation[]): IReduxAction => {
 };
 
 export const fetchLocationsError = (): IReduxAction => {
-    return { type: FETCH_LOCATIONS_ERROR };
+    return {type: FETCH_LOCATIONS_ERROR};
 };
 
 export const fetchFilteredLocations = (filter: IFilterLocation): IReduxAction => {

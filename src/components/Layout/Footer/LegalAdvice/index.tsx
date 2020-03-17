@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { LegalAdviceItems } from "@Constants/LegalAdviceItems";
-import { LegalAdviceSpace } from "@Custom/LegalAdviceSpace";
-import { SocialLink } from "@Custom/SocialLink";
+import {LegalAdviceItems} from "@Constants/LegalAdviceItems";
+import {LegalAdviceSpace} from "@Custom/LegalAdviceSpace";
+import {SocialLink} from "@Custom/SocialLink";
 
 const LegalAdvice = () => {
 

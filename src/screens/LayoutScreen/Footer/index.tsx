@@ -19,27 +19,27 @@ const Footer = () => {
         <Trailer>
             <Grid container spacing={0}>
 
-                <Grid item xs={12} sm={5} >
+                <Grid item xs={12} sm={5}>
                     <AlignedItem>
                         <Grid item xs={12}>
                             <CustomFooterImage
-                                src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png" />
+                                src="https://media.cdn.adultswim.com/uploads/20191004/191041327281-r&m4_Hero_000000.png"/>
                         </Grid>
                         <Grid container item xs={12} spacing={0}>
-                            <SocialLinks />
+                            <SocialLinks/>
                         </Grid>
                     </AlignedItem>
                 </Grid>
 
-                <GridFooterDivider item xs={12} sm={2} >
-                    <FooterDivider variant={"middle"} orientation={"vertical"} />
+                <GridFooterDivider item xs={12} sm={2}>
+                    <FooterDivider variant={"middle"} orientation={"vertical"}/>
                 </GridFooterDivider>
                 <Grid item xs={12} sm={5}>
-                    <StackedMenu />
+                    <StackedMenu/>
                 </Grid>
             </Grid>
-            <Grid item xs={12} >
-                <LegalAdvice />
+            <Grid item xs={12}>
+                <LegalAdvice/>
             </Grid>
         </Trailer>
     );
