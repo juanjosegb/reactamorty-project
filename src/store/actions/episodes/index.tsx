@@ -1,4 +1,4 @@
-import {IEpisode, IFilterEpisode} from "src/types/episode";
+import {IEpisode, IFilterEpisode} from "@Types/episode";
 
 import {
     FETCH_EPISODES,
@@ -19,7 +19,7 @@ export const fetchEpisodes = (state: IEpisodeState): IReduxAction => {
 };
 
 export const fetchEpisodesDone = (episodes: IEpisode[]): IReduxAction => {
-    return { type: FETCH_EPISODES_DONE, payload: episodes };
+    return {type: FETCH_EPISODES_DONE, payload: episodes};
 };
 
 export const fetchEpisodesCache = (episodes: IEpisode[]): IReduxAction => {
@@ -30,7 +30,7 @@ export const fetchEpisodesCache = (episodes: IEpisode[]): IReduxAction => {
 };
 
 export const fetchEpisodesError = (): IReduxAction => {
-    return { type: FETCH_EPISODES_ERROR };
+    return {type: FETCH_EPISODES_ERROR};
 };
 
 export const fetchFilteredEpisodes = (filter: IFilterEpisode): IReduxAction => {

@@ -1,5 +1,5 @@
 import {all, put, takeLatest} from 'redux-saga/effects';
-import {ICharacter} from 'src/types/character';
+import {ICharacter} from '@Types/character';
 
 import {IReduxAction} from "@Store/actions";
 import {fetchCharactersDone, fetchCharactersError} from '@Store/actions/characters';

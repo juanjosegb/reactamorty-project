@@ -16,7 +16,9 @@
                     "@Custom": "./src/components/Custom",
                     "@Constants": "./src/constants",
                     "@Screens": "./src/screens",
-                    "@Utils": "./src/utils"
+                    "@Utils": "./src/utils",
+                    "@Environment": "./src/environment",
+                    "@Types": "./src/types"
                 }
             }
         ]

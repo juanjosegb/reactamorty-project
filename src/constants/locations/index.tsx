@@ -1,5 +1,5 @@
-import {ICriteria} from "../../types/filter";
-import {IFilterLocation} from "../../types/location";
+import {ICriteria} from "@Types/filter";
+import {IFilterLocation} from "@Types/location";
 
 export const LocationCriteria: ICriteria[] = [
     {

@@ -3,7 +3,7 @@ import React from "react";
 import {Grid, TextField} from "@material-ui/core";
 import {ComplexButton} from "@Components/Custom/Button/ComplexButton";
 import {CustomGridCenterItems} from "@Components/Custom/Grid";
-import {ICriteria} from "../../../types/filter";
+import {ICriteria} from "@Types/filter";
 import {SelectInput} from "@Components/Common/SelectInput";
 import {useDispatch} from "react-redux";
 

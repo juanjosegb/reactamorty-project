@@ -8,9 +8,9 @@ import {CustomGridCenterItems} from "@Components/Custom/Grid"
 import {CustomSubTitle, CustomTitle} from "@Components/Custom/Text"
 import {Grid, Paper} from "@material-ui/core"
 
-import {GetCharacters, GetLocations} from "../../../apiClients/RickAndMorty"
-import {ICharacter} from "../../../types/character";
-import {ILocation} from "../../../types/location";
+import {GetCharacters, GetLocations} from "@ApiClients/RickAndMorty"
+import {ICharacter} from "@Types/character";
+import {ILocation} from "@Types/location";
 import {useDispatch} from "react-redux";
 import {addLocationHistory} from "@Store/actions/history";
 

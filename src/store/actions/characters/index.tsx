@@ -1,4 +1,4 @@
-import {ICharacter, IFilterCharacter} from "src/types/character";
+import {ICharacter, IFilterCharacter} from "@Types/character";
 
 import {
     FETCH_CHARACTERS,
@@ -7,7 +7,7 @@ import {
     FETCH_FILTERED_CHARACTERS
 } from "@Store/constants/characters";
 
-import { IReduxAction } from "..";
+import {IReduxAction} from "..";
 
 export const fetchCharacters = (page: number = 1): IReduxAction => {
     return {
@@ -17,11 +17,11 @@ export const fetchCharacters = (page: number = 1): IReduxAction => {
 };
 
 export const fetchCharactersDone = (characters: ICharacter[]): IReduxAction => {
-    return { type: FETCH_CHARACTERS_DONE, payload: characters };
+    return {type: FETCH_CHARACTERS_DONE, payload: characters};
 };
 
 export const fetchCharactersError = (): IReduxAction => {
-    return { type: FETCH_CHARACTERS_ERROR };
+    return {type: FETCH_CHARACTERS_ERROR};
 };
 
 export const fetchFilteredCharacters = (filter: IFilterCharacter): IReduxAction => {

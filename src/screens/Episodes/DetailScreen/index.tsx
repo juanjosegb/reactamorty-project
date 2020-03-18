@@ -4,13 +4,13 @@ import {useParams} from "react-router-dom";
 import {ListCharacters} from "@Components/Common/List/ListCharacters";
 import {Grid, Paper} from "@material-ui/core";
 
-import {GetCharacters, GetEpisodes} from "../../../apiClients/RickAndMorty";
-import {CardTitle} from "../../../components/Custom/Card/CardTitle";
-import {CustomContainerRaw} from "../../../components/Custom/Container";
-import {CustomGridCenterItems} from "../../../components/Custom/Grid";
-import {CustomSubTitle, CustomTitle} from "../../../components/Custom/Text";
-import {ICharacter} from "../../../types/character";
-import {IEpisode} from "../../../types/episode";
+import {GetCharacters, GetEpisodes} from "@ApiClients/RickAndMorty";
+import {CardTitle} from "@Components/Custom/Card/CardTitle";
+import {CustomContainerRaw} from "@Components/Custom/Container";
+import {CustomGridCenterItems} from "@Components/Custom/Grid";
+import {CustomSubTitle, CustomTitle} from "@Components/Custom/Text";
+import {ICharacter} from "@Types/character";
+import {IEpisode} from "@Types/episode";
 import {addEpisodeHistory} from "@Store/actions/history";
 import {useDispatch} from "react-redux";
 

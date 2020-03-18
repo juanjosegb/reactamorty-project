@@ -1,4 +1,4 @@
-import {IEpisode} from "src/types/episode";
+import {IEpisode} from "@Types/episode";
 
 import {
     FETCH_EPISODES,

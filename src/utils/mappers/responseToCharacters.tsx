@@ -1,4 +1,4 @@
-import {ICharacter} from "../../types/character";
+import {ICharacter} from "@Types/character";
 
 export const responseToCharacters = (response: any[]) => {
     var characters: ICharacter[] = [];

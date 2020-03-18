@@ -1,4 +1,4 @@
-import {ILocation} from "../../types/location";
+import {ILocation} from "@Types/location";
 
 export const responseToLocations = (response: any[]) => {
     var locations: ILocation[] = [];

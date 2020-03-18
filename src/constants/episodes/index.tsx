@@ -1,5 +1,5 @@
-import {ICriteria} from "../../types/filter";
-import {IFilterEpisode} from "../../types/episode";
+import {ICriteria} from "@Types/filter";
+import {IFilterEpisode} from "@Types/episode";
 
 export const EpisodeCriteria: ICriteria[] = [
     {

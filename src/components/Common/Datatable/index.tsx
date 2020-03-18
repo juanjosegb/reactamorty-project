@@ -9,7 +9,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import {IEpisode} from "../../../types/episode";
+import {IEpisode} from "@Types/episode";
 import {GenericFilter} from "@Components/Common/Filter";
 import {CustomContainerDatatable} from "@Custom/Container";
 

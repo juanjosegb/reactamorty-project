@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Backdrop from '@material-ui/core/Backdrop';
 import {CustomFade, CustomModal, TitleModal} from "@Components/Custom/Modal";
 import {ComplexButton} from "@Components/Custom/Button/ComplexButton";
 import {CloseIcon} from "@Components/Custom/CloseIcon";
-import {ICriteria} from "../../../types/filter";
+import {ICriteria} from "@Types/filter";
 import {ComplexFilter} from "@Components/Common/ComplexFilter";
 
 export type Props = { topicCriteria: ICriteria[], initialValues: any, button: string, title: string, formatter: any, fetch: any };
@@ -11,7 +11,7 @@ export type Props = { topicCriteria: ICriteria[], initialValues: any, button: st
 export const TransitionsModal = (props: Props) => {
 
     const {topicCriteria, initialValues, button, title, formatter, fetch} = props;
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
         setOpen(true);

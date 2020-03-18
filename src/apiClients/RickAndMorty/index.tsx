@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-import {rickAndMortyApiConfig} from "../../environment/apiClients";
-import {concatPages, getNumberOfPages} from "../../utils/api";
-import {IFilterCharacter} from "../../types/character";
+import {rickAndMortyApiConfig} from "@Environment/apiClients";
+import {concatPages, getNumberOfPages} from "@Utils/api";
+import {IFilterCharacter} from "@Types/character";
 import {FilterCharacterDefault} from "@Constants/characters";
-import {IFilterEpisode} from "../../types/episode";
+import {IFilterEpisode} from "@Types/episode";
 import {FilterEpisodeDefault} from "@Constants/episodes";
 import {FilterLocationDefault} from "@Constants/locations";
-import {IFilterLocation} from "../../types/location";
+import {IFilterLocation} from "@Types/location";
 
 const apiClient = axios.create({
     baseURL: rickAndMortyApiConfig.baseURL,

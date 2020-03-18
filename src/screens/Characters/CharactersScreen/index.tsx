@@ -6,8 +6,8 @@ import {CustomGridCenterItems} from '@Components/Custom/Grid';
 import {CustomPaginator} from '@Components/Custom/Paginator';
 import {CustomTitle} from '@Components/Custom/Text'
 import {Grid} from '@material-ui/core'
-import {ICharacter} from '../../../types/character'
-import {formatDescription} from '../../../utils/formatDescription'
+import {ICharacter} from '@Types/character'
+import {formatDescription} from '@Utils/formatDescription'
 import {fetchCharacters, fetchFilteredCharacters} from "@Store/actions/characters";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCharacters, getTotalPages, ICharacterState} from "@Store/reducers/characters";

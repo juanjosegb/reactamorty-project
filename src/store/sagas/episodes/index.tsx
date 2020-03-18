@@ -7,7 +7,7 @@ import {FETCH_EPISODES, FETCH_FILTERED_EPISODES} from "@Store/constants/episodes
 import {responseToEpisodes} from "@Utils//mappers/responseToEpisodes";
 import {checkDateIsDeprecated} from "@Utils/date";
 
-import {IEpisode} from "../../../types/episode";
+import {IEpisode} from "@Types/episode";
 
 function* fetchEpisodesAsync(action: IReduxAction) {
     try {

@@ -1,8 +1,7 @@
-import {ICriteria} from "../../types/filter";
+import {ICriteria} from "@Types/filter";
 import {GenderOptions} from "@Constants/GenderOptions";
 import {StatusOptions} from "@Constants/StatusOptions";
-import {IFilterCharacter} from "../../types/character";
-import {getNumberOfPages} from "@Utils/api";
+import {IFilterCharacter} from "@Types/character";
 
 export const CharacterCriteria: ICriteria[] = [
     {
