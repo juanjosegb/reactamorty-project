@@ -5,6 +5,7 @@ import HistoryIcon from '@material-ui/icons/History';
 import HomeIcon from '@material-ui/icons/Home';
 import MovieIcon from '@material-ui/icons/Movie';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import CompareIcon from '@material-ui/icons/Compare';
 
 export const MenuItems = [
     {
@@ -31,5 +32,10 @@ export const MenuItems = [
         text: 'History',
         route: "/history",
         icon: <HistoryIcon />
+    },
+    {
+        text: 'Comparer',
+        route: "/comparer",
+        icon: <CompareIcon />
     }
 ]; 

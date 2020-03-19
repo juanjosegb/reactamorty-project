@@ -1,8 +1,5 @@
 import React from "react";
-import {
-    Route,
-    Switch
-} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import CharactersScreen from "@Screens/Characters/CharactersScreen";
 import {CharacterDetailScreen} from "@Screens/Characters/DetailScreen";
@@ -13,6 +10,7 @@ import HomeScreen from "@Screens/HomeScreen";
 import {LocationDetailScreen} from "@Screens/Locations/DetailScreen";
 import LocationsScreen from "@Screens/Locations/LocationsScreen";
 import NotFoundScreen from "@Screens/NotFoundScreen";
+import ComparerScreen from "@Screens/ComparerScreen";
 
 const Routes = () => {
 
@@ -30,6 +28,8 @@ const Routes = () => {
             <Route path="/locations/:id" component={LocationDetailScreen}/>
 
             <Route path="/history" component={HistoryScreen}/>
+
+            <Route path="/comparer" component={ComparerScreen}/>
             <Route component={NotFoundScreen}/>
         </Switch>
     )
