@@ -10,10 +10,10 @@ import {
 
 export interface ICharacterState {
     currentCharacters: ICharacter[],
-    page: Number,
+    page: number,
     isFetching: Boolean,
     isError: Boolean,
-    totalPages: Number
+    totalPages: number
 }
 
 const initialState: ICharacterState = {

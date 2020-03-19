@@ -66,7 +66,7 @@ const CharactersScreen = () => {
 
                 </Grid>
                 <CustomGridCenterItems xs={12}>
-                    <CustomPaginator count={getTotalPages(charactersState)} variant="outlined" color="inherit"
+                    <CustomPaginator count={getTotalPages(charactersState)} variant="outlined"
                                      onChange={handleChange}
                                      showFirstButton showLastButton/>
                 </CustomGridCenterItems>

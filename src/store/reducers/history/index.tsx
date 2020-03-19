@@ -5,6 +5,7 @@ import {
     CLEAN_HISTORY
 } from "@Store/constants/actions"
 import {checkCanAddToHistory} from "@Utils/history";
+import {ifElse} from "ramda";
 
 export interface IHistoryState {
     charactersHistory: string[],
@@ -19,23 +20,26 @@ const initialState: IHistoryState = {
 };
 
 export const historyReducer = (state: IHistoryState = initialState, action: any): IHistoryState => {
+
+    const addHistory = ifElse((state: string[], action: any) => checkCanAddToHistory(state, action), (state: string[], action: any) => [action.payload, ...state], (state: string[]) => state);
+
     switch (action.type) {
         case ADD_CHARACTERS_HISTORY:
             return {
                 ...state,
-                charactersHistory: checkCanAddToHistory(state.charactersHistory, action) ? [action.payload, ...state.charactersHistory] : state.charactersHistory
+                charactersHistory: addHistory(state.charactersHistory, action)
             };
 
         case ADD_EPISODES_HISTORY:
             return {
                 ...state,
-                episodesHistory: checkCanAddToHistory(state.episodesHistory, action) ? [action.payload, ...state.episodesHistory] : state.episodesHistory
+                episodesHistory: addHistory(state.episodesHistory, action)
             };
 
         case ADD_LOCATIONS_HISTORY:
             return {
                 ...state,
-                locationsHistory: checkCanAddToHistory(state.locationsHistory, action) ? [action.payload, ...state.locationsHistory] : state.locationsHistory
+                locationsHistory: addHistory(state.locationsHistory, action)
             };
 
         case CLEAN_HISTORY:
