@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
-import { Paper } from "@material-ui/core";
+import {Paper} from "@material-ui/core";
 
-export const BlockPaper = styled(Paper)`
+
+export const InlinePaper = styled(Paper)`
     display: inline-block;
+`
+
+export const BlockPaper = styled(InlinePaper)`
     border-radius: 20px;
 `

@@ -26,3 +26,7 @@ export const BoldSpan = styled.span`
 export const CustomSpanStatus = styled.span`
     color: ${props => props.children?.toString() === 'Alive' ? 'green' : props.children?.toString() === 'Dead' ? 'red' : '#b1b100'};
 `;
+
+export const CustomAttributeComparer = styled.span`
+    color: grey;
+`;

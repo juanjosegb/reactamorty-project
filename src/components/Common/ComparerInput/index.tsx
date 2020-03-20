@@ -1,52 +1,71 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import {CenterContainer} from '@Custom/Container';
-import {CustomIcon} from '@Custom/Icon';
-import {BlockPaper} from '@Custom/Paper';
-import {Divider, IconButton, InputBase} from '@material-ui/core';
-import CompareIcon from '@material-ui/icons/Compare';
-import AddIcon from '@material-ui/icons/Add';
+import {InlinePaper} from '@Custom/Paper';
+import {Checkbox, Divider, TextField} from '@material-ui/core';
+import {Autocomplete} from "@material-ui/lab";
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import {ICharacter} from "@Types/character";
+import {GetAllCharacters} from "@ApiClients/RickAndMorty";
+import {CustomAttributeComparer} from "@Custom/Text";
 
 export const Comparer = (props: any) => {
+    const [characters, setCharacters] = useState<ICharacter[]>({} as ICharacter[]);
+    const [selectedCheckbox, setSelectedCheckbox] = useState<ICharacter[]>([]);
+    const icon = <CheckBoxOutlineBlankIcon fontSize="small"/>;
+    const checkedIcon = <CheckBoxIcon fontSize="small"/>;
 
-    const DEFAULT_FILTER_INPUT = "";
-    const [inputValue, setinputValue] = useState(DEFAULT_FILTER_INPUT);
-
-    const compare = () => {
-        console.log("compare")
-    };
-
-    const addCharacterToComparer = () => {
-        console.log("add to comparer")
-    };
+    useEffect(() => {
+        let characters = GetAllCharacters(1).then(
+            response => {
+                setCharacters(response.data.results)
+            }
+        );
+    }, []);
 
     return (
 
         <CenterContainer>
-            <BlockPaper component="form">
-
-                <CustomIcon onClick={() => {
-                    addCharacterToComparer()
-                }} aria-label="add">
-                    <AddIcon/>
-                </CustomIcon>
-
-
-                <InputBase
-                    value={inputValue}
-                    onKeyUpCapture={() => addCharacterToComparer()}
-                    onChange={(e: any) => setinputValue(e.target.value)}
-                    placeholder={"Comparer VS"}
+            <InlinePaper component="form">
+                <Autocomplete
+                    multiple
+                    id="checkboxes-tags-demo"
+                    options={characters}
+                    getOptionDisabled={(value: ICharacter) => {
+                        return selectedCheckbox.length > 1
+                    }}
+                    onChange={(event: object, value: any) => {
+                        setSelectedCheckbox(value);
+                    }}
+                    getOptionLabel={option => option.name}
+                    renderOption={(option, {selected}) => (
+                        <>
+                            <Checkbox
+                                icon={icon}
+                                checkedIcon={checkedIcon}
+                                style={{marginRight: 8}}
+                                checked={selected}
+                            />
+                            {option.name}
+                            <CustomAttributeComparer>
+                                &nbsp;
+                                {option.status && option.status + " . "}
+                                {option.species && option.species + " . "}
+                                {option.type && option.type + " . "}
+                                {option.gender}
+                            </CustomAttributeComparer>
+                        </>
+                    )}
+                    style={{width: 800}}
+                    renderInput={params => (
+                        <TextField {...params} variant="outlined" label="Choose a character..."
+                                   placeholder="Choose a character..."/>
+                    )}
                 />
 
-                <IconButton onClick={() => {
-                    compare()
-                }} aria-label="menu">
-                    <CompareIcon/>
-                </IconButton>
-
                 <Divider orientation="vertical"/>
-            </BlockPaper>
+            </InlinePaper>
         </CenterContainer>
     );
 };
