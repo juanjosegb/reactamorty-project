@@ -14,9 +14,14 @@ const apiClient = axios.create({
     timeout: rickAndMortyApiConfig.timeout
 });
 
-
 //Characters
-export const GetAllCharacters = (page: number = 1) => {
+export const GetAllCharacters = async () => {
+    let response = await apiClient.get(`character/`);
+    const numberOfPages = getNumberOfPages(response);
+    return await concatPages(`character`, numberOfPages);
+};
+
+export const GetAllCharactersByPage = (page: number = 1) => {
     return apiClient.get(`character/?page=${page}`);
 };
 

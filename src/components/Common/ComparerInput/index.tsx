@@ -7,21 +7,22 @@ import {Autocomplete} from "@material-ui/lab";
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import {ICharacter} from "@Types/character";
-import {GetAllCharacters} from "@ApiClients/RickAndMorty";
 import {CustomAttributeComparer} from "@Custom/Text";
+import {fetchAllCharacters} from "@Store/actions/characters";
+import {useDispatch, useSelector} from "react-redux";
+import {getCurrentCharacters, ICharacterState} from "@Store/reducers/characters";
+import {RootState} from "@Store/reducers";
 
 export const Comparer = (props: any) => {
-    const [characters, setCharacters] = useState<ICharacter[]>({} as ICharacter[]);
+    const {setFirstCharacter, setSecondCharacter} = props;
+    const dispatch = useDispatch();
     const [selectedCheckbox, setSelectedCheckbox] = useState<ICharacter[]>([]);
+    const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
     const icon = <CheckBoxOutlineBlankIcon fontSize="small"/>;
     const checkedIcon = <CheckBoxIcon fontSize="small"/>;
 
     useEffect(() => {
-        let characters = GetAllCharacters(1).then(
-            response => {
-                setCharacters(response.data.results)
-            }
-        );
+        dispatch(fetchAllCharacters())
     }, []);
 
     return (
@@ -31,12 +32,14 @@ export const Comparer = (props: any) => {
                 <Autocomplete
                     multiple
                     id="checkboxes-tags-demo"
-                    options={characters}
+                    options={getCurrentCharacters(charactersState)}
                     getOptionDisabled={(value: ICharacter) => {
                         return selectedCheckbox.length > 1
                     }}
-                    onChange={(event: object, value: any) => {
-                        setSelectedCheckbox(value);
+                    onChange={(event: object, values: any) => {
+                        setFirstCharacter(values[0]);
+                        setSecondCharacter(values[1]);
+                        setSelectedCheckbox(values);
                     }}
                     getOptionLabel={option => option.name}
                     renderOption={(option, {selected}) => (

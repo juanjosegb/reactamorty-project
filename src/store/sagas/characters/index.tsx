@@ -2,19 +2,34 @@ import {all, put, takeLatest} from 'redux-saga/effects';
 import {ICharacter} from '@Types/character';
 
 import {IReduxAction} from "@Store/actions";
-import {fetchCharactersDone, fetchCharactersError} from '@Store/actions/characters';
-import {FETCH_CHARACTERS, FETCH_FILTERED_CHARACTERS} from '@Store/constants/characters';
-import {GetAllCharacters, GetFilteredCharacters} from "@ApiClients/RickAndMorty";
+import {fetchAllCharactersDone, fetchCharactersDone, fetchCharactersError} from '@Store/actions/characters';
+import {FETCH_ALL_CHARACTERS, FETCH_CHARACTERS, FETCH_FILTERED_CHARACTERS} from '@Store/constants/characters';
+import {GetAllCharacters, GetAllCharactersByPage, GetFilteredCharacters} from "@ApiClients/RickAndMorty";
+import {responseToCharacters} from "@Utils/mappers/responseToCharacters";
 
-function* fetchCharactersAsync(action: IReduxAction) {
+function* fetchCharactersByPageAsync(action: IReduxAction) {
     try {
         let results: ICharacter[];
-        results = yield (GetAllCharacters(action.payload).then(
+        results = yield (GetAllCharactersByPage(action.payload).then(
             response => {
                 return {results: response.data.results, pages: response.data.info.pages};
             }
         ));
         yield put(fetchCharactersDone(results))
+    } catch (error) {
+        yield put(fetchCharactersError());
+    }
+}
+
+function* fetchAllCharactersAsync() {
+    try {
+        let results: ICharacter[];
+        results = yield (GetAllCharacters().then(
+            response => {
+                return {results: responseToCharacters(response)};
+            }
+        ));
+        yield put(fetchAllCharactersDone(results))
     } catch (error) {
         yield put(fetchCharactersError());
     }
@@ -35,5 +50,9 @@ function* fetchFilteredCharactersAsync(action: IReduxAction) {
 }
 
 export default function* charactersSaga() {
-    yield all([yield takeLatest(FETCH_CHARACTERS, fetchCharactersAsync), yield takeLatest(FETCH_FILTERED_CHARACTERS, fetchFilteredCharactersAsync)])
+    yield all([
+        yield takeLatest(FETCH_CHARACTERS, fetchCharactersByPageAsync),
+        yield takeLatest(FETCH_ALL_CHARACTERS, fetchAllCharactersAsync),
+        yield takeLatest(FETCH_FILTERED_CHARACTERS, fetchFilteredCharactersAsync)]
+    )
 }

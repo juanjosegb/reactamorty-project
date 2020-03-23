@@ -1,6 +1,8 @@
 import {ICharacter, IFilterCharacter} from "@Types/character";
 
 import {
+    FETCH_ALL_CHARACTERS,
+    FETCH_ALL_CHARACTERS_DONE,
     FETCH_CHARACTERS,
     FETCH_CHARACTERS_DONE,
     FETCH_CHARACTERS_ERROR,
@@ -14,6 +16,14 @@ export const fetchCharacters = (page: number = 1): IReduxAction => {
         type: FETCH_CHARACTERS,
         payload: page
     };
+};
+
+export const fetchAllCharacters = (): IReduxAction => {
+    return {type: FETCH_ALL_CHARACTERS};
+};
+
+export const fetchAllCharactersDone = (characters: ICharacter[]): IReduxAction => {
+    return {type: FETCH_ALL_CHARACTERS_DONE, payload: characters};
 };
 
 export const fetchCharactersDone = (characters: ICharacter[]): IReduxAction => {
