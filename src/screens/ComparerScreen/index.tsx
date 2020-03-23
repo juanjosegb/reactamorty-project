@@ -5,6 +5,7 @@ import {CustomSubTitle, CustomTitle} from '@Components/Custom/Text';
 import {Grid, Paper} from '@material-ui/core';
 import {Comparer} from "@Components/Common/ComparerInput";
 import {ICharacter} from "@Types/character";
+import {CardTitle} from "@Custom/Card/CardTitle";
 
 const ComparerScreen = () => {
 
@@ -30,33 +31,37 @@ const ComparerScreen = () => {
                             <Grid container spacing={4}>
                                 <CustomGridCenterItems item xs={12}>
                                     <CustomSubTitle>
-                                        {defaultFirstCharacterTitle}
+                                        {firstCharacter && firstCharacter.name}
+                                        {!firstCharacter && defaultFirstCharacterTitle}
                                     </CustomSubTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item xs={12} sm={6}>
-                                    <CustomSubTitle>Name</CustomSubTitle>
-                                    {firstCharacter && firstCharacter.name}
-                                    {!firstCharacter && defaultSlash}
-                                </CustomGridCenterItems>
-                                <CustomGridCenterItems item xs={12} sm={6}>
                                     <CustomSubTitle>Status</CustomSubTitle>
-                                    {firstCharacter && firstCharacter.status}
-                                    {!firstCharacter && defaultSlash}
+                                    <CardTitle>
+                                        {firstCharacter && firstCharacter.status}
+                                        {!firstCharacter && defaultSlash}
+                                    </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item xs={12} sm={6}>
                                     <CustomSubTitle>Gender</CustomSubTitle>
-                                    {firstCharacter && firstCharacter.gender}
-                                    {!firstCharacter && defaultSlash}
+                                    <CardTitle>
+                                        {firstCharacter && firstCharacter.gender}
+                                        {!firstCharacter && defaultSlash}
+                                    </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item xs={12} sm={6}>
                                     <CustomSubTitle>Species</CustomSubTitle>
-                                    {firstCharacter && firstCharacter.species}
-                                    {!firstCharacter && defaultSlash}
+                                    <CardTitle>
+                                        {firstCharacter && firstCharacter.species}
+                                        {!firstCharacter && defaultSlash}
+                                    </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item xs={12} sm={6}>
                                     <CustomSubTitle>Type</CustomSubTitle>
-                                    {firstCharacter && firstCharacter.type}
-                                    {!firstCharacter && defaultSlash}
+                                    <CardTitle>
+                                        {firstCharacter && firstCharacter.type}
+                                        {!firstCharacter && defaultSlash}
+                                    </CardTitle>
                                 </CustomGridCenterItems>
                             </Grid>
                         </Paper>
@@ -67,33 +72,37 @@ const ComparerScreen = () => {
                             <Grid container spacing={4}>
                                 <CustomGridCenterItems item xs={12}>
                                     <CustomSubTitle>
-                                        {defaultSecondCharacterTitle}
+                                        {secondCharacter && secondCharacter.name}
+                                        {!secondCharacter && defaultSecondCharacterTitle}
                                     </CustomSubTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item sm={6}>
-                                    <CustomSubTitle>Name</CustomSubTitle>
-                                    {secondCharacter && secondCharacter.name}
-                                    {!secondCharacter && defaultSlash}
-                                </CustomGridCenterItems>
-                                <CustomGridCenterItems item sm={6}>
                                     <CustomSubTitle>Status</CustomSubTitle>
-                                    {secondCharacter && secondCharacter.status}
-                                    {!secondCharacter && defaultSlash}
+                                    <CardTitle>
+                                        {secondCharacter && secondCharacter.status}
+                                        {!secondCharacter && defaultSlash}
+                                    </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item sm={6}>
                                     <CustomSubTitle>Gender</CustomSubTitle>
-                                    {secondCharacter && secondCharacter.gender}
-                                    {!secondCharacter && defaultSlash}
+                                    <CardTitle>
+                                        {secondCharacter && secondCharacter.gender}
+                                        {!secondCharacter && defaultSlash}
+                                    </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item sm={6}>
                                     <CustomSubTitle>Species</CustomSubTitle>
-                                    {secondCharacter && secondCharacter.species}
-                                    {!secondCharacter && defaultSlash}
+                                    <CardTitle>
+                                        {secondCharacter && secondCharacter.species}
+                                        {!secondCharacter && defaultSlash}
+                                    </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item sm={6}>
                                     <CustomSubTitle>Type</CustomSubTitle>
-                                    {secondCharacter && secondCharacter.type}
-                                    {!secondCharacter && defaultSlash}
+                                    <CardTitle>
+                                        {secondCharacter && secondCharacter.type}
+                                        {!secondCharacter && defaultSlash}
+                                    </CardTitle>
                                 </CustomGridCenterItems>
                             </Grid>
                         </Paper>
