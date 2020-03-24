@@ -60,7 +60,6 @@ export const Comparer = (props: any) => {
                             </CustomAttributeComparer>
                         </>
                     )}
-                    style={{width: 800}}
                     renderInput={params => (
                         <TextField {...params} variant="outlined" label="Choose a character..."
                                    placeholder="Choose a character..."/>
