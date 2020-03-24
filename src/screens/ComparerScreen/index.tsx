@@ -13,7 +13,7 @@ const ComparerScreen = () => {
     const [secondCharacter, setSecondCharacter] = useState<ICharacter>();
     const defaultFirstCharacterTitle = "Character 1";
     const defaultSecondCharacterTitle = "Character 2";
-    const defaultSlash = "------------";
+    const defaultDash = "------------";
 
     return (
         <>
@@ -31,36 +31,31 @@ const ComparerScreen = () => {
                             <Grid container spacing={4}>
                                 <CustomGridCenterItems item xs={12}>
                                     <CustomSubTitle>
-                                        {firstCharacter && firstCharacter.name}
-                                        {!firstCharacter && defaultFirstCharacterTitle}
+                                        {firstCharacter ? firstCharacter.name : defaultFirstCharacterTitle}
                                     </CustomSubTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item xs={12} sm={6}>
                                     <CustomSubTitle>Status</CustomSubTitle>
                                     <CardTitle>
-                                        {firstCharacter && firstCharacter.status}
-                                        {!firstCharacter && defaultSlash}
+                                        {firstCharacter ? firstCharacter.status : defaultDash}
                                     </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item xs={12} sm={6}>
                                     <CustomSubTitle>Gender</CustomSubTitle>
                                     <CardTitle>
-                                        {firstCharacter && firstCharacter.gender}
-                                        {!firstCharacter && defaultSlash}
+                                        {firstCharacter ? firstCharacter.gender : defaultDash}
                                     </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item xs={12} sm={6}>
                                     <CustomSubTitle>Species</CustomSubTitle>
                                     <CardTitle>
-                                        {firstCharacter && firstCharacter.species}
-                                        {!firstCharacter && defaultSlash}
+                                        {firstCharacter ? firstCharacter.species : defaultDash}
                                     </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item xs={12} sm={6}>
                                     <CustomSubTitle>Type</CustomSubTitle>
                                     <CardTitle>
-                                        {firstCharacter && firstCharacter.type}
-                                        {!firstCharacter && defaultSlash}
+                                        {firstCharacter ? firstCharacter.type : defaultDash}
                                     </CardTitle>
                                 </CustomGridCenterItems>
                             </Grid>
@@ -72,36 +67,31 @@ const ComparerScreen = () => {
                             <Grid container spacing={4}>
                                 <CustomGridCenterItems item xs={12}>
                                     <CustomSubTitle>
-                                        {secondCharacter && secondCharacter.name}
-                                        {!secondCharacter && defaultSecondCharacterTitle}
+                                        {secondCharacter ? secondCharacter.name : defaultSecondCharacterTitle}
                                     </CustomSubTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item sm={6}>
                                     <CustomSubTitle>Status</CustomSubTitle>
                                     <CardTitle>
-                                        {secondCharacter && secondCharacter.status}
-                                        {!secondCharacter && defaultSlash}
+                                        {secondCharacter ? secondCharacter.status : defaultDash}
                                     </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item sm={6}>
                                     <CustomSubTitle>Gender</CustomSubTitle>
                                     <CardTitle>
-                                        {secondCharacter && secondCharacter.gender}
-                                        {!secondCharacter && defaultSlash}
+                                        {secondCharacter ? secondCharacter.gender : defaultDash}
                                     </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item sm={6}>
                                     <CustomSubTitle>Species</CustomSubTitle>
                                     <CardTitle>
-                                        {secondCharacter && secondCharacter.species}
-                                        {!secondCharacter && defaultSlash}
+                                        {secondCharacter ? secondCharacter.species : defaultDash}
                                     </CardTitle>
                                 </CustomGridCenterItems>
                                 <CustomGridCenterItems item sm={6}>
                                     <CustomSubTitle>Type</CustomSubTitle>
                                     <CardTitle>
-                                        {secondCharacter && secondCharacter.type}
-                                        {!secondCharacter && defaultSlash}
+                                        {secondCharacter ? secondCharacter.type : defaultDash}
                                     </CardTitle>
                                 </CustomGridCenterItems>
                             </Grid>
