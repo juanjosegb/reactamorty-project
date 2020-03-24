@@ -13,8 +13,8 @@ import {
 export interface ICharacterState {
     currentCharacters: ICharacter[],
     page: number,
-    isFetching: Boolean,
-    isError: Boolean,
+    isFetching: boolean,
+    isError: boolean,
     totalPages: number
 }
 

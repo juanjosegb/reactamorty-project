@@ -10,7 +10,7 @@ import {ICharacter} from "@Types/character";
 import {CustomAttributeComparer} from "@Custom/Text";
 import {fetchAllCharacters} from "@Store/actions/characters";
 import {useDispatch, useSelector} from "react-redux";
-import {getCurrentCharacters, ICharacterState} from "@Store/reducers/characters";
+import {getCharactersFetching, getCurrentCharacters, ICharacterState} from "@Store/reducers/characters";
 import {RootState} from "@Store/reducers";
 
 export const Comparer = (props: any) => {
@@ -45,6 +45,7 @@ export const Comparer = (props: any) => {
             <InlinePaper component="form">
                 <Autocomplete
                     multiple
+                    loading={getCharactersFetching(charactersState)}
                     id="checkboxes-tags-demo"
                     options={getCurrentCharacters(charactersState)}
                     getOptionDisabled={handleOptionDisabled()}
