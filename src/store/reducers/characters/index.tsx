@@ -70,7 +70,7 @@ export const charactersReducer = (state: ICharacterState = initialState, action:
             return {
                 ...state,
                 isFetching: false,
-                currentCharacters: action.payload.results
+                currentCharacters: action.payload
             };
         default:
             return state;

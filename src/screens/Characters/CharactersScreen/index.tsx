@@ -46,12 +46,14 @@ const CharactersScreen = () => {
                 <GenericFilter setTopics={setFilteredCharacters} allTopics={getCurrentCharacters(charactersState)}
                                filterOptions={CharactersFilterOptions} isFilterTable={false}/>
                 <CustomGridCenterItems>
-                    <TransitionsModal button={"Complex Filter"} title={"Complex Filter"} topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria} formatter={valuesToFilterCharacter} fetch={fetchFilteredCharacters}/>
+                    <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}
+                                      topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria}
+                                      formatter={valuesToFilterCharacter} fetch={fetchFilteredCharacters}/>
                 </CustomGridCenterItems>
 
                 <Grid container spacing={4}>
 
-                    {filteredCharacters.length > 0 &&
+                    {filteredCharacters &&
                     filteredCharacters.map((character: ICharacter, index: number) => (
                         <CardItem
                             key={index}

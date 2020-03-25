@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import {CenterContainer} from '@Custom/Container';
-import {InlinePaper} from '@Custom/Paper';
+import {InlinePaperFilter} from '@Custom/Paper';
 import {Checkbox, Divider, TextField} from '@material-ui/core';
 import {Autocomplete} from "@material-ui/lab";
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
@@ -42,7 +42,7 @@ export const Comparer = (props: any) => {
     return (
 
         <CenterContainer>
-            <InlinePaper component="form">
+            <InlinePaperFilter component="form">
                 <Autocomplete
                     multiple
                     loading={getCharactersFetching(charactersState)}
@@ -76,7 +76,7 @@ export const Comparer = (props: any) => {
                 />
 
                 <Divider orientation="vertical"/>
-            </InlinePaper>
+            </InlinePaperFilter>
         </CenterContainer>
     );
 };

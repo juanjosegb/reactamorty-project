@@ -1,21 +1,15 @@
-import {all, put, takeLatest} from 'redux-saga/effects';
+import {all, call, put, takeLatest} from 'redux-saga/effects';
 import {ICharacter} from '@Types/character';
 
 import {IReduxAction} from "@Store/actions";
 import {fetchAllCharactersDone, fetchCharactersDone, fetchCharactersError} from '@Store/actions/characters';
 import {FETCH_ALL_CHARACTERS, FETCH_CHARACTERS, FETCH_FILTERED_CHARACTERS} from '@Store/constants/characters';
 import {GetAllCharacters, GetAllCharactersByPage, GetFilteredCharacters} from "@ApiClients/RickAndMorty";
-import {responseToCharacters} from "@Utils/mappers/responseToCharacters";
 
 function* fetchCharactersByPageAsync(action: IReduxAction) {
     try {
-        let results: ICharacter[];
-        results = yield (GetAllCharactersByPage(action.payload).then(
-            response => {
-                return {results: response.data.results, pages: response.data.info.pages};
-            }
-        ));
-        yield put(fetchCharactersDone(results))
+        const response: any = yield call(GetAllCharactersByPage, action.payload);
+        yield put(fetchCharactersDone({results: response.data.results, pages: response.data.info.pages}));
     } catch (error) {
         yield put(fetchCharactersError());
     }
@@ -23,13 +17,8 @@ function* fetchCharactersByPageAsync(action: IReduxAction) {
 
 function* fetchAllCharactersAsync() {
     try {
-        let results: ICharacter[];
-        results = yield (GetAllCharacters().then(
-            response => {
-                return {results: responseToCharacters(response)};
-            }
-        ));
-        yield put(fetchAllCharactersDone(results))
+        const results: ICharacter[] = yield call(GetAllCharacters);
+        yield put(fetchAllCharactersDone(results));
     } catch (error) {
         yield put(fetchCharactersError());
     }
@@ -37,13 +26,8 @@ function* fetchAllCharactersAsync() {
 
 function* fetchFilteredCharactersAsync(action: IReduxAction) {
     try {
-        let results: ICharacter[];
-        results = yield (GetFilteredCharacters(action.payload).then(
-            response => {
-                return {results: response.data.results, pages: response.data.info.pages};
-            }
-        ));
-        yield put(fetchCharactersDone(results))
+        const response: any = yield call(GetFilteredCharacters, action.payload);
+        yield put(fetchCharactersDone({results: response.data.results, pages: response.data.info.pages}));
     } catch (error) {
         yield put(fetchCharactersError());
     }
