@@ -6,16 +6,16 @@ import {CustomGridCenterItems} from '@Components/Custom/Grid';
 import {CustomPaginator} from '@Components/Custom/Paginator';
 import {CustomTitle} from '@Components/Custom/Text'
 import {Grid} from '@material-ui/core'
-import {ICharacter} from '@Types/character'
+import {ICharacter, IFilterCharacter} from '@Types/character'
 import {formatDescription} from '@Utils/formatDescription'
-import {fetchCharacters, fetchFilteredCharacters} from "@Store/actions/characters";
+import {fetchFilteredCharacters} from "@Store/actions/characters";
 import {useDispatch, useSelector} from "react-redux";
-import {getCurrentCharacters, getTotalPages, ICharacterState} from "@Store/reducers/characters";
+import {getCurrentCharacters, getCurrentPage, getTotalPages, ICharacterState} from "@Store/reducers/characters";
 import {RootState} from "@Store/reducers";
 import {GenericFilter} from "@Components/Common/Filter";
 import {CharactersFilterOptions} from "@Constants/FilterOptions";
 import {TransitionsModal} from "@Components/Common/Modal";
-import {CharacterCriteria, ValuesCharactersCriteria} from "@Constants/characters";
+import {CharacterCriteria, FilterCharacterDefault, ValuesCharactersCriteria} from "@Constants/characters";
 import {valuesToFilterCharacter} from "@Utils/mappers/valuesToFilterCharacter";
 
 const CharactersScreen = () => {
@@ -23,18 +23,25 @@ const CharactersScreen = () => {
     const dispatch = useDispatch();
     const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
     const [filteredCharacters, setFilteredCharacters] = useState<ICharacter[]>([]);
+    const [filteredValues, setFilteredValues] = useState<IFilterCharacter>(FilterCharacterDefault);
 
     useEffect(() => {
-        dispatch(fetchCharacters());
-    }, []);
+        refreshCharactersByPage(1);
+    }, [filteredValues]);
 
     useEffect(() => {
         setFilteredCharacters(getCurrentCharacters(charactersState));
     }, [getCurrentCharacters(charactersState)]);
 
     const handleChange = (event: object, page: number) => {
-        dispatch(fetchCharacters(page));
+        refreshCharactersByPage(page);
     };
+
+    function refreshCharactersByPage(page: number) {
+        filteredValues.page = page;
+        setFilteredValues(valuesToFilterCharacter(filteredValues));
+        dispatch(fetchFilteredCharacters(filteredValues));
+    }
 
     return (
         <>
@@ -48,7 +55,7 @@ const CharactersScreen = () => {
                 <CustomGridCenterItems>
                     <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}
                                       topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria}
-                                      formatter={valuesToFilterCharacter} fetch={fetchFilteredCharacters}/>
+                                      setFilteredValues={setFilteredValues}/>
                 </CustomGridCenterItems>
 
                 <Grid container spacing={4}>
@@ -70,7 +77,9 @@ const CharactersScreen = () => {
                 <CustomGridCenterItems xs={12}>
                     <CustomPaginator count={getTotalPages(charactersState)} variant="outlined"
                                      onChange={handleChange}
-                                     showFirstButton showLastButton/>
+                                     showFirstButton showLastButton
+                                     page={getCurrentPage(charactersState)}
+                    />
                 </CustomGridCenterItems>
 
             </CustomContainerRaw>
