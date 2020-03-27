@@ -6,11 +6,11 @@ import {CloseIcon} from "@Components/Custom/CloseIcon";
 import {ICriteria} from "@Types/filter";
 import {ComplexFilter} from "@Components/Common/ComplexFilter";
 
-export type Props = { topicCriteria: ICriteria[], initialValues: any, button: string, title: string, formatter: any, fetch: any };
+export type Props = { topicCriteria: ICriteria[], initialValues: any, button: string, title: string, setFilteredValues: any };
 
 export const TransitionsModal = (props: Props) => {
 
-    const {topicCriteria, initialValues, button, title, formatter, fetch} = props;
+    const {topicCriteria, initialValues, button, title, setFilteredValues} = props;
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -45,7 +45,7 @@ export const TransitionsModal = (props: Props) => {
                         </TitleModal>
                         <div id="transition-modal-description">
                             <ComplexFilter topicCriteria={topicCriteria} initialValues={initialValues}
-                                           setModalOpen={setOpen} formatter={formatter} fetch={fetch}/>
+                                           setModalOpen={setOpen} setFilteredValues={setFilteredValues}/>
                         </div>
                     </div>
                 </CustomFade>

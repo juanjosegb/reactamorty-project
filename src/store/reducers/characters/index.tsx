@@ -2,6 +2,8 @@ import {ICharacter} from "@Types/character";
 
 import {IReduxAction} from "@Store/actions";
 import {
+    FETCH_ALL_CHARACTERS,
+    FETCH_ALL_CHARACTERS_DONE,
     FETCH_CHARACTERS,
     FETCH_CHARACTERS_DONE,
     FETCH_CHARACTERS_ERROR,
@@ -11,8 +13,8 @@ import {
 export interface ICharacterState {
     currentCharacters: ICharacter[],
     page: number,
-    isFetching: Boolean,
-    isError: Boolean,
+    isFetching: boolean,
+    isError: boolean,
     totalPages: number
 }
 
@@ -26,7 +28,6 @@ const initialState: ICharacterState = {
 
 export const charactersReducer = (state: ICharacterState = initialState, action: IReduxAction): ICharacterState => {
     switch (action.type) {
-
         case FETCH_CHARACTERS:
             return {
                 ...state,
@@ -58,6 +59,18 @@ export const charactersReducer = (state: ICharacterState = initialState, action:
                 isFetching: true,
                 currentCharacters: [],
                 totalPages: 0
+            };
+        case FETCH_ALL_CHARACTERS:
+            return {
+                ...state,
+                isFetching: true,
+                currentCharacters: []
+            };
+        case FETCH_ALL_CHARACTERS_DONE:
+            return {
+                ...state,
+                isFetching: false,
+                currentCharacters: action.payload
             };
         default:
             return state;

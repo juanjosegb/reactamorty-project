@@ -21,3 +21,8 @@ export interface IFilterCharacter {
     type: string,
     gender: string
 }
+
+export interface ICharacterWithTotalPages {
+    results: ICharacter[],
+    pages: number
+}

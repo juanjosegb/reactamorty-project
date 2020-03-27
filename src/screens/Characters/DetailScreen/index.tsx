@@ -16,7 +16,7 @@ import {IEpisode} from "@Types/episode"
 import {responseToEpisodes} from "@Utils/mappers/responseToEpisodes"
 import {EpisodesFilterOptions} from "@Constants/FilterOptions";
 import {addCharacterHistory} from "@Store/actions/history";
-import {getEpisodes, IEpisodeState} from "@Store/reducers/episodes";
+import {IEpisodeState} from "@Store/reducers/episodes";
 import {RootState} from "@Store/reducers";
 
 export const CharacterDetailScreen = () => {
@@ -127,7 +127,7 @@ export const CharacterDetailScreen = () => {
             <CustomContainerDatatable>
                 {episodes.length > 0 &&
                 <Datatable columns={EpisodesTableColumns} rows={episodes} topic={"episodes"}
-                           filter={EpisodesFilterOptions} state={episodesState} getTopic={getEpisodes}/>
+                           filter={EpisodesFilterOptions} state={episodesState} getTopic={() => episodes}/>
                 }
             </CustomContainerDatatable>
 

@@ -1,4 +1,4 @@
-import {all, put, takeLatest} from 'redux-saga/effects';
+import {all, call, put, takeLatest} from 'redux-saga/effects';
 
 import {GetAllLocations, GetFilteredLocations} from "@ApiClients/RickAndMorty";
 import {IReduxAction} from "@Store/actions";
@@ -11,19 +11,12 @@ import {ILocation} from "@Types/location";
 
 function* fetchLocationsAsync(action: IReduxAction) {
     try {
-        let results: ILocation[];
         if (checkDateIsDeprecated(action.payload.date) || (action.payload.locations.length === 0)) {
-            results = yield (GetAllLocations().then(
-                response => {
-                    return responseToLocations(response);
-                }
-            ));
-            yield put(fetchLocationsDone(results))
+            const results: ILocation[] = yield call(GetAllLocations);
+            yield put(fetchLocationsDone(responseToLocations(results)))
         } else {
-            results = action.payload.locations;
-            yield put(fetchLocationsCache(results))
+            yield put(fetchLocationsCache(action.payload.locations))
         }
-
     } catch (error) {
         yield put(fetchLocationsError());
     }
@@ -31,14 +24,8 @@ function* fetchLocationsAsync(action: IReduxAction) {
 
 function* fetchFilteredLocationsAsync(action: IReduxAction) {
     try {
-        let results: ILocation[];
-        results = yield (GetFilteredLocations(action.payload).then(
-            response => {
-                console.log(response);
-                return responseToLocations(response);
-            }
-        ));
-        yield put(fetchLocationsDone(results))
+        const results: ILocation[] = yield call(GetFilteredLocations, action.payload);
+        yield put(fetchLocationsDone(responseToLocations(results)))
     } catch (error) {
         yield put(fetchLocationsError());
     }
@@ -46,5 +33,8 @@ function* fetchFilteredLocationsAsync(action: IReduxAction) {
 
 
 export default function* locationsSaga() {
-    yield all([yield takeLatest(FETCH_LOCATIONS, fetchLocationsAsync), yield takeLatest(FETCH_FILTERED_LOCATIONS, fetchFilteredLocationsAsync)]);
+    yield all([
+        yield takeLatest(FETCH_LOCATIONS, fetchLocationsAsync),
+        yield takeLatest(FETCH_FILTERED_LOCATIONS, fetchFilteredLocationsAsync)]
+    );
 }
