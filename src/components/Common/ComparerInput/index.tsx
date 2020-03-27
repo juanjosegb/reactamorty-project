@@ -20,6 +20,8 @@ export const Comparer = (props: any) => {
     const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
     const icon = <CheckBoxOutlineBlankIcon fontSize="small"/>;
     const checkedIcon = <CheckBoxIcon fontSize="small"/>;
+    const isFetching = getCharactersFetching(charactersState);
+    const currentCharacters = getCurrentCharacters(charactersState);
 
     useEffect(() => {
         dispatch(fetchAllCharacters())
@@ -41,9 +43,9 @@ export const Comparer = (props: any) => {
             <InlinePaperFilter component="form">
                 <Autocomplete
                     multiple
-                    loading={getCharactersFetching(charactersState)}
+                    loading={isFetching}
                     id="checkboxes-tags-demo"
-                    options={getCurrentCharacters(charactersState)}
+                    options={currentCharacters}
                     getOptionDisabled={handleOptionDisabled}
                     onChange={handleChange}
                     getOptionLabel={option => option.name}
