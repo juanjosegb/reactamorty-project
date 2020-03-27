@@ -25,18 +25,14 @@ export const Comparer = (props: any) => {
         dispatch(fetchAllCharacters())
     }, []);
 
-    function handleChange() {
-        return (event: object, values: any) => {
-            setFirstCharacter(values[0]);
-            setSecondCharacter(values[1]);
-            setSelectedCheckbox(values);
-        };
+    function handleChange(event: object, values: any) {
+        setFirstCharacter(values[0]);
+        setSecondCharacter(values[1]);
+        setSelectedCheckbox(values);
     }
 
-    function handleOptionDisabled() {
-        return (value: ICharacter) => {
-            return selectedCheckbox.length > 1
-        };
+    function handleOptionDisabled(value: ICharacter) {
+        return selectedCheckbox.length > 1;
     }
 
     return (
@@ -48,8 +44,8 @@ export const Comparer = (props: any) => {
                     loading={getCharactersFetching(charactersState)}
                     id="checkboxes-tags-demo"
                     options={getCurrentCharacters(charactersState)}
-                    getOptionDisabled={handleOptionDisabled()}
-                    onChange={handleChange()}
+                    getOptionDisabled={handleOptionDisabled}
+                    onChange={handleChange}
                     getOptionLabel={option => option.name}
                     renderOption={(option, {selected}) => (
                         <>
