@@ -13,8 +13,6 @@ import {TransitionsModal} from "@Components/Common/Modal";
 import {EpisodeCriteria, FilterEpisodeDefault, ValuesEpisodesCriteria} from "@Constants/episodes";
 import {IFilterEpisode} from "@Types/episode";
 import {CustomClearIcon} from "@Custom/Icon";
-import {fetchFilteredLocations} from "@Store/actions/locations";
-import {FilterLocationDefault} from "@Constants/locations";
 
 const EpisodesScreen = () => {
     const dispatch = useDispatch();
@@ -29,7 +27,7 @@ const EpisodesScreen = () => {
     }, [filteredValues]);
 
     function handleRemoveComplexFilter() {
-        dispatch(fetchFilteredLocations(FilterLocationDefault));
+        dispatch(fetchFilteredEpisodes(FilterEpisodeDefault));
         setIsFiltered(false);
     }
 
