@@ -12,18 +12,26 @@ import {CustomGridCenterItems} from "@Custom/Grid";
 import {TransitionsModal} from "@Components/Common/Modal";
 import {EpisodeCriteria, FilterEpisodeDefault, ValuesEpisodesCriteria} from "@Constants/episodes";
 import {IFilterEpisode} from "@Types/episode";
-import {valuesToFilterEpisode} from "@Utils/mappers/valuesToFilterEpisode";
+import {CustomClearIcon} from "@Custom/Icon";
+import {fetchFilteredLocations} from "@Store/actions/locations";
+import {FilterLocationDefault} from "@Constants/locations";
 
 const EpisodesScreen = () => {
     const dispatch = useDispatch();
     const episodesState: IEpisodeState = useSelector((state: RootState) => state.episodesState);
     const [filteredValues, setFilteredValues] = useState<IFilterEpisode>(FilterEpisodeDefault);
+    const [isFiltered, setIsFiltered] = useState(false);
 
 
     useEffect(() => {
-        setFilteredValues(valuesToFilterEpisode(filteredValues));
+        setFilteredValues(filteredValues);
         dispatch(fetchFilteredEpisodes(filteredValues));
     }, [filteredValues]);
+
+    function handleRemoveComplexFilter() {
+        dispatch(fetchFilteredLocations(FilterLocationDefault));
+        setIsFiltered(false);
+    }
 
     return (
         <>
@@ -32,7 +40,10 @@ const EpisodesScreen = () => {
             </CustomTitle>
             <CustomGridCenterItems>
                 <TransitionsModal button={"Complex Filter"} title={"Complex Filter"} topicCriteria={EpisodeCriteria}
-                                  initialValues={ValuesEpisodesCriteria} setFilteredValues={setFilteredValues}/>
+                                  initialValues={ValuesEpisodesCriteria} setFilteredValues={setFilteredValues}
+                                  setIsFiltered={setIsFiltered}
+                />
+                {isFiltered && <CustomClearIcon onClick={handleRemoveComplexFilter}/>}
             </CustomGridCenterItems>
             {getEpisodes(episodesState).length > 0 && (
                 <Datatable columns={EpisodesTableColumns} rows={getEpisodes(episodesState)} topic={"episodes"}

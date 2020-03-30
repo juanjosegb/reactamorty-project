@@ -6,10 +6,10 @@ import {CustomGridCenterItems} from "@Components/Custom/Grid";
 import {ICriteria} from "@Types/filter";
 import {SelectInput} from "@Components/Common/SelectInput";
 
-export type Props = { topicCriteria: ICriteria[], initialValues: any, setModalOpen: any, setFilteredValues: any };
+export type Props = { topicCriteria: ICriteria[], initialValues: any, setModalOpen: any, setFilteredValues: any, setIsFiltered: any };
 
 export const ComplexFilter = (props: Props) => {
-    const {topicCriteria, initialValues, setModalOpen, setFilteredValues} = props;
+    const {topicCriteria, initialValues, setModalOpen, setFilteredValues, setIsFiltered} = props;
 
     return <Formik
         initialValues={initialValues}
@@ -20,6 +20,7 @@ export const ComplexFilter = (props: Props) => {
             setFilteredValues(values);
             setSubmitting(false);
             setModalOpen(false);
+            setIsFiltered(true);
         }}
     >
         {({
