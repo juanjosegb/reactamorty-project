@@ -6,11 +6,11 @@ import {CloseIcon} from "@Components/Custom/CloseIcon";
 import {ICriteria} from "@Types/filter";
 import {ComplexFilter} from "@Components/Common/ComplexFilter";
 
-export type Props = { topicCriteria: ICriteria[], initialValues: any, button: string, title: string, setFilteredValues: any };
+export type Props = { topicCriteria: ICriteria[], initialValues: any, button: string, title: string, setFilteredValues: any, setIsFiltered: (value: boolean) => void };
 
 export const TransitionsModal = (props: Props) => {
 
-    const {topicCriteria, initialValues, button, title, setFilteredValues} = props;
+    const {topicCriteria, initialValues, button, title, setFilteredValues, setIsFiltered} = props;
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -22,7 +22,7 @@ export const TransitionsModal = (props: Props) => {
     };
 
     return (
-        <div>
+        <>
             <ComplexButton variant="contained" color="primary" onClick={handleOpen}>
                 {button}
             </ComplexButton>
@@ -45,11 +45,13 @@ export const TransitionsModal = (props: Props) => {
                         </TitleModal>
                         <div id="transition-modal-description">
                             <ComplexFilter topicCriteria={topicCriteria} initialValues={initialValues}
-                                           setModalOpen={setOpen} setFilteredValues={setFilteredValues}/>
+                                           setModalOpen={setOpen} setFilteredValues={setFilteredValues}
+                                           setIsFiltered={setIsFiltered}
+                            />
                         </div>
                     </div>
                 </CustomFade>
             </CustomModal>
-        </div>
+        </>
     );
 };

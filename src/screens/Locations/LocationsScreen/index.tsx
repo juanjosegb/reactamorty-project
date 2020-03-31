@@ -12,18 +12,23 @@ import {CustomGridCenterItems} from "@Custom/Grid";
 import {TransitionsModal} from "@Components/Common/Modal";
 import {FilterLocationDefault, LocationCriteria, ValuesLocationsCriteria} from "@Constants/locations";
 import {IFilterLocation} from "@Types/location";
-import {valuesToFilterLocation} from "@Utils/mappers/valuesToFilterLocation";
+import {CustomClearIcon} from "@Custom/Icon";
 
 const LocationsScreen = () => {
     const dispatch = useDispatch();
     const locationsState: ILocationState = useSelector((state: RootState) => state.locationsState);
     const [filteredValues, setFilteredValues] = useState<IFilterLocation>(FilterLocationDefault);
-
+    const [isFiltered, setIsFiltered] = useState(false);
 
     useEffect(() => {
-        setFilteredValues(valuesToFilterLocation(filteredValues));
+        setFilteredValues(filteredValues);
         dispatch(fetchFilteredLocations(filteredValues));
     }, [filteredValues]);
+
+    function handleRemoveComplexFilter() {
+        dispatch(fetchFilteredLocations(FilterLocationDefault));
+        setIsFiltered(false);
+    }
 
     return (
         <>
@@ -32,7 +37,10 @@ const LocationsScreen = () => {
             </CustomTitle>
             <CustomGridCenterItems>
                 <TransitionsModal button={"Complex Filter"} title={"Complex Filter"} topicCriteria={LocationCriteria}
-                                  initialValues={ValuesLocationsCriteria} setFilteredValues={setFilteredValues}/>
+                                  initialValues={ValuesLocationsCriteria} setFilteredValues={setFilteredValues}
+                                  setIsFiltered={setIsFiltered}
+                />
+                {isFiltered && <CustomClearIcon onClick={handleRemoveComplexFilter}/>}
             </CustomGridCenterItems>
             {getLocations(locationsState).length > 0 && (
                 <Datatable columns={LocationsTableColumns} rows={getLocations(locationsState)} topic={"locations"}
