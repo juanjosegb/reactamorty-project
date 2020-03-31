@@ -6,7 +6,7 @@ import {CustomGridCenterItems} from "@Components/Custom/Grid";
 import {ICriteria} from "@Types/filter";
 import {SelectInput} from "@Components/Common/SelectInput";
 
-export type Props = { topicCriteria: ICriteria[], initialValues: any, setModalOpen: any, setFilteredValues: any, setIsFiltered: any };
+export type Props = { topicCriteria: ICriteria[], initialValues: any, setModalOpen: (value: boolean) => void, setFilteredValues: any, setIsFiltered: (value: boolean) => void };
 
 export const ComplexFilter = (props: Props) => {
     const {topicCriteria, initialValues, setModalOpen, setFilteredValues, setIsFiltered} = props;

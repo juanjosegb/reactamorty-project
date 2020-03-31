@@ -6,7 +6,7 @@ import {CloseIcon} from "@Components/Custom/CloseIcon";
 import {ICriteria} from "@Types/filter";
 import {ComplexFilter} from "@Components/Common/ComplexFilter";
 
-export type Props = { topicCriteria: ICriteria[], initialValues: any, button: string, title: string, setFilteredValues: any, setIsFiltered: any };
+export type Props = { topicCriteria: ICriteria[], initialValues: any, button: string, title: string, setFilteredValues: any, setIsFiltered: (value: boolean) => void };
 
 export const TransitionsModal = (props: Props) => {
 
