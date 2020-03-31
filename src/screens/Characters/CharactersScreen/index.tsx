@@ -16,7 +16,7 @@ import {GenericFilter} from "@Components/Common/Filter";
 import {CharactersFilterOptions} from "@Constants/FilterOptions";
 import {TransitionsModal} from "@Components/Common/Modal";
 import {CharacterCriteria, FilterCharacterDefault, ValuesCharactersCriteria} from "@Constants/characters";
-import {valuesToFilterCharacter} from "@Utils/mappers/valuesToFilterCharacter";
+import {CustomClearIcon} from "@Custom/Icon";
 
 const CharactersScreen = () => {
 
@@ -24,6 +24,7 @@ const CharactersScreen = () => {
     const charactersState: ICharacterState = useSelector((state: RootState) => state.charactersState);
     const [filteredCharacters, setFilteredCharacters] = useState<ICharacter[]>([]);
     const [filteredValues, setFilteredValues] = useState<IFilterCharacter>(FilterCharacterDefault);
+    const [isFiltered, setIsFiltered] = useState(false);
 
     useEffect(() => {
         refreshCharactersByPage(1);
@@ -33,13 +34,19 @@ const CharactersScreen = () => {
         setFilteredCharacters(getCurrentCharacters(charactersState));
     }, [getCurrentCharacters(charactersState)]);
 
-    const handleChange = (event: object, page: number) => {
-        refreshCharactersByPage(page);
-    };
+    function handleChangePaginator(event: object, page: number) {
+        return refreshCharactersByPage(page);
+    }
+
+    function handleRemoveComplexFilter() {
+        dispatch(fetchFilteredCharacters(FilterCharacterDefault));
+        setFilteredValues(FilterCharacterDefault);
+        setIsFiltered(false);
+    }
 
     function refreshCharactersByPage(page: number) {
         filteredValues.page = page;
-        setFilteredValues(valuesToFilterCharacter(filteredValues));
+        setFilteredValues(filteredValues);
         dispatch(fetchFilteredCharacters(filteredValues));
     }
 
@@ -55,7 +62,9 @@ const CharactersScreen = () => {
                 <CustomGridCenterItems>
                     <TransitionsModal button={"Complex Filter"} title={"Complex Filter"}
                                       topicCriteria={CharacterCriteria} initialValues={ValuesCharactersCriteria}
-                                      setFilteredValues={setFilteredValues}/>
+                                      setFilteredValues={setFilteredValues} setIsFiltered={setIsFiltered}
+                    />
+                    {isFiltered && <CustomClearIcon onClick={handleRemoveComplexFilter}/>}
                 </CustomGridCenterItems>
 
                 <Grid container spacing={4}>
@@ -76,7 +85,7 @@ const CharactersScreen = () => {
                 </Grid>
                 <CustomGridCenterItems xs={12}>
                     <CustomPaginator count={getTotalPages(charactersState)} variant="outlined"
-                                     onChange={handleChange}
+                                     onChange={handleChangePaginator}
                                      showFirstButton showLastButton
                                      page={getCurrentPage(charactersState)}
                     />
