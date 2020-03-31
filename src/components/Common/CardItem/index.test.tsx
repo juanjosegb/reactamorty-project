@@ -4,9 +4,14 @@ import CardItem from "@Components/Common/CardItem";
 import "@testing-library/jest-dom/extend-expect";
 
 test('render a card', () => {
-    const component = shallow(<CardItem title={"test"} description={"test"} id={0} urlToImage={"test"}
-                                        topic={"character"}/>);
-    component
-        .find('CardTitle');
-    expect(component).toBe("test")
+    const titleInitial = "title-test";
+    const descriptionInitial = "description-test";
+    const imageInitial = "image-test";
+    const topicInitial = "character";
+    const component = shallow(<CardItem title={titleInitial} description={descriptionInitial} urlToImage={imageInitial}
+                                        topic={topicInitial}/>);
+    const titleComponent = component.find('#title-test').text();
+    const descriptionComponent = component.find('#description-test').text();
+    expect(titleComponent).toBe(titleInitial);
+    expect(descriptionInitial).toBe(descriptionComponent);
 });

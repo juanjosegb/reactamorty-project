@@ -28,7 +28,7 @@ const CardItem = (props: CardProps) => {
                     </Grid>
 
                     <Grid item xs={12} sm={12} md={12} lg={6}>
-                        <CardTitle>
+                        <CardTitle id={props.title}>
                             {props.title}
                         </CardTitle>
                     </Grid>
@@ -39,7 +39,7 @@ const CardItem = (props: CardProps) => {
                 <CardContent>
 
                     <CardDivider orientation={"horizontal"}/>
-                    <CardDescription>
+                    <CardDescription id={props.description}>
                         {props.description}
                     </CardDescription>
                 </CardContent>
