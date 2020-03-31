@@ -43,7 +43,9 @@
   "scripts": {
     "start": "rescripts start",
     "build": "rescripts build",
-    "test": "rescripts test",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -65,14 +67,36 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
+    "babel-jest": "^25.2.4",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.2.4",
+    "react-test-renderer": "^16.13.1",
     "redux": "^4.0.5"
+  },
+  "jest": {
+    "setupFiles": [
+      "./jestsetup.tsx"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|scss|jpg|jpeg|png|svg)$": "identity-obj-proxy"
+    }
   }
 }
