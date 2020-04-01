@@ -13,7 +13,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCharactersFetching, getCurrentCharacters, ICharacterState} from "@Store/reducers/characters";
 import {RootState} from "@Store/reducers";
 
-export const Comparer = (props: any) => {
+export type Props = { setFirstCharacter: (character: ICharacter) => void, setSecondCharacter: (character: ICharacter) => void };
+
+export const Comparer = (props: Props) => {
     const {setFirstCharacter, setSecondCharacter} = props;
     const dispatch = useDispatch();
     const [selectedCheckbox, setSelectedCheckbox] = useState<ICharacter[]>([]);

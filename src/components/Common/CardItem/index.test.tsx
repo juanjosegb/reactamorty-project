@@ -8,10 +8,11 @@ test('render a card', () => {
     const descriptionInitial = "description-test";
     const imageInitial = "image-test";
     const topicInitial = "character";
-    const component = shallow(<CardItem title={titleInitial} description={descriptionInitial} urlToImage={imageInitial}
-                                        topic={topicInitial}/>);
+
+    const component = shallow(<CardItem title={titleInitial} description={descriptionInitial} urlToImage={imageInitial} topic={topicInitial}/>);
     const titleComponent = component.find('#title-test').text();
     const descriptionComponent = component.find('#description-test').text();
+
     expect(titleComponent).toBe(titleInitial);
     expect(descriptionInitial).toBe(descriptionComponent);
 });
