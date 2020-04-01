@@ -3,7 +3,7 @@ import {shallow} from "enzyme";
 import CardItem from "@Components/Common/CardItem";
 import "@testing-library/jest-dom/extend-expect";
 
-test('render a card', () => {
+test('Card correct title and description', () => {
     const titleInitial = "title-test";
     const descriptionInitial = "description-test";
     const imageInitial = "image-test";
